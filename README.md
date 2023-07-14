@@ -42,23 +42,23 @@ Minding Paws is a Django application designed to connect pet owners with pet min
 
 ### Pet Owner:
 
-- As a Pet Owner, I want to easily search and browse through available Minders based on their profile, services, and availability, to find the perfect match for my pet's needs.
-- As a Pet Owner, I want to be able to securely and conveniently book a pet sitting service with my chosen Minder, specifying the start date, end date, and the service description.
-- As a Pet Owner, I want to check the status of my booking, if it is accepted, declined, completed or pending.
-- As a Pet Owner, I want to have a friendly interface to manage and review my current and past bookings and edit my profile.
+- As a Pet Owner, I can easily search and browse through available Minders based on their profile, services, and availability, so that I can find the perfect match for my pet's needs.
+- As a Pet Owner, I can securely and conveniently book a pet sitting service with my chosen Minder, specifying the start date, end date and the service description, so that I know when the minder will arrive and leave.
+- As a Pet Owner, I can check the status of my booking, if it is accepted, declined, completed or pending, so that I can stay informed about the progress of my booking.
+- As a Pet Owner, I can have a friendly interface to manage and review my current and past bookings and edit my profile, so that I can have a place to view all of my booking information and make changes to my profile as needed.
 
 ### Minder:
 
-- As a Minder, I want to showcase my experience, skills, and availability through my profile.
-- As a Minder, I want to receive booking requests from Pet Owners, including all the necessary details about the pet, service duration, and any specific service instruction.
-- As a Minder, I want to efficiently manage and organize my bookings, including accepting or declining requests based on my availability, updating the status of active bookings.
-- As a Minder, I want to have a friendly interface to manage and review my bookings to manage and review my current and past bookings and edit my profile.
+- As a Minder, I can showcase my experience, skills, and availability through my profile, so that Pet Owners can find me and book my services.
+- As a Minder, I can receive booking requests from Pet Owners, including all the necessary details about the pet, service duration, and any specific service instruction, so that I understand the requirements of the job.
+- As a Minder, I can efficiently manage and organize my bookings, including accepting or declining requests based on my availability, updating the status of active bookings, so that I can ensure that all of my bookings are handled in a timely and efficient manner.
+- As a Minder, I can have a friendly interface to edit my profile, so that I can make updates as required.
 
 ### Site Owner Goals:
 
 
-- As the Site Owner, I want to ensure the security and privacy of user information, implementing authentication and data protection measures to safeguard sensitive data.
-- As the Site Owner, I want to have an administrative dashboard to manage user accounts and track bookings.
+- As the Site Owner, I want to ensure the security and privacy of user information, implementing authentication and data protection measures to safeguard sensitive data, so that users can trust the platform.
+- As the Site Owner, I want to have an administrative dashboard to manage user accounts and track bookings, so that I can effectively manage the site and ensure that it is running smoothly.
 
 
 ## Project Management and Planning
