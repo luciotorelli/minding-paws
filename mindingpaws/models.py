@@ -39,8 +39,8 @@ class UserProfile(models.Model):
 
 class Minder(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    bio = models.TextField()
-    usual_availability = models.TextField()
+    bio = models.TextField(max_length=500)
+    usual_availability = models.TextField(max_length=50)
     photo = CloudinaryField('image', default='placeholder')
 
 
@@ -49,7 +49,7 @@ class Booking(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     start_date = models.DateTimeField()
     end_date = models.DateTimeField()
-    status = models.TextField()
-    service_description = models.TextField()
-    pet_name = models.TextField(blank=True)
-    pet_species = models.TextField(blank=True)
+    status = models.TextField(max_length=20)
+    service_description = models.TextField(max_length=400)
+    pet_name = models.TextField(max_length=50)
+    pet_species = models.TextField(max_length=50)
