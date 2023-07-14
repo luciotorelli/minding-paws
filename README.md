@@ -97,6 +97,42 @@ During this stage, I established connections between the models, views, and cont
      alt="data model for minding paws project"
      width="1000px" style="max-width: 100%;"/>
 
+### User Entity
+
+| Key | Name | Type | Notes |
+|---|---|---|---|
+| Primary key | id | AutoField | |
+|  | name | TextField | |
+|  | email | EmailField | |
+|  | password | TextField | |
+|  | role | TextField | |
+|  | pet_name | TextField | Only required if role equals Pet Owner |
+|  | pet_species | TextField | Only required role equals Pet Owner |
+
+### Minder Entity
+
+| Key | Name | Type | Notes |
+|---|---|---|---|
+| Primary key | id | AutoField | |
+| Foreign Key | user_id | User Model | One to One |
+|  | bio | TextField | |
+|  | usual_availability | TextField | Text description about periods minder is usually available. |
+|  | photo | ImageField | |
+
+### Booking Entity
+
+| Key | Name | Type | Notes |
+|---|---|---|---|
+| Primary key | id | AutoField | |
+| Foreign Key | minder_id | Minder Model | Many to One |
+| Foreign Key | user_id | User Model | Many to One |
+|  | start_date | DateTimeField | |
+|  | end_date | DateTimeField | |
+|  | status | TextField |  |
+|  | service_description | TextField | |
+|  | pet_name | TextField | Preloads from User but can be edited during booking without affecting User profile |
+|  | pet_species | TextField | Preloads from User but can be edited during booking without affecting User profile |
+
 ## Features
 <br>
       
