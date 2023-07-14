@@ -65,7 +65,7 @@ Minding Paws is a Django application designed to connect pet owners with pet min
 
 ### Agile Methodology
 
-This project was idealized following the Agile methodology where the user stories were ordered into sprints based on the importance, timeframe and logic flow. 
+This project was idealized following the Agile methodology where the user stories were ordered into sprints based on the importance, timeframe and logic flow. The sprints were them used to create the tasks found within Github built-in project management tool.  
 
 | Sprint | Description                                      |
 |--------|--------------------------------------------------|
@@ -78,9 +78,9 @@ This project was idealized following the Agile methodology where the user storie
 
 
 ### MVC Architecture
-This project utilizes the MVC architecture to create a full-stack application.
+This project utilizes the MVC architecture to create a full-stack application. During each sprint those steps were reiterated as required.
 
-1. Model - In this stage, I defined the data models for various entities such as User, Booking, and Minder. I also created the Data Model chart, representing the relationships within the database.
+1. Model - In this stage, I defined the data models for various entities such as User, Booking, and Minder. I also created the Data Model chart, representing the relationships within the database and updated as seen fit.
 
 2. View - During this stage, I developed interface templates using HTML, CSS, and JavaScript. These templates render data from the models and present it to the users.
 
