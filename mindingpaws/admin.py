@@ -5,10 +5,24 @@ from .forms import MinderCreationForm, BookingCreationForm
 
 
 class CustomUserAdmin(UserAdmin):
+    # Add fields to the 'Add User page'.
     add_fieldsets = (
         (None, {
             'classes': ('wide',),
             'fields': ('username', 'first_name', 'last_name', 'email', 'password1', 'password2', 'role', 'pet_name', 'pet_species'),
+        }),
+    )
+
+    # Set up the order and which fields to display in the 'Edit User page'.
+    fieldsets = (
+        (None, {
+            'fields': ('username', 'password', 'first_name', 'last_name', 'email', 'role'),
+        }),
+        ('Permissions', {
+            'fields': ('is_active', 'is_staff', 'is_superuser', 'groups', 'user_permissions'),
+        }),
+        ('Important dates', {
+            'fields': ('last_login', 'date_joined'),
         }),
     )
 
@@ -58,10 +72,12 @@ class CustomBookingAdmin(admin.ModelAdmin):
 
     )
     readonly_fields = ['pet_owner_name', 'minder_name']
-    list_display = ('minder_name', 'pet_owner_name', 'status', 'start_date', 'end_date', 'service_description', 'pet_name', 'pet_species')
+    list_display = ('minder_name', 'pet_owner_name', 'status', 'start_date',
+                    'end_date', 'service_description', 'pet_name', 'pet_species')
     search_fields = ['pet_owner_name',
                      'minder_name', 'pet_name', 'pet_species']
-    list_filter = ('status', 'minder_name', 'pet_owner_name', 'pet_name', 'pet_species')
+    list_filter = ('status', 'minder_name', 'pet_owner_name',
+                   'pet_name', 'pet_species')
     form = BookingCreationForm
 
 
