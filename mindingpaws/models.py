@@ -2,7 +2,6 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.core.exceptions import ValidationError
 from cloudinary.models import CloudinaryField
-from datetime import datetime
 from django.utils import timezone
 
 
@@ -32,18 +31,28 @@ class User(AbstractUser):
             raise ValidationError("Pet species is required for Pet Owners.")
 
     def __str__(self):
-        """__str__ This method returns the `username` field from the `User` model.
+        """__str__ This method returns the `username` field from the `User` model in a readable format.
 
         Returns:
             str: The username field from the User model
         """
         return self.username
 
+    def get_full_name(self):
+        """get_full_name
+
+        Returns the first_name plus the last_name, with a space in between.
+
+        Returns:
+            str: first_name + last_name
+        """
+        return f"{self.first_name} {self.last_name}"
+
 
 class Minder(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     bio = models.TextField(max_length=500)
-    usual_availability = models.CharField(max_length=50)
+    usual_availability = models.CharField(max_length=50, help_text="Example: Monday to Friday, 10am to 6pm.")
     photo = CloudinaryField('image', default='placeholder')
 
     def __str__(self):
@@ -57,7 +66,9 @@ class Minder(models.Model):
 
 class Booking(models.Model):
     minder = models.ForeignKey(Minder, on_delete=models.SET_NULL, null=True)
-    pet_owner_user = models.ForeignKey(User, on_delete=models.CASCADE)
+    pet_owner_user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+    pet_owner_name = models.CharField(max_length=100, blank=True, null=True, help_text="This field will be prepopulated on save based on the pet owner selected")
+    minder_name = models.CharField(max_length=100, blank=True, null=True, help_text="This field will be prepopulated on save based on the minder selected")
     start_date = models.DateTimeField()
     end_date = models.DateTimeField()
     STATUS_CHOICES = [
@@ -65,11 +76,24 @@ class Booking(models.Model):
         ('pending', 'Pending'),
         ('declined', 'Declined'),
         ('completed', 'Completed')
-    ] 
+    ]
     status = models.CharField(max_length=20, choices=STATUS_CHOICES)
     service_description = models.TextField(max_length=400)
     pet_name = models.CharField(max_length=50)
     pet_species = models.CharField(max_length=50)
+
+    def save(self, *args, **kwargs):
+        """save redefine save
+
+        prepopulate pet owner name and minder name based on user selected when being saved, 
+        this allows for Users to be deleted without affecting the booking database.
+        """
+        if self.pet_owner_user:
+            self.pet_owner_name = self.pet_owner_user.get_full_name()
+        if self.minder and self.minder.user:
+            self.minder_name = self.minder.user.get_full_name()
+
+        super(Booking, self).save(*args, **kwargs)
 
     def clean(self):
         """Validation for booking fields.
@@ -111,7 +135,7 @@ class Booking(models.Model):
                 "Select an end date later than the start date.")
 
     def __str__(self):
-        """__str__ This method returns the `username` field from the `User` model.
+        """__str__ This method returns the `username` field from the `User` model in a readable format.
 
         Returns:
             str: The username field of the pet owner
