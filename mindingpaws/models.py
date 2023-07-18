@@ -55,9 +55,9 @@ class Minder(models.Model):
 
 class Booking(models.Model):
     minder = models.ForeignKey(Minder, on_delete=models.SET_NULL, null=True)
-    pet_owner_user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
-    pet_owner_name = models.CharField(max_length=100, blank=True, null=True, help_text="This field will be prepopulated on save based on the pet owner selected")
+    pet_owner = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     minder_name = models.CharField(max_length=100, blank=True, null=True, help_text="This field will be prepopulated on save based on the minder selected")
+    pet_owner_name = models.CharField(max_length=100, blank=True, null=True, help_text="This field will be prepopulated on save based on the pet owner selected")
     start_date = models.DateTimeField()
     end_date = models.DateTimeField()
     STATUS_CHOICES = [
@@ -77,8 +77,8 @@ class Booking(models.Model):
         prepopulate pet owner name and minder name based on user selected when being saved, 
         this allows for Users to be deleted without affecting the booking database.
         """
-        if self.pet_owner_user:
-            self.pet_owner_name = self.pet_owner_user.name
+        if self.pet_owner:
+            self.pet_owner_name = self.pet_owner.name
         if self.minder and self.minder.user:
             self.minder_name = self.minder.user.name
 
@@ -100,7 +100,7 @@ class Booking(models.Model):
         Raises:
             ValidationError: Raises a validation error if the pet owner is the same user as the minder being booked.
         """
-        if self.minder and self.pet_owner_user == self.minder.user:
+        if self.minder and self.pet_owner == self.minder.user:
             raise ValidationError(
                 "The pet owner cannot be the same as the minder.")
 
@@ -129,4 +129,4 @@ class Booking(models.Model):
         Returns:
             str: The username field of the pet owner
         """
-        return self.pet_owner_user.username
+        return self.pet_owner.username

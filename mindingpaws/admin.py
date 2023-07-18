@@ -64,7 +64,7 @@ class CustomMinderAdmin(admin.ModelAdmin):
 class CustomBookingAdmin(admin.ModelAdmin):
     fieldsets = (
         ('Users Information', {
-            'fields': ('pet_owner_user', 'pet_owner_name', 'minder', 'minder_name'),
+            'fields': ('pet_owner', 'pet_owner_name', 'minder', 'minder_name'),
         }),
         ('Booking Information', {
             'fields': ('start_date', 'end_date', 'status', 'service_description', 'pet_name', 'pet_species')
