@@ -99,39 +99,41 @@ During this stage, I established connections between the models, views, and cont
 
 ### User Entity
 
-| Key | Name | Type | Notes |
-|---|---|---|---|
+| Key | Name | Type | Notes | Arguments |
+|---|---|---|---|---|
 | Primary key | id | AutoField | |
-|  | name | TextField | |
+|  | name | CharField | | max_length=40, blank=False, null=False |
 |  | email | EmailField | |
-|  | password | TextField | |
-|  | role | TextField | |
-|  | pet_name | TextField | Only required if role equals Pet Owner |
-|  | pet_species | TextField | Only required role equals Pet Owner |
+|  | password | CharField | |
+|  | role | CharField | Role choices options: pet-owner, minder or admin | max_length=9, choices=ROLE_CHOICES, blank=False, null=False |
+|  | pet_name | CharField | Only required if role equals to Pet Owner | max_length=50, blank=True, null=True |
+|  | pet_species | CharField | Only required role equals to Pet Owner | max_length=50, blank=True, null=True |
 
 ### Minder Entity
 
-| Key | Name | Type | Notes |
-|---|---|---|---|
+| Key | Name | Type | Notes | Arguments |
+|---|---|---|---|---|
 | Primary key | id | AutoField | |
-| Foreign Key | user_id | User Model | One to One |
-|  | bio | TextField | |
-|  | usual_availability | TextField | Text description about periods minder is usually available. |
-|  | photo | ImageField | |
+| One to One | user_id | User Model | | User, on_delete=models.CASCADE |
+|  | bio | TextField | | max_length=500, blank=False, null=False |
+|  | usual_availability | CharField | Text description about periods minder is usually available. | max_length=50, help_text="Example: Monday to Friday, 10am to 6pm.", blank=False, null=False |
+|  | photo | CloudinaryField | | 'image', default='placeholder' |
 
 ### Booking Entity
 
-| Key | Name | Type | Notes |
-|---|---|---|---|
+| Key | Name | Type | Notes | Arguments |
+|---|---|---|---|---|
 | Primary key | id | AutoField | |
-| Foreign Key | minder_id | Minder Model | Many to One |
-| Foreign Key | user_id | User Model | Many to One |
-|  | start_date | DateTimeField | |
-|  | end_date | DateTimeField | |
-|  | status | TextField |  |
-|  | service_description | TextField | |
-|  | pet_name | TextField | Preloads from User but can be edited during booking without affecting User profile |
-|  | pet_species | TextField | Preloads from User but can be edited during booking without affecting User profile |
+| Foreign Key | minder | Minder Model |  | Minder, on_delete=models.SET_NULL, null=True |
+| | pet_owner | User Model |  | User, on_delete=models.SET_NULL, null=True |
+| | minder_name | CharField |  | max_length=50, blank=True, null=True, help_text="This field will be prepopulated on save based on the minder selected" |
+| | pet_owner_name | CharField |  | max_length=50, blank=True, null=True, help_text="This field will be prepopulated on save based on the pet owner selected | 
+|  | start_date | DateTimeField | | blank=False, null=False |
+|  | end_date | DateTimeField | | blank=False, null=False |
+|  | status | CharField |  | max_length=20, choices=STATUS_CHOICES, blank=False, null=False |
+|  | service_description | TextField | | max_length=400, blank=False, null=False |
+|  | pet_name | CharField | Preloads from pet_owner but can be edited during booking without updating Pet Owner profile | max_length=50, blank=False, null=False |
+|  | pet_species | CharField | Preloads from pet_owner but can be edited during booking without updating Pet Owner profile | max_length=50, blank=False, null=False |
 
 ## Features
 <br>

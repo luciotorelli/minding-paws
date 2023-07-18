@@ -6,7 +6,7 @@ from django.utils import timezone
 
 
 class User(AbstractUser):
-    name = models.CharField(max_length=40)
+    name = models.CharField(max_length=40, blank=False, null=False)
     ROLE_CHOICES = [
         ('pet-owner', 'Pet Owner'),
         ('minder', 'Minder'),
@@ -40,8 +40,8 @@ class User(AbstractUser):
 
 class Minder(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    bio = models.TextField(max_length=500)
-    usual_availability = models.CharField(max_length=50, help_text="Example: Monday to Friday, 10am to 6pm.")
+    bio = models.TextField(max_length=500, blank=False, null=False)
+    usual_availability = models.CharField(max_length=50, help_text="Example: Monday to Friday, 10am to 6pm.", blank=False, null=False)
     photo = CloudinaryField('image', default='placeholder')
 
     def __str__(self):
@@ -56,20 +56,20 @@ class Minder(models.Model):
 class Booking(models.Model):
     minder = models.ForeignKey(Minder, on_delete=models.SET_NULL, null=True)
     pet_owner = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
-    minder_name = models.CharField(max_length=100, blank=True, null=True, help_text="This field will be prepopulated on save based on the minder selected")
-    pet_owner_name = models.CharField(max_length=100, blank=True, null=True, help_text="This field will be prepopulated on save based on the pet owner selected")
-    start_date = models.DateTimeField()
-    end_date = models.DateTimeField()
+    minder_name = models.CharField(max_length=50, blank=True, null=True, help_text="This field will be prepopulated on save based on the minder selected")
+    pet_owner_name = models.CharField(max_length=50, blank=True, null=True, help_text="This field will be prepopulated on save based on the pet owner selected")
+    start_date = models.DateTimeField(blank=False, null=False)
+    end_date = models.DateTimeField(blank=False, null=False)
     STATUS_CHOICES = [
         ('accepted', 'Accepted'),
         ('pending', 'Pending'),
         ('declined', 'Declined'),
         ('completed', 'Completed')
     ]
-    status = models.CharField(max_length=20, choices=STATUS_CHOICES)
-    service_description = models.TextField(max_length=400)
-    pet_name = models.CharField(max_length=50)
-    pet_species = models.CharField(max_length=50)
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, blank=False, null=False)
+    service_description = models.TextField(max_length=400, blank=False, null=False)
+    pet_name = models.CharField(max_length=50, blank=False, null=False)
+    pet_species = models.CharField(max_length=50, blank=False, null=False)
 
     def save(self, *args, **kwargs):
         """save redefine save
