@@ -6,7 +6,7 @@ from django.utils import timezone
 
 
 class User(AbstractUser):
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=40)
     ROLE_CHOICES = [
         ('pet-owner', 'Pet Owner'),
         ('minder', 'Minder'),
@@ -37,17 +37,6 @@ class User(AbstractUser):
             str: The username field from the User model
         """
         return self.username
-
-    def get_full_name(self):
-        """get_full_name
-
-        Returns the first_name plus the last_name, with a space in between.
-
-        Returns:
-            str: first_name + last_name
-        """
-        return f"{self.first_name} {self.last_name}"
-
 
 class Minder(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -89,9 +78,9 @@ class Booking(models.Model):
         this allows for Users to be deleted without affecting the booking database.
         """
         if self.pet_owner_user:
-            self.pet_owner_name = self.pet_owner_user.get_full_name()
+            self.pet_owner_name = self.pet_owner_user.name
         if self.minder and self.minder.user:
-            self.minder_name = self.minder.user.get_full_name()
+            self.minder_name = self.minder.user.name
 
         super(Booking, self).save(*args, **kwargs)
 

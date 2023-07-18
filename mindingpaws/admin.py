@@ -9,14 +9,14 @@ class CustomUserAdmin(UserAdmin):
     add_fieldsets = (
         (None, {
             'classes': ('wide',),
-            'fields': ('username', 'first_name', 'last_name', 'email', 'password1', 'password2', 'role', 'pet_name', 'pet_species'),
+            'fields': ('username', 'name', 'email', 'password1', 'password2', 'role', 'pet_name', 'pet_species'),
         }),
     )
 
     # Set up the order and which fields to display in the 'Edit User page'.
     fieldsets = (
         (None, {
-            'fields': ('username', 'password', 'first_name', 'last_name', 'email', 'role'),
+            'fields': ('username', 'password', 'name', 'email', 'role'),
         }),
         ('Permissions', {
             'fields': ('is_active', 'is_staff', 'is_superuser', 'groups', 'user_permissions'),
@@ -26,8 +26,8 @@ class CustomUserAdmin(UserAdmin):
         }),
     )
 
-    search_fields = ['username', 'first_name', 'last_name', 'email', 'role']
-    list_display = ('username', 'first_name', 'last_name', 'email', 'role')
+    search_fields = ['username', 'name', 'email', 'role']
+    list_display = ('username', 'name', 'email', 'role')
     list_filter = ('role',)
 
 
