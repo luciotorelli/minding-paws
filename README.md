@@ -135,6 +135,60 @@ During this stage, I established connections between the models, views, and cont
 |  | pet_name | CharField | Preloads from pet_owner but can be edited during booking without updating Pet Owner profile | max_length=50, blank=False, null=False |
 |  | pet_species | CharField | Preloads from pet_owner but can be edited during booking without updating Pet Owner profile | max_length=50, blank=False, null=False |
 
+## UX
+
+### Wireframes
+
+
+<details>
+   <summary>Mobile</summary>
+      
+-  <details>
+         <summary>Homepage</summary>
+            <img src="readme-assets/wireframes/mobile-homepage.png" alt="Wireframe for mobile home page" width="800px" />
+      </details>
+
+- <details>
+     <summary>Bookings</summary>
+        <img src="readme-assets/wireframes/mobile-bookings.png" alt="Wireframe for mobile bookings" width="800px" />
+  </details>
+
+- <details>
+     <summary>My Profile</summary>
+        <img src="readme-assets/wireframes/mobile-my-profile.png" alt="Wireframe for mobile my profile" width="800px" />
+  </details>
+
+- <details>
+     <summary>About Us</summary>
+        <img src="readme-assets/wireframes/mobile-about-us.png" alt="Wireframe for mobile about us" width="800px" />
+  </details>
+</details>
+
+<details>
+   <summary>Desktop</summary>
+   
+-  <details>
+         <summary>Homepage</summary>
+            <img src="readme-assets/wireframes/desktop-homepage.png" alt="Wireframe for desktop home page" width="800px" />
+      </details>
+
+- <details>
+     <summary>Bookings</summary>
+        <img src="readme-assets/wireframes/desktop-bookings.png" alt="Wireframe for desktop bookings" width="800px" />
+  </details>
+
+- <details>
+     <summary>My Profile</summary>
+        <img src="readme-assets/wireframes/desktop-my-profile.png" alt="Wireframe for desktop my profile" width="800px" />
+  </details>
+
+- <details>
+     <summary>About Us</summary>
+        <img src="readme-assets/wireframes/desktop-about-us.png" alt="Wireframe for desktop about us" width="800px" />
+  </details>
+
+</details>
+
 ## Features
 <br>
       
