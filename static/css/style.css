@@ -1,0 +1,9 @@
+.btn-nav {
+    padding-top: 0.7em !important;
+    padding-bottom: 0.7em !important;
+}
+
+/* Add a right border to all nav buttons but the last one */
+.btn-nav:not(:last-child) {
+    border-right-color: black !important;
+}
