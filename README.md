@@ -189,6 +189,10 @@ During this stage, I established connections between the models, views, and cont
 
 </details>
 
+### Color palette
+
+<img src="readme-assets/color-palette.png" alt="Color Palette for the app/site" width="800px" />
+
 ## Features
 <br>
       
