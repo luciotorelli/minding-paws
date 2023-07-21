@@ -1,9 +1,15 @@
 .btn-nav {
-    padding-top: 0.7em !important;
-    padding-bottom: 0.7em !important;
+    padding-top: 0.8em !important;
+    padding-bottom: 0.8em !important;
+    background-color: #0d444e !important;
+    color: #DBDEEB !important; 
+    border: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
 }
 
-/* Add a right border to all nav buttons but the last one */
-.btn-nav:not(:last-child) {
-    border-right-color: black !important;
+.btn-nav.active {
+    color: #FC7536 !important;
+    transition: background-color 0.2s ease;
+
 }
