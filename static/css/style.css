@@ -13,3 +13,8 @@
     transition: background-color 0.2s ease;
 
 }
+
+main {
+    background-color: #419ca5 !important;
+    height: 1000px !important;
+}
