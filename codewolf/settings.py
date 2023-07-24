@@ -41,6 +41,10 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
     'django_bootstrap5',
     'cloudinary_storage',
     'django.contrib.staticfiles',
@@ -48,6 +52,11 @@ INSTALLED_APPS = [
     'cloudinary',
     'mindingpaws',
 ]
+
+SITE_ID = 1
+
+LOGIN_REDIRECT_URL = '/bookings'
+LOGIN_REDIRECT_URL = '/'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

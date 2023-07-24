@@ -41,7 +41,7 @@
                         <i class="fa fa-solid fa-paw"></i>About us
                     </a>
                     <!-- Navbar Item 4 Logged In -->
-                    <a class="nav-item nav-link btn flex-grow-1 rounded-0 btn-nav" href="#">
+                    <a class="nav-item nav-link btn flex-grow-1 rounded-0 btn-nav" href="{% url 'account_logout' %}">
                         <i class="fa fa-regular fa-arrow-right-from-bracket"></i>Logout
                     </a>
                 {% else %}
@@ -50,7 +50,7 @@
                         <i class="fa fa-regular fa-home"></i>Home
                     </a>
                     <!-- Navbar Item 2 Logged Out -->
-                    <a class="nav-item nav-link btn flex-grow-1 rounded-0 btn-nav" href="#">
+                    <a class="nav-item nav-link btn flex-grow-1 rounded-0 btn-nav" href="{% url 'account_signup' %}">
                         <i class="fa fa-regular fa-user-plus"></i>Sign-up
                     </a>
                     <!-- Navbar Item 3 Logged Out -->
@@ -58,7 +58,7 @@
                         <i class="fa fa-solid fa-paw"></i>About us
                     </a>
                     <!-- Navbar Item 4 Logged Out -->
-                    <a class="nav-item nav-link btn flex-grow-1 rounded-0 btn-nav" href="#">
+                    <a class="nav-item nav-link btn flex-grow-1 rounded-0 btn-nav" href="{% url 'account_login' %}">
                         <i class="fa fa-regular fa-arrow-right-to-bracket"></i>Login
                     </a>
                 {% endif %}
