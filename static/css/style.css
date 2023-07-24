@@ -1,11 +1,12 @@
 /* Imports dancing script Google Font */
 @import url('https://fonts.googleapis.com/css2?family=Handlee&display=swap');
 
-
+/* ------------------------------------- Body */
 body {
     background-color: #0D444E !important;
 }
 
+/* ------------------------------------- Navbar */
 .navbar {
     box-shadow: 0 8px 20px 6px black !important;
 }
@@ -21,11 +22,12 @@ body {
 }
 
 .btn-nav.active {
-    color: #FC7536 !important;
+    color: #ff8952 !important;
     transition: background-color 0.2s ease;
 
 }
 
+/* ------------------------------------- Page Header */
 .page-header {
     background-color: #0D444E;
     color: #DBDEEB;
@@ -63,10 +65,35 @@ body {
     background-size: cover;
 }
 
+/* ------------------------------------- Main */
 main {
     min-height: 70vh;
 }
 
+/* ------------------------------------- Sign-up Div */
+.sign-up-div {
+    text-align: center;
+    padding: 10px;
+    background-color: #DBDEEB;
+    border:  1px #000;
+    border-radius: 20px;
+    padding: 20px;
+    /* Adds space between cols by removing the bor*/
+    box-sizing: border-box;
+    border: 10px solid transparent;
+    background-clip: padding-box;
+}
+
+.list-group-item {
+    background-color: #DBDEEB !important;
+    border: 0 !important;
+}
+
+.sign-up-btn {
+    background-color: #ff8952 !important;
+}
+
+/* ------------------------------------- Footer */
 footer {
     background-color: #0D444E;
     color: #DBDEEB;

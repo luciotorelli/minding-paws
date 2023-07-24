@@ -1,6 +1,41 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} {% block content %}
 
-{% block content %}
-    <h1>Homepage</h1>
-    <p>Test</p>
+<div class="container">
+  <div class="row mx-2">
+    <div class="col-12 col-md-6 sign-up-div">
+      <h2>Are you a Pet Owner?</h2>
+      <p mt-1>Sign-up now and receive the following benefits:</p>
+      <ul class="list-group d-flex justify-content-center">
+        <li class="list-group-item">
+          <i class="fa fa-check"></i> Search through dozen of qualified Pet Minders.
+        </li>
+        <li class="list-group-item">
+          <i class="fa fa-check"></i> Share your pet needs with the Minders.
+        </li>
+        <li class="list-group-item">
+          <i class="fa fa-check"></i> Manage your bookings through the platform.
+        </li>
+      </ul>
+      <button type="button" class="btn sign-up-btn mt-2">I am a Pet Owner.</button>
+    </div>
+
+    <div class="col-12 col-md-6 sign-up-div">
+      <h2>Are you a Minder?</h2>
+      <p mt-1>Sign-up now and receive the following benefits:</p>
+      <ul class="list-group d-flex justify-content-center">
+        <li class="list-group-item">
+          <i class="fa fa-check"></i> Offer your Pet Minding Services.
+        </li>
+        <li class="list-group-item">
+          <i class="fa fa-check"></i> Be found by Pet Owners in your region.
+        </li>
+        <li class="list-group-item">
+          <i class="fa fa-check"></i> Manage your bookings through the platform.
+        </li>
+      </ul>
+      <button type="button" class="btn sign-up-btn mt-2">I am a Minder.</button>
+    </div>
+  </div>
+
+</div>
 {% endblock %}
