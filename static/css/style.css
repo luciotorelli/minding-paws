@@ -1,3 +1,6 @@
+/* Imports dancing script Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Handlee&display=swap');
+
 .navbar {
     box-shadow: 0 8px 20px 6px black !important;
 }
@@ -26,7 +29,7 @@ body {
 .page-header {
     background-color: #0D444E;
     color: #DBDEEB;
-    height: 110px;
+    height: auto;
     width: 100%;
     margin: 0 auto;
     display: flex;
@@ -38,5 +41,25 @@ body {
 .page-header h1, 
 .page-header p {
     text-align: center;
-
 }
+
+.page-header h1 {
+    font-family: 'Handlee', cursive;    
+    font-weight: 500;
+    font-size: 1.5em;
+    margin-top: 20px !important;
+}
+
+.page-header p {
+    font-size: 0.8em;
+}
+
+.hero-image {
+    background-image: url("https://res.cloudinary.com/dls3mbdix/image/upload/v1690210863/hero-opacity_fdfn9e.webp");
+    width: 100%;
+    height: 20vh;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-size: cover;
+}
+
