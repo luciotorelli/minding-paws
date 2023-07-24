@@ -73,11 +73,15 @@ main {
 /* ------------------------------------- Sign-up Div */
 .sign-up-div {
     text-align: center;
-    padding: 10px;
     background-color: #DBDEEB;
-    border: 1px #000;
     border-radius: 20px;
     padding: 20px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+
     /* Adds space between cols by removing the bor*/
     box-sizing: border-box;
     border: 10px solid transparent;
@@ -91,6 +95,8 @@ main {
 
 .sign-up-btn {
     background-color: #ff8952 !important;
+    
+
 }
 
 /* ------------------------------------- Footer */
@@ -156,6 +162,7 @@ footer {
 
     footer {
         margin-bottom: 10px !important;
+        padding-left: 15%;
     }
 }
 
@@ -167,6 +174,10 @@ footer {
 
     .page-header,
     main {
+        padding-left: 10%;
+    }
+
+    footer {
         padding-left: 10%;
     }
 }
