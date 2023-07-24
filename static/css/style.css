@@ -1,6 +1,11 @@
 /* Imports dancing script Google Font */
 @import url('https://fonts.googleapis.com/css2?family=Handlee&display=swap');
 
+
+body {
+    background-color: #0D444E !important;
+}
+
 .navbar {
     box-shadow: 0 8px 20px 6px black !important;
 }
@@ -19,11 +24,6 @@
     color: #FC7536 !important;
     transition: background-color 0.2s ease;
 
-}
-
-body {
-    background-color: #419ca5 !important;
-    height: 1000px !important;
 }
 
 .page-header {
@@ -63,3 +63,19 @@ body {
     background-size: cover;
 }
 
+main {
+    min-height: 70vh;
+}
+
+footer {
+    background-color: #0D444E;
+    color: #DBDEEB;
+    height: 50px;
+    width: 100%;
+    font-size: 0.8em;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    /* Minimum margin bottom to display footer above mobile navbar */
+    margin-bottom: 65px !important;
+}
