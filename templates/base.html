@@ -8,6 +8,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Minding Paws</title>
+    <!-- Load Bootstrap: 5, CSS and JavaScript from Bootstrap CDN. -->
+    {% load django_bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    
     <!-- Load stylesheet CSS file -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}"> 
 
@@ -16,16 +21,12 @@
     <link href="{% static 'fontawesomefree/css/brands.css' %}" rel="stylesheet" type="text/css">
     <link href="{% static 'fontawesomefree/css/solid.css' %}" rel="stylesheet" type="text/css">
 
-    <!-- Load Bootstrap: 5, CSS and JavaScript from Bootstrap CDN. -->
-    {% load django_bootstrap5 %}
-    {% bootstrap_css %}
-    {% bootstrap_javascript %}
 </head>
 
 <body>
     <header>
         <nav class="navbar fixed-bottom px-0 py-0">
-            <div class="container-fluid d-flex px-0">
+            <div class="container-fluid d-flex px-0 desktop-only-navbar">
                 {% if user.is_authenticated %}
                     <!-- Navbar Item 1 Logged In -->
                     <a class="nav-item nav-link active btn flex-grow-1 rounded-0 btn-nav" href="#">
