@@ -53,10 +53,21 @@ INSTALLED_APPS = [
     'mindingpaws',
 ]
 
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+
 SITE_ID = 1
 
-LOGIN_REDIRECT_URL = '/bookings'
 LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
+
+ACCOUNT_FORMS = {
+    'signup': 'mindingpaws.forms.UserCreationForm',
+}
+
+ACCOUNT_EMAIL_VERIFICATION = 'none'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

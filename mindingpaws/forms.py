@@ -1,5 +1,21 @@
 from django import forms
 from .models import Minder, User, Booking
+from allauth.account.forms import SignupForm
+
+class UserCreationForm(SignupForm):
+    name = forms.CharField(max_length=25, label='Full Name')
+    role = forms.CharField(label='Role')
+    pet_name = forms.CharField(label='Pet Name')
+    pet_species = forms.CharField(label='Pet Species')    
+
+    def save(self, request):
+        user = super(UserCreationForm, self).save(request)
+        user.name = self.cleaned_data['name']
+        user.role = self.cleaned_data['role']
+        user.pet_name = self.cleaned_data['pet_name']
+        user.pet_species = self.cleaned_data['pet_species']
+        user.save()
+        return user
 
 class MinderCreationForm(forms.ModelForm):
     class Meta:
