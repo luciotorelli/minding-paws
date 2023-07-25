@@ -1,19 +1,93 @@
-{% extends "base.html" %}
-
-{% load i18n %}
-
-{% block head_title %}{% trans "Signup" %}{% endblock %}
-
-{% block content %}
-<h1>{% trans "Sign Up" %}</h1>
-
-<p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
-
-<form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
+{% extends "base.html" %} {% load i18n %} {% block head_title %}{% trans
+"Signup" %}{% endblock %} {% block content %}
+<form
+  class="signup-form"
+  id="signup_form"
+  method="post"
+  action="{% url 'account_signup' %}"
+>
   {% csrf_token %}
-  {{ form.as_p }}
+
+  <h1>{% trans "Sign Up" %}</h1>
+
+  <p>
+    {% blocktrans %}Already have an account? Then please
+    <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}
+  </p>
+  <div class="row">
+    <div class="col-12 col-md-6 form-user-details">
+      <!-- Username field -->
+      <div class="field-wrapper form-group">
+        <label for="{{ form.username.id_for_label  }}">Username:</label>
+        <br />
+        <div class="input-group">
+          <i class="fa fa-user" aria-hidden="true"></i>
+          {{ form.username }} {{ form.username.errors }}
+        </div>
+      </div>
+
+      <!-- Name field -->
+      <div class="field-wrapper form-group">
+        <label for="{{ form.name.id_for_label  }}">Full Name:</label>
+        <br />
+        <div class="input-group">
+          <i class="fa fa-signature" aria-hidden="true"></i>
+          {{ form.name }} {{ form.name.errors }}
+        </div>
+      </div>
+
+      <!-- Email field -->
+      <div class="field-wrapper form-group">
+        <label for="{{ form.email.id_for_label  }}">Email:</label>
+        <br />
+        <div class="input-group">
+          <i class="fa fa-at" aria-hidden="true"></i>
+          {{ form.email }} {{ form.email.errors }}
+        </div>
+      </div>
+
+      <!-- Password field -->
+      <div class="field-wrapper form-group">
+        <label for="{{ form.password.id_for_label  }}">Password:</label>
+        <br />
+        <div class="input-group">
+          <i class="fa fa-key" aria-hidden="true"></i>
+          {{ form.password }} {{ form.password.errors }}
+        </div>
+      </div>
+
+      <!-- Password Confirmation field -->
+      <div class="field-wrapper form-group">
+        <label for="{{ form.password2.id_for_label  }}"
+          >Password Confirmation:</label
+        >
+        <br />
+        <div class="input-group">
+          <i class="fa fa-equals" aria-hidden="true"></i>
+          {{ form.confirm_password }} {{ form.confirm_password.errors }}
+        </div>
+      </div>
+
+      <!-- rolefield -->
+      <div class="field-wrapper form-group">
+        <label for="{{ form.role.id_for_label  }}">role</label>
+        <br />
+        <div class="input-group">
+          <i class="fa fa-equals" aria-hidden="true"></i>
+          {{ form.role }} {{ form.role.errors }}
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-md-6 form-role-details"></div>
+  </div>
+
   {% if redirect_field_value %}
-  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+  <input
+    type="hidden"
+    name="{{ redirect_field_name }}"
+    value="{{ redirect_field_value }}"
+  />
   {% endif %}
   <button type="submit">{% trans "Sign Up" %} &raquo;</button>
 </form>

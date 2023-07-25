@@ -68,6 +68,7 @@ body {
 /* ------------------------------------- Main */
 main {
     min-height: 70vh;
+    display: flex;
 }
 
 /* ------------------------------------- Sign-up Div */
@@ -95,9 +96,71 @@ main {
 
 .sign-up-btn {
     background-color: #ff8952 !important;
-    
+
 
 }
+
+/* ------------------------------------- Sign-up Form */
+
+#signup_form {
+    color: #0D444E;
+    background-color: #DBDEEB;
+    border-radius: 5px;
+
+    width: 80%;
+    padding: 40px;
+    margin: 50px auto;
+
+    -webkit-box-shadow: -1px 3px 18px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: -1px 3px 18px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: -1px 3px 18px 0px rgba(0, 0, 0, 0.75);
+
+}
+
+#signup_form h1,
+#signup_form p {
+    text-align: center;
+}
+
+.form-group {
+    margin: 15px auto;
+}
+
+label {
+    font-weight: bold;
+    font-size: 0.9em;
+}
+
+.input-group {
+    border-radius: 5px;
+    -webkit-box-shadow: -1px 3px 18px 0px rgba(0, 0, 0, 0.35);
+    -moz-box-shadow: -1px 3px 18px 0px rgba(0, 0, 0, 0.35);
+    box-shadow: -1px 3px 18px 0px rgba(0, 0, 0, 0.35);
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+
+.input-icon-div {
+    border: none;
+    border-right: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.input-group i {
+    color: #009EDF;
+    padding: 0 10px;
+}
+
+.input-group input {
+    border: none;
+    border-radius: 0 5px 5px 0;
+    flex-grow: 8;
+    min-width: 100px;
+}
+
+
 
 /* ------------------------------------- Footer */
 footer {
@@ -134,7 +197,7 @@ footer {
         flex-direction: row !important;
         align-items: center !important;
         width: 90% !important;
-        flex-grow: 0!important;
+        flex-grow: 0 !important;
     }
 
     i {
