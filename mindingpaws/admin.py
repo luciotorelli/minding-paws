@@ -58,7 +58,11 @@ class CustomMinderAdmin(admin.ModelAdmin):
 
     search_fields = ['user__name', 'user__username']
     list_display = ('user_name', 'user_username', 'bio', 'usual_availability')
-    form = MinderCreationForm
+
+    def get_form(self, request, obj=None, **kwargs):
+        if obj is None:
+            return MinderCreationForm
+        return super().get_form(request, obj, **kwargs)
 
 
 class CustomBookingAdmin(admin.ModelAdmin):

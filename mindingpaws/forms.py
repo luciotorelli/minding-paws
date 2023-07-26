@@ -18,18 +18,23 @@ class PetOwnerCreationForm(SignupForm):
         user.save()
         return user
 
-class MinderCreationForm(forms.ModelForm):
-    class Meta:
-        model = Minder
-        fields = '__all__'
+class MinderCreationForm(SignupForm):
+    name = forms.CharField(label='Name')
+    bio = forms.CharField(label='Bio')
+    usual_availability = forms.CharField(label='Usual Availability')
 
-    def __init__(self, *args, **kwargs):
-        """__init__ 
-
-        Filter user field to only pick users with role equal to minder when creating a Minder
-        """
-        super().__init__(*args, **kwargs)
-        self.fields['user'].queryset = User.objects.filter(role='minder')
+    def save(self, request):
+        user = super().save(request)
+        user.role = 'minder'
+        user.account_type = 2
+        user.name = self.cleaned_data['name']
+        user.save()
+        minder = Minder.objects.create(
+            user=user,
+            bio=self.cleaned_data['bio'],
+            usual_availability=self.cleaned_data['usual_availability']
+        )
+        return user
 
 class BookingCreationForm(forms.ModelForm):
     class Meta:
