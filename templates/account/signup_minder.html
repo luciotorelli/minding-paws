@@ -6,6 +6,7 @@
   id="signup_form"
   method="post"
   action="{% url 'minder-sign-up' %}"
+  enctype="multipart/form-data"
 >
   {% csrf_token %}
   <h1>{% trans "Sign Up" %}</h1>
@@ -102,7 +103,9 @@
 
       <!-- Usual availability field -->
       <div class="form-field form-group">
-        <label for="{{ form.usual_availability.id_for_label }}">Usual Availability:</label>
+        <label for="{{ form.usual_availability.id_for_label }}"
+          >Usual Availability:</label
+        >
         <br />
         <div class="input-group">
           <i class="fa fa-paw" aria-hidden="true"></i>
@@ -113,9 +116,23 @@
         {% endif %}
       </div>
 
+      <!-- Photo field -->
+      <div class="form-field form-group">
+        <label for="{{ form.photo.id_for_label }}"
+          >Photo:</label
+        >
+        <br />
+        <div class="input-group">
+          <i class="fa fa-paw" aria-hidden="true"></i>
+          {{ form.photo }}
+        </div>
+        {% if form.photo.errors %}
+        <div class="field-error">{{ form.photo.errors }}</div>
+        {% endif %}
+      </div>
+
       <!-- Role field -->
       <input type="hidden" name="{{ form.role.name }}" value="minder" />
-
     </div>
   </div>
 
@@ -133,7 +150,9 @@
   />
   {% endif %}
   <div class="col text-center">
-    <button type="submit" class="btn sign-up-btn mt-4">{% trans "Register" %} &raquo;</button>
+    <button type="submit" class="btn sign-up-btn mt-4">
+      {% trans "Register" %} &raquo;
+    </button>
   </div>
 </form>
 

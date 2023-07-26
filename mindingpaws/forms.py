@@ -1,6 +1,8 @@
 from django import forms
 from .models import Minder, User, Booking
 from allauth.account.forms import SignupForm
+from cloudinary.forms import CloudinaryFileField
+
 
 class PetOwnerCreationForm(SignupForm):
     name = forms.CharField(label='Full Name')
@@ -22,7 +24,12 @@ class MinderCreationForm(SignupForm):
     name = forms.CharField(label='Name')
     bio = forms.CharField(label='Bio')
     usual_availability = forms.CharField(label='Usual Availability')
-
+    photo = CloudinaryFileField(
+        options={
+            'folder': 'static/img/minders',
+            'resource_type': 'image'
+        }
+    )
     def save(self, request):
         user = super().save(request)
         user.role = 'minder'
@@ -32,7 +39,8 @@ class MinderCreationForm(SignupForm):
         minder = Minder.objects.create(
             user=user,
             bio=self.cleaned_data['bio'],
-            usual_availability=self.cleaned_data['usual_availability']
+            usual_availability=self.cleaned_data['usual_availability'],
+            photo=self.cleaned_data['photo']
         )
         return user
 
