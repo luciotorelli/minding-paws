@@ -28,7 +28,7 @@ TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 SECRET_KEY = 'django-insecure-gaky76aaq36e!z0%)4c0u)kko^8yx58d#bx@epn50zk$bcbfah'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = os.environ.get('DEBUG', True)
 
 ALLOWED_HOSTS = ['minding-paws-9dfff64ed9cc.herokuapp.com',
                  '127.0.0.1', '.ngrok-free.app']
@@ -47,7 +47,6 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'django_bootstrap5',
     'cloudinary_storage',
-    'fontawesomefree',
     'django.contrib.staticfiles',
     'cloudinary',
     'mindingpaws',
