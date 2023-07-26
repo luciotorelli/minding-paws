@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'django_bootstrap5',
     'cloudinary_storage',
     'django.contrib.staticfiles',
+    'fontawesomefree',
     'cloudinary',
     'mindingpaws',
 ]
