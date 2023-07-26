@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'django_bootstrap5',
     'cloudinary_storage',
+    'fontawesomefree'
     'django.contrib.staticfiles',
     'cloudinary',
     'mindingpaws',
