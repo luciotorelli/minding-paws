@@ -63,8 +63,10 @@ LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
 ACCOUNT_FORMS = {
-    'signup': 'mindingpaws.forms.PetOwnerCreationForm',
+    'pet_owner_signup': 'mindingpaws.forms.PetOwnerCreationForm',
+    'minder_signup': 'mindingpaws.forms.MinderCreationForm',
 }
+
 
 ACCOUNT_EMAIL_VERIFICATION = 'none'
 

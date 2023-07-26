@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView, CreateView
 from allauth.account.views import SignupView
-from .forms import PetOwnerCreationForm
+from .forms import PetOwnerCreationForm, MinderCreationForm
 
 class HomeView(TemplateView):
     template_name = 'index.html'
@@ -15,3 +15,8 @@ class PetOwnerSignUp(SignupView):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Sign Up'
         return context
+    
+class MinderSignUp(SignupView):
+    template_name = 'account/signup_minder.html'
+    form_class = MinderCreationForm
+    success_url = '/'
