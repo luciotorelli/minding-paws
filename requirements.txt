@@ -62,10 +62,7 @@ sqlparse==0.4.4
 systemd-python==234
 tomli==2.0.1
 tomlkit==0.11.8
-typing_extensions==4.7.1
-ubuntu-advantage-tools==8001
 ufw==0.36.1
-unattended-upgrades==0.1
 urllib3==1.26.15
 virtualenv==20.24.1
 virtualenv-clone==0.3.0
