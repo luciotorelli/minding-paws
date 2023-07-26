@@ -11,7 +11,7 @@
   <h1>{% trans "Sign Up" %}</h1>
   <p>
     {% blocktrans %}Already have an account? Then please
-    <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}
+    <a href="{{ login_url }}">log-in</a>.{% endblocktrans %}
   </p>
 
   {{ form.non_field_errors }}
@@ -142,7 +142,9 @@
     value="{{ redirect_field_value }}"
   />
   {% endif %}
-  <button type="submit">{% trans "Sign Up" %} &raquo;</button>
+  <div class="col text-center">
+    <button type="submit" class="btn sign-up-btn mt-4">{% trans "Register" %} &raquo;</button>
+  </div>
 </form>
 
 {% endblock %}

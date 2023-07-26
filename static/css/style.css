@@ -97,7 +97,6 @@ main {
 .sign-up-btn {
     background-color: #ff8952 !important;
 
-
 }
 
 /* ------------------------------------- Sign-up Form */
@@ -174,6 +173,10 @@ label {
     border-radius: 0 5px 5px 0;
     flex-grow: 8;
     min-width: 100px;
+}
+
+.sign-up-btn {
+
 }
 
 
