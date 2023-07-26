@@ -11,7 +11,7 @@ class PetOwnerCreationForm(SignupForm):
     def save(self, request):
         user = super(PetOwnerCreationForm, self).save(request)
         user.name = self.cleaned_data['name']
-        user.role = self.cleaned_data['role']
+        user.role = 'pet-owner'
         user.pet_name = self.cleaned_data['pet_name']
         user.pet_species = self.cleaned_data['pet_species']
         user.account_type = 1

@@ -113,18 +113,8 @@
         {% endif %}
       </div>
 
-      <!-- Role field -->
-      <div class="form-field form-group">
-        <label for="{{ form.role.id_for_label }}">Role:</label>
-        <br />
-        <div class="input-group">
-          <i class="fa fa-dog" aria-hidden="true"></i>
-          {{ form.role }}
-        </div>
-        {% if form.role.errors %}
-        <div class="field-error">{{ form.role.errors }}</div>
-        {% endif %}
-      </div>
+      <!-- Pet Role field -->
+      <input type="hidden" name="{{ form.role.name }}" value="pet-owner" />
 
     </div>
   </div>
