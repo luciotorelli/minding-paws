@@ -27,36 +27,36 @@
                 {% if user.is_authenticated %}
                     <!-- Navbar Item 1 Logged In -->
                     <a class="nav-item nav-link active btn flex-grow-1 rounded-0 btn-nav" href="#">
-                        <i class="fa fa-calendar-check"></i>Bookings
+                        <i class="fa fa-calendar-check fa-fw"></i>Bookings
                     </a>
                     <!-- Navbar Item 2 Logged In -->
                     <a class="nav-item nav-link btn flex-grow-1 rounded-0 btn-nav" href="#">
-                        <i class="fa fa-user"></i>My Profile
+                        <i class="fa fa-user fa-fw"></i>My Profile
                     </a>
                     <!-- Navbar Item 3 Logged In -->
                     <a class="nav-item nav-link btn flex-grow-1 rounded-0 btn-nav" href="#">
-                        <i class="fa fa-solid fa-paw"></i>About us
+                        <i class="fa fa-solid fa-paw fa-fw"></i>About us
                     </a>
                     <!-- Navbar Item 4 Logged In -->
                     <a class="nav-item nav-link btn flex-grow-1 rounded-0 btn-nav" href="{% url 'account_logout' %}">
-                        <i class="fa fa-arrow-right-from-bracket"></i>Logout
+                        <i class="fa fa-arrow-right-from-bracket fa-fw"></i>Logout
                     </a>
                 {% else %}
                     <!-- Navbar Item 1 Logged Out -->
                     <a class="nav-item nav-link active btn flex-grow-1 rounded-0 btn-nav" href="#">
-                        <i class="fa fa-home"></i>Home
+                        <i class="fa fa-home fa-fw"></i>Home
                     </a>
                     <!-- Navbar Item 2 Logged Out -->
                     <a class="nav-item nav-link btn flex-grow-1 rounded-0 btn-nav" href="{% url 'pet-owner-sign-up' %}">
-                        <i class="fa fa-user-plus"></i>Sign-up
+                        <i class="fa fa-user-plus fa-fw"></i>Sign-up
                     </a>
                     <!-- Navbar Item 3 Logged Out -->
                     <a class="nav-item nav-link btn flex-grow-1 rounded-0 btn-nav" href="#">
-                        <i class="fa fa-solid fa-paw"></i>About us
+                        <i class="fa fa-solid fa-paw fa-fw"></i>About us
                     </a>
                     <!-- Navbar Item 4 Logged Out -->
                     <a class="nav-item nav-link btn flex-grow-1 rounded-0 btn-nav" href="{% url 'account_login' %}">
-                        <i class="fa fa-arrow-right-to-bracket"></i>Login
+                        <i class="fa fa-arrow-right-to-bracket fa-fw"></i>Login
                     </a>
                 {% endif %}
             </div>
