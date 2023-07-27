@@ -9,7 +9,17 @@
   enctype="multipart/form-data"
 >
   {% csrf_token %}
-  <h1>{% trans "Sign Up" %}</h1>
+
+  <div class="sign-up-choice">
+    <a href="{% url 'pet-owner-sign-up' %}" class="sign-up-choice-non-active left-border btn">
+      I am a Pet Owner.
+    </a>
+    <a href="{% url 'minder-sign-up' %}" class="sign-up-choice-active right-border btn">
+      I am a Minder.
+    </a>
+  </div>
+
+  <h1 hidden>Minder Sign-up</h1>
   <p>
     {% blocktrans %}Already have an account? Then please
     <a href="{{ login_url }}">log-in</a>.{% endblocktrans %}
@@ -24,7 +34,7 @@
         <label for="{{ form.username.id_for_label }}">Username:</label>
         <br />
         <div class="input-group">
-          <i class="fa fa-user" aria-hidden="true"></i>
+          <i class="fa fa-user fa-fw" aria-hidden="true"></i>
           {{ form.username }}
         </div>
         {% if form.username.errors %}
@@ -37,7 +47,7 @@
         <label for="{{ form.email.id_for_label }}">Email:</label>
         <br />
         <div class="input-group">
-          <i class="fa fa-at" aria-hidden="true"></i>
+          <i class="fa fa-at fa-fw" aria-hidden="true"></i>
           {{ form.email }}
         </div>
         {% if form.email.errors %}
@@ -50,7 +60,7 @@
         <label for="{{ form.password1.id_for_label }}">Password:</label>
         <br />
         <div class="input-group">
-          <i class="fa fa-key" aria-hidden="true"></i>
+          <i class="fa fa-key fa-fw" aria-hidden="true"></i>
           {{ form.password1 }}
         </div>
         {% if form.password1.errors %}
@@ -65,7 +75,7 @@
         >
         <br />
         <div class="input-group">
-          <i class="fa fa-key" aria-hidden="true"></i>
+          <i class="fa fa-key fa-fw" aria-hidden="true"></i>
           {{ form.password2 }}
         </div>
         {% if form.password2.errors %}
@@ -80,7 +90,7 @@
         <label for="{{ form.name.id_for_label }}">Your name:</label>
         <br />
         <div class="input-group">
-          <i class="fa fa-signature" aria-hidden="true"></i>
+          <i class="fa fa-signature fa-fw" aria-hidden="true"></i>
           {{ form.name }}
         </div>
         {% if form.name.errors %}
@@ -93,7 +103,7 @@
         <label for="{{ form.bio.id_for_label }}">Bio:</label>
         <br />
         <div class="input-group">
-          <i class="fa fa-paw" aria-hidden="true"></i>
+          <i class="fa fa-id-card fa-fw" aria-hidden="true"></i>
           {{ form.bio }}
         </div>
         {% if form.bio.errors %}
@@ -108,7 +118,7 @@
         >
         <br />
         <div class="input-group">
-          <i class="fa fa-paw" aria-hidden="true"></i>
+          <i class="fa fa-calendar-check fa-fw" aria-hidden="true"></i>
           {{ form.usual_availability }}
         </div>
         {% if form.usual_availability.errors %}
@@ -123,7 +133,7 @@
         >
         <br />
         <div class="input-group">
-          <i class="fa fa-paw" aria-hidden="true"></i>
+          <i class="fa fa-id-badge fa-fw" aria-hidden="true"></i>
           {{ form.photo }}
         </div>
         {% if form.photo.errors %}

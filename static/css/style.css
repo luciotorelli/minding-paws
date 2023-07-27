@@ -105,9 +105,11 @@ main {
     color: #0D444E;
     background-color: #DBDEEB;
     border-radius: 5px;
-
+    display: flex;
+    flex-direction: column;
     width: 80%;
-    padding: 40px;
+    height: 100%;
+    padding: 20px;
     margin: 50px auto;
 
     -webkit-box-shadow: -1px 3px 18px 0px rgba(0, 0, 0, 0.75);
@@ -130,7 +132,7 @@ main {
     background-color: #ff8952;
 }
 
-.errorlist{
+.errorlist {
     margin-bottom: 0 !important;
     box-shadow: #0D444E;
     margin: 0;
@@ -163,9 +165,9 @@ label {
     border-right: 1px solid rgba(0, 0, 0, 0.2);
 }
 
-.input-group svg {
+.input-group i {
     color: #0D444E;
-    padding: 0 10px !important;
+    margin: 0 8px;
 }
 
 .input-group input {
@@ -175,8 +177,41 @@ label {
     min-width: 100px;
 }
 
-.sign-up-btn {
+.sign-up-choice {
+    display: flex;
+    align-self: center;
+    justify-content: center;
+    width: 100%;
+    background-color: #eaeaea;
+    border-radius: 50px;
+    margin-bottom: 10px;
+    text-align: center;
+    text-decoration: none;
+}
 
+.sign-up-choice a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    text-decoration: none !important;
+}
+
+.sign-up-choice-non-active {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.sign-up-choice-active {
+    background-color: #0D444E;
+    color: #ff8952;
+}
+
+.right-border {
+    border-radius: 0 50px 50px 0;
+}
+
+.left-border {
+    border-radius: 50px 0 0 50px;
 }
 
 
@@ -195,7 +230,15 @@ footer {
     margin-bottom: 65px !important;
 }
 
-/* -------------------- Screens above 1024px height - Desktop */
+/* -------------------- Screens above 768px width - Tablets */
+@media screen and (min-width: 768px) {
+
+    .sign-up-choice {
+        width: 70%;
+    }
+
+}
+/* -------------------- Screens above 1024px width - Desktop */
 @media screen and (min-width: 1024px) {
 
     .navbar {
@@ -242,13 +285,17 @@ footer {
         height: 23vh;
     }
 
+    .sign-up-choice {
+        width: 50%;
+    }
+
     footer {
         margin-bottom: 10px !important;
         padding-left: 15%;
     }
 }
 
-/* -------------------- Screens above 1440px height - Desktop */
+/* -------------------- Screens above 1440px width - Desktop */
 @media screen and (min-width: 1440px) {
     .navbar {
         width: 10%;
@@ -257,6 +304,15 @@ footer {
     .page-header,
     main {
         padding-left: 10%;
+    }
+
+    .signup-form {
+        width: 60% !important;
+        padding: 20px 30px !important;
+    }
+
+    .sign-up-choice {
+        width: 60%;
     }
 
     footer {
