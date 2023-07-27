@@ -214,7 +214,19 @@ label {
     border-radius: 50px 0 0 50px;
 }
 
+/* ------------------------------------- Login Modal */
 
+.modal-content {
+    background-color: #0D444E;
+    color: #DBDEEB;
+    border: none;
+}
+
+.modal-footer .btn-primary {
+    background-color: #ff8952;
+    border-color: #ff8952;
+    color: #0D444E;
+}
 
 /* ------------------------------------- Footer */
 footer {
@@ -238,6 +250,7 @@ footer {
     }
 
 }
+
 /* -------------------- Screens above 1024px width - Desktop */
 @media screen and (min-width: 1024px) {
 
