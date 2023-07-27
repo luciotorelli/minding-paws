@@ -80,9 +80,7 @@
           <!-- Navbar Item 4 Logged Out (Sign In) -->
           <a
             class="nav-item nav-link btn flex-grow-1 rounded-0 btn-nav"
-            href="#"
-            data-bs-toggle="modal"
-            data-bs-target="#loginModal"
+            href="{% url 'account_login' %}"
           >
             <i class="fa fa-sign-in-alt fa-fw"></i>{% trans 'Sign In' %}
           </a>

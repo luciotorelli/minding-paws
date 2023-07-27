@@ -96,12 +96,11 @@ main {
 
 .sign-up-btn {
     background-color: #ff8952 !important;
-
 }
 
 /* ------------------------------------- Sign-up Form */
 
-#signup_form {
+.signup-form {
     color: #0D444E;
     background-color: #DBDEEB;
     border-radius: 5px;
@@ -118,8 +117,8 @@ main {
 
 }
 
-#signup_form h1,
-#signup_form p {
+.signup-form h1,
+.signup-form p {
     text-align: center;
 }
 
@@ -214,7 +213,39 @@ label {
     border-radius: 50px 0 0 50px;
 }
 
-/* ------------------------------------- Login Modal */
+/* ------------------------------------- Login Page */
+
+.login-form {
+    color: #0D444E;
+    background-color: #DBDEEB;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    min-width: 200px;
+    max-width: 300px;
+    height: 100%;
+    padding: 20px;
+    margin: 50px auto;
+
+    -webkit-box-shadow: -1px 3px 18px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: -1px 3px 18px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: -1px 3px 18px 0px rgba(0, 0, 0, 0.75);
+}
+
+.non-field-error {
+    border-radius: 25px;
+    background-color: #ff8952;
+    font-size: 15px;
+    padding: 8px;
+    text-align: center;
+}
+
+.login-btn {
+    background-color: #ff8952 !important;
+    color:#0D444E;
+}
+
+/* ------------------------------------- Logout Modal */
 
 .modal-content {
     background-color: #0D444E;
@@ -240,6 +271,12 @@ footer {
     text-align: center;
     /* Margin bottom to display footer above mobile navbar */
     margin-bottom: 65px !important;
+}
+
+/* -------------------- Screens above 425px width - Mobile */
+@media screen and (min-width: 425px) {
+
+
 }
 
 /* -------------------- Screens above 768px width - Tablets */
@@ -301,6 +338,7 @@ footer {
     .sign-up-choice {
         width: 50%;
     }
+
 
     footer {
         margin-bottom: 10px !important;
