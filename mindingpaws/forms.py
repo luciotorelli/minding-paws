@@ -3,7 +3,6 @@ from .models import Minder, User, Booking
 from allauth.account.forms import SignupForm
 from cloudinary.forms import CloudinaryFileField
 
-
 class PetOwnerCreationForm(SignupForm):
     name = forms.CharField(label='Full Name')
     role = forms.CharField(label='Role')
@@ -48,6 +47,11 @@ class BookingCreationForm(forms.ModelForm):
     class Meta:
         model = Booking
         fields = '__all__'
+        widgets = {
+            'start_date': forms.DateTimeInput(attrs={'type': 'datetime-local'}),
+            'end_date': forms.DateTimeInput(attrs={'type': 'datetime-local'}),
+            'pet_owner_name': forms.TextInput(attrs={'disabled': 'disabled'}),
+        }
 
     def __init__(self, *args, **kwargs):
         """__init__ 
@@ -55,4 +59,6 @@ class BookingCreationForm(forms.ModelForm):
         Filter user field to only pick pet_owner_user with users role equal to pet owner when creating a Booking
         """
         super().__init__(*args, **kwargs)
-        self.fields['pet_owner_user'].queryset = User.objects.filter(role='pet-owner')
+        self.fields['pet_owner'].queryset = User.objects.filter(role='pet-owner')
+        self.fields['pet_owner'].widget.attrs['disabled'] = 'disabled'
+
