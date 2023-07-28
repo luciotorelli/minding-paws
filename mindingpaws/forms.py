@@ -3,11 +3,12 @@ from .models import Minder, User, Booking
 from allauth.account.forms import SignupForm
 from cloudinary.forms import CloudinaryFileField
 
+
 class PetOwnerCreationForm(SignupForm):
     name = forms.CharField(label='Full Name')
     role = forms.CharField(label='Role')
     pet_name = forms.CharField(label='Pet Name')
-    pet_species = forms.CharField(label='Pet Species')    
+    pet_species = forms.CharField(label='Pet Species')
 
     def save(self, request):
         user = super(PetOwnerCreationForm, self).save(request)
@@ -19,6 +20,7 @@ class PetOwnerCreationForm(SignupForm):
         user.save()
         return user
 
+
 class MinderCreationForm(SignupForm):
     name = forms.CharField(label='Name')
     bio = forms.CharField(label='Bio')
@@ -29,6 +31,7 @@ class MinderCreationForm(SignupForm):
             'resource_type': 'image'
         }
     )
+
     def save(self, request):
         user = super().save(request)
         user.role = 'minder'
@@ -42,6 +45,7 @@ class MinderCreationForm(SignupForm):
             photo=self.cleaned_data['photo']
         )
         return user
+
 
 class BookingCreationForm(forms.ModelForm):
     class Meta:
@@ -59,6 +63,10 @@ class BookingCreationForm(forms.ModelForm):
         Filter user field to only pick pet_owner_user with users role equal to pet owner when creating a Booking
         """
         super().__init__(*args, **kwargs)
-        self.fields['pet_owner'].queryset = User.objects.filter(role='pet-owner')
+        self.fields['pet_owner'].queryset = User.objects.filter(
+            role='pet-owner')
         self.fields['pet_owner'].widget.attrs['disabled'] = 'disabled'
 
+        # Display the minder names in the minder field instead of user
+        minder_choices = [(minder.id, minder.user.name) for minder in Minder.objects.all()]
+        self.fields['minder'].choices = minder_choices
