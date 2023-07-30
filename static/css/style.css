@@ -242,7 +242,7 @@ label {
 
 .login-btn {
     background-color: #ff8952 !important;
-    color:#0D444E;
+    color: #0D444E;
 }
 
 /* ------------------------------------- Logout Modal */
@@ -257,6 +257,16 @@ label {
     background-color: #ff8952;
     border-color: #ff8952;
     color: #0D444E;
+}
+
+/* ------------------------------------- Search for Minders page */
+
+.minder-item.even {
+    background-color: #DBDEEB !important;
+}
+
+.minder-item.odd {
+    background-color: #a6acc7 !important;
 }
 
 /* ------------------------------------- Footer */
@@ -274,10 +284,7 @@ footer {
 }
 
 /* -------------------- Screens above 425px width - Mobile */
-@media screen and (min-width: 425px) {
-
-
-}
+@media screen and (min-width: 425px) {}
 
 /* -------------------- Screens above 768px width - Tablets */
 @media screen and (min-width: 768px) {

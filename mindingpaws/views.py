@@ -1,8 +1,12 @@
 from django.views.generic import TemplateView
 from django.views.generic.edit import FormView
-from django.urls import reverse_lazy
+from django.views.generic import ListView
 from allauth.account.views import SignupView
+from django.template.loader import render_to_string
+from django.http import JsonResponse
+from django.db.models import Q
 from .forms import PetOwnerCreationForm, MinderCreationForm, BookingCreationForm
+from .models import Minder
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 
@@ -64,3 +68,64 @@ class CreateBookingView(LoginRequiredMixin, FormView):
     def form_valid(self, form):
         form.save()
         return super().form_valid(form)
+
+class BrowseMindersView(ListView):
+    model = Minder
+    template_name = 'browse_minders.html'
+    context_object_name = 'minders'
+    paginate_by = 10
+
+    def get_queryset(self):
+        """
+        Get the queryset of minders based on the search.
+
+        Filters the minders based on a search for 'user__name' (from user attached to minder) and 'bio' fields.
+
+        Returns:
+            QuerySet: A result of minders based on the search.
+        """
+        queryset = super().get_queryset()
+        query = self.request.GET.get('q')
+
+        if query:
+            queryset = queryset.filter(Q(user__name__icontains=query) | Q(bio__icontains=query))
+
+        return queryset
+
+    def get_context_data(self, **kwargs):
+        """
+        Get the context data for the view.
+
+        Adds a variable 'is_ajax' to the context data. It checks if the request is an AJAX request based on the
+        'x-requested-with' header.
+
+        Returns:
+            dict: The context data for the view.
+        """
+        context = super().get_context_data(**kwargs)
+        context['is_ajax'] = self.request.headers.get("x-requested-with") == "XMLHttpRequest"
+        return context
+
+    def render_to_response(self, context, **response_kwargs):
+        """
+        Render the response.
+
+        If the request is an AJAX request, renders the 'minders-results-partial.html' template and returns a JsonResponse
+        containing the rendered HTML content. Otherwise, renders the full 'browse_minders.html' template.
+
+        Args:
+            context (dict): The context data for the view.
+            response_kwargs (dict): Additional keyword arguments for the response.
+
+        Returns:
+            HttpResponse: The http response for the view.
+        """
+        if context['is_ajax']:
+            html = render_to_string(
+                template_name="minders-results-partial.html",
+                context=context
+            )
+            data_dict = {"html_from_view": html}
+            return JsonResponse(data=data_dict, safe=False)
+        else:
+            return super().render_to_response(context, **response_kwargs)

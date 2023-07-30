@@ -6,4 +6,5 @@ urlpatterns = [
     path('pet-owner-signup/', views.PetOwnerSignUp.as_view(), name='pet-owner-sign-up'),
     path('minder-signup/', views.MinderSignUp.as_view(), name='minder-sign-up'),
     path('create-booking/', views.CreateBookingView.as_view(), name='create_booking'),
+    path('browse-minders/', views.BrowseMindersView.as_view(), name='browse-minders'),
 ]

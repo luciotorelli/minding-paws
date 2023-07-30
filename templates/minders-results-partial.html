@@ -1,0 +1,12 @@
+{% if minders %}
+  <div class="minders-list">
+    {% for minder in minders %}
+      <div class="minder-item {% cycle 'even' 'odd' %}">
+        <div class="minder-name">{{ minder.user.name }}</div>
+        <div class="minder-bio">{{ minder.bio }}</div>
+      </div>
+    {% endfor %}
+  </div>
+{% else %}
+  <p class="no-minders">No minders found.</p>
+{% endif %}
