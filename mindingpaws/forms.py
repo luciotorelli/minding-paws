@@ -54,19 +54,42 @@ class BookingCreationForm(forms.ModelForm):
         widgets = {
             'start_date': forms.DateTimeInput(attrs={'type': 'datetime-local'}),
             'end_date': forms.DateTimeInput(attrs={'type': 'datetime-local'}),
-            'pet_owner_name': forms.TextInput(attrs={'disabled': 'disabled'}),
+            'pet_owner_name': forms.TextInput(attrs={'readonly': 'readonly'}),
+            'bio': forms.TextInput(attrs={'readonly': 'readonly'}),
+            'usual_availability': forms.TextInput(attrs={'readonly': 'readonly'}),
         }
 
     def __init__(self, *args, **kwargs):
         """__init__ 
 
-        Filter user field to only pick pet_owner_user with users role equal to pet owner when creating a Booking
+        Redefine values for fields on initialization
         """
         super().__init__(*args, **kwargs)
         self.fields['pet_owner'].queryset = User.objects.filter(
             role='pet-owner')
-        self.fields['pet_owner'].widget.attrs['disabled'] = 'disabled'
+
+        # Set the status value to pending
+        self.fields['status'].initial = 'pending'
+
 
         # Display the minder names in the minder field instead of user
         minder_choices = [(minder.id, minder.user.name) for minder in Minder.objects.all()]
         self.fields['minder'].choices = minder_choices
+
+    def save(self, commit=True):
+        """save
+
+        Set status to pending if it's being created for the first time, but allows it to be edited from the admin later on.
+
+        Args:
+            commit (bool, optional): If it should be saved to the data. Defaults to True.
+
+        Returns:
+            instance: The instance of the form/data opened
+        """
+        instance = super().save(commit=False)
+        if not instance.pk:  
+            instance.status = 'pending'
+        if commit:
+            instance.save()
+        return instance
