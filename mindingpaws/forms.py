@@ -71,11 +71,6 @@ class BookingCreationForm(forms.ModelForm):
         # Set the status value to pending
         self.fields['status'].initial = 'pending'
 
-
-        # Display the minder names in the minder field instead of user
-        minder_choices = [(minder.id, minder.user.name) for minder in Minder.objects.all()]
-        self.fields['minder'].choices = minder_choices
-
     def save(self, commit=True):
         """save
 
