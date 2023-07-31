@@ -1,11 +1,14 @@
-{% extends "base.html" %} {% load i18n %} {% block head_title %}{% trans "Create
+{% extends "base.html" %}
+{% load static %} 
+
+{% load i18n %} {% block head_title %}{% trans "Create
 Booking" %}{% endblock %} {% block content %}
 
 <form
   class="signup signup-form"
   id="create_booking_form"
   method="post"
-  action="{% url 'create_booking' %}"
+  action="{% url 'create-booking' %}"
 >
   {% csrf_token %}
 
@@ -196,6 +199,6 @@ Booking" %}{% endblock %} {% block content %}
       {% trans "Create Booking" %} &raquo;
     </button>
   </div>
+  <script src="{% static 'js/fill_minder_fields.js' %}"></script>
 </form>
-
 {% endblock %}

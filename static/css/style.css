@@ -326,6 +326,12 @@ label {
     text-align: center;
 }
 
+.btn-select-minder {
+    background-color: #ff8952 !important;
+    border: solid 1px #0D444E;
+    margin-bottom: 20px !important;
+}
+
 .minder-bio,
 .minder-availability {
     width: 90%;

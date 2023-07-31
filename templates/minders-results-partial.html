@@ -1,34 +1,45 @@
-{% load static %}
-
-{% if minders %}
-  <div class="minders-list">
-    {% for minder in minders %}
-      <div class="minder-item {% cycle 'even' 'odd' %} row align-items-center">
-        <div class="col-12 col-md-4 minder-photo-name-div">
-          <div class="minder-photo">
-            {% if "placeholder" in minder.photo.url %}
-            <img src="{% static 'img/profile-placeholder.webp' %}" alt="{{ minder.user.name }}">
-            {% else %}
-            <img src="{{ minder.photo.url }}" alt="{{ minder.user.name }}">
-            {% endif %}
-          </div>
-          <div class="minder-name">
-            <h5>{{ minder.user.name }}</h5>
-          </div>
-        </div>
-        <div class="col-12 col-md-8 minder-bio-availability-div">
-          <div class="minder-availability">
-            <p>Usually available:</p>
-            <p>{{ minder.usual_availability }}</p>
-          </div>
-          <div class="minder-bio">
-            <p>Bio:</p>
-            <p>{{ minder.bio }}</p>
-          </div>
-        </div>
+{% load static %} {% if minders %}
+<div class="minders-list">
+  {% for minder in minders %}
+  <div class="minder-item {% cycle 'even' 'odd' %} row align-items-center">
+    <div class="col-12 col-md-4 minder-photo-name-div">
+      <div class="minder-photo">
+        {% if "placeholder" in minder.photo.url %}
+        <img
+          src="{% static 'img/profile-placeholder.webp' %}"
+          alt="{{ minder.user.name }}"
+        />
+        {% else %}
+        <img src="{{ minder.photo.url }}" alt="{{ minder.user.name }}" />
+        {% endif %}
       </div>
-    {% endfor %}
+      <div class="minder-name">
+        <h5>{{ minder.user.name }}</h5>
+        <input type="hidden" name="{{ minder.user }}" value="pet-owner" />
+        <button
+          class="btn btn-select-minder"
+          onclick="saveToSessionStorage(
+            '{{ minder.user }}', 
+            '{{ minder.user.name }}',)"
+        >
+          Book this Minder!
+        </button>
+      </div>
+    </div>
+    <div class="col-12 col-md-8 minder-bio-availability-div">
+      <div class="minder-availability">
+        <p>Usually available:</p>
+        <p>{{ minder.usual_availability }}</p>
+      </div>
+      <div class="minder-bio">
+        <p>Bio:</p>
+        <p>{{ minder.bio }}</p>
+      </div>
+    </div>
   </div>
+  <script src="{% static 'js/selected_minder.js' %}"></script>
+  {% endfor %}
+</div>
 {% else %}
-  <p class="no-minders">No minders found.</p>
+<p class="no-minders">No minders found.</p>
 {% endif %}
