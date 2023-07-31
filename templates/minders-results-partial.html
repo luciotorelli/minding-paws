@@ -1,9 +1,31 @@
+{% load static %}
+
 {% if minders %}
   <div class="minders-list">
     {% for minder in minders %}
-      <div class="minder-item {% cycle 'even' 'odd' %}">
-        <div class="minder-name">{{ minder.user.name }}</div>
-        <div class="minder-bio">{{ minder.bio }}</div>
+      <div class="minder-item {% cycle 'even' 'odd' %} row align-items-center">
+        <div class="col-12 col-md-4 minder-photo-name-div">
+          <div class="minder-photo">
+            {% if "placeholder" in minder.photo.url %}
+            <img src="{% static 'img/profile-placeholder.webp' %}" alt="{{ minder.user.name }}">
+            {% else %}
+            <img src="{{ minder.photo.url }}" alt="{{ minder.user.name }}">
+            {% endif %}
+          </div>
+          <div class="minder-name">
+            <h5>{{ minder.user.name }}</h5>
+          </div>
+        </div>
+        <div class="col-12 col-md-8 minder-bio-availability-div">
+          <div class="minder-availability">
+            <p>Usually available:</p>
+            <p>{{ minder.usual_availability }}</p>
+          </div>
+          <div class="minder-bio">
+            <p>Bio:</p>
+            <p>{{ minder.bio }}</p>
+          </div>
+        </div>
       </div>
     {% endfor %}
   </div>

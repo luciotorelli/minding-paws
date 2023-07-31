@@ -261,13 +261,114 @@ label {
 
 /* ------------------------------------- Search for Minders page */
 
+.browse-minders-div {
+    color: #0D444E;
+    background-color: #DBDEEB;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    min-width: 220px;
+    max-width: 800px;
+    height: 100%;
+    padding: 20px;
+    margin: 50px auto;
+
+    -webkit-box-shadow: -1px 3px 18px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: -1px 3px 18px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: -1px 3px 18px 0px rgba(0, 0, 0, 0.75);
+}
+
+.minder-search-div {
+    border-radius: 5px;
+    -webkit-box-shadow: -1px 3px 18px 0px rgba(0, 0, 0, 0.35);
+    -moz-box-shadow: -1px 3px 18px 0px rgba(0, 0, 0, 0.35);
+    box-shadow: -1px 3px 18px 0px rgba(0, 0, 0, 0.35);
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+
+.minders-list {
+    display: flex;
+    flex-direction: column;
+}
+
+
 .minder-item.even {
-    background-color: #DBDEEB !important;
+    background-color: #a6acc7 !important;
 }
 
 .minder-item.odd {
-    background-color: #a6acc7 !important;
+    background-color: #DBDEEB !important;
 }
+
+.minder-photo img {
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+}
+
+.minder-photo {
+    margin: 10px 0;
+}
+
+.minder-photo-name-div,
+.minder-bio-availability-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5px 0;
+    word-wrap: break-word;
+    text-align: center;
+}
+
+.minder-bio,
+.minder-availability {
+    width: 90%;
+    padding: 5px;
+}
+
+.minder-bio p,
+.minder-availability p {
+    padding: 0;
+    margin: 0;
+}
+
+.minder-bio p:first-child,
+.minder-availability p:first-child {
+    font-weight: bold;
+}
+
+.minder-availability {
+    margin-bottom: 10px;
+}
+
+.minder-name {
+    font-weight: bold;
+}
+
+.search-icon-span {
+    width: 50px;
+    text-align: center;
+}
+
+@keyframes blinker {
+    from {opacity: 1.0;}
+    to {opacity: 0.0;}
+  }
+  
+.blink {
+    text-decoration: blink;
+    animation-name: blinker;
+    animation-duration: 0.6s;
+    animation-iteration-count:infinite;
+    animation-timing-function:ease-in-out;
+    animation-direction: alternate;
+  }
 
 /* ------------------------------------- Footer */
 footer {
