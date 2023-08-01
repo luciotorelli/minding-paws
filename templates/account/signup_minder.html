@@ -2,7 +2,7 @@
 "Signup" %}{% endblock %} {% block content %}
 
 <form
-  class="signup signup-form"
+  class="signup signup-form main-div-shadow"
   id="signup_form"
   method="post"
   action="{% url 'minder-sign-up' %}"
@@ -160,7 +160,7 @@
   />
   {% endif %}
   <div class="col text-center">
-    <button type="submit" class="btn sign-up-btn mt-4">
+    <button type="submit" class="btn custom-btn mt-4">
       {% trans "Register" %} &raquo;
     </button>
   </div>

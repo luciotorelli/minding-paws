@@ -7,7 +7,7 @@
 
 {% block content %}
 
-<form class="login-form mt-3" id="login_form" method="post" action="{% url 'account_login' %}">
+<form class="login-form main-div-shadow mt-3" id="login_form" method="post" action="{% url 'account_login' %}">
   {% csrf_token %}
 
   <h1 hidden>Login</h1>

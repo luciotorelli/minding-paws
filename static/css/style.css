@@ -71,6 +71,12 @@ main {
     display: flex;
 }
 
+.main-div-shadow {
+    -webkit-box-shadow: -1px 3px 18px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: -1px 3px 18px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: -1px 3px 18px 0px rgba(0, 0, 0, 0.75);
+}
+
 /* ------------------------------------- Sign-up Div */
 .sign-up-div {
     text-align: center;
@@ -94,7 +100,7 @@ main {
     border: 0 !important;
 }
 
-.sign-up-btn {
+.custom-btn {
     background-color: #ff8952 !important;
 }
 
@@ -110,11 +116,6 @@ main {
     height: 100%;
     padding: 20px;
     margin: 50px auto;
-
-    -webkit-box-shadow: -1px 3px 18px 0px rgba(0, 0, 0, 0.75);
-    -moz-box-shadow: -1px 3px 18px 0px rgba(0, 0, 0, 0.75);
-    box-shadow: -1px 3px 18px 0px rgba(0, 0, 0, 0.75);
-
 }
 
 .signup-form h1,
@@ -226,10 +227,6 @@ label {
     height: 100%;
     padding: 20px;
     margin: 50px auto;
-
-    -webkit-box-shadow: -1px 3px 18px 0px rgba(0, 0, 0, 0.75);
-    -moz-box-shadow: -1px 3px 18px 0px rgba(0, 0, 0, 0.75);
-    box-shadow: -1px 3px 18px 0px rgba(0, 0, 0, 0.75);
 }
 
 .non-field-error {
@@ -273,17 +270,10 @@ label {
     height: 100%;
     padding: 20px;
     margin: 50px auto;
-
-    -webkit-box-shadow: -1px 3px 18px 0px rgba(0, 0, 0, 0.75);
-    -moz-box-shadow: -1px 3px 18px 0px rgba(0, 0, 0, 0.75);
-    box-shadow: -1px 3px 18px 0px rgba(0, 0, 0, 0.75);
 }
 
 .minder-search-div {
     border-radius: 5px;
-    -webkit-box-shadow: -1px 3px 18px 0px rgba(0, 0, 0, 0.35);
-    -moz-box-shadow: -1px 3px 18px 0px rgba(0, 0, 0, 0.35);
-    box-shadow: -1px 3px 18px 0px rgba(0, 0, 0, 0.35);
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -385,6 +375,10 @@ label {
     display: flex;
     align-self: center;
     text-align: center;
+}
+
+.create-booking-btns button{
+    width: 50% !important;
 }
 
 /* ------------------------------------- Footer */
