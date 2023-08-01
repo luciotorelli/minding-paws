@@ -77,6 +77,17 @@ main {
     box-shadow: -1px 3px 18px 0px rgba(0, 0, 0, 0.75);
 }
 
+
+.custom-btn {
+    background-color: #ff8952 !important;
+}
+
+
+.custom-btn-2 {
+    background-color: #0D444E !important;
+    color: #DBDEEB;
+}
+
 /* ------------------------------------- Sign-up Div */
 .sign-up-div {
     text-align: center;
@@ -98,10 +109,6 @@ main {
 .list-group-item {
     background-color: #DBDEEB !important;
     border: 0 !important;
-}
-
-.custom-btn {
-    background-color: #ff8952 !important;
 }
 
 /* ------------------------------------- Sign-up Form */
@@ -377,9 +384,19 @@ label {
     text-align: center;
 }
 
-.create-booking-btns button{
-    width: 50% !important;
-}
+.create-booking-btns-div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 20px 0;
+  }
+
+  .create-booking-btns-div button {
+    padding: 10px 20px;
+    margin: 5px;
+    background-color: #ff8952;
+  }
+
 
 /* ------------------------------------- Footer */
 footer {
@@ -396,7 +413,11 @@ footer {
 }
 
 /* -------------------- Screens above 425px width - Mobile */
-@media screen and (min-width: 425px) {}
+@media screen and (min-width: 425px) {
+    .create-booking-btns-div {
+        justify-content: space-around;
+      }      
+}
 
 /* -------------------- Screens above 768px width - Tablets */
 @media screen and (min-width: 768px) {

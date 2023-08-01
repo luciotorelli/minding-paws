@@ -30,3 +30,9 @@ document.getElementById("minder-name-booking").textContent = 'You are booking wi
 
 // Add minderAvailability to the p element with id "minder-name-booking"
 document.getElementById("minder-availability-booking").textContent = 'Please note the minder usual availability. ' + minderName + ' is usually available: ' + minderAvailability;
+
+// Add event listener to change minder button to redirect back to browse-minders
+var reselectMinderBtn = document.querySelector(".reselect-minder-btn");
+reselectMinderBtn.addEventListener("click", function () {
+  window.location.href = "/browse-minders/";
+});

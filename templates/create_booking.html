@@ -5,7 +5,7 @@
 Booking" %}{% endblock %} {% block content %}
 
 <form
-  class="signup signup-form"
+  class="signup signup-form main-div-shadow"
   id="create_booking_form"
   method="post"
   action="{% url 'create-booking' %}"
@@ -17,7 +17,7 @@ Booking" %}{% endblock %} {% block content %}
   {{ form.non_field_errors }}
 
   <div class="row mt-4">
-    <div class="col-12 col-md-6 form-user-details text-center mx-auto">
+    <div class="col-12 col-md-6 form-user-details text-center mx-auto d-flex flex-column align-items-center justify-content-center">
 
         <div class="minder-photo">
           <img src="" alt="" id="minder_photo_booking" />
@@ -178,8 +178,11 @@ Booking" %}{% endblock %} {% block content %}
   </ol>
   {% endif %}
 
-  <div class="col text-center">
-    <button type="submit" class="btn sign-up-btn mt-4">
+  <div class="create-booking-btns-div">
+    <button type="button" class="btn custom-btn-2 reselect-minder-btn">
+      &laquo; {% trans "Change Minder" %}
+    </button>
+    <button type="submit" class="btn custom-btn">
       {% trans "Create Booking" %} &raquo;
     </button>
   </div>
