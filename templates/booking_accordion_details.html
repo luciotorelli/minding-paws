@@ -1,0 +1,35 @@
+{% load static %}
+<body>
+  <div class="booking-details">
+    <div class="date-time-container">
+      <div class="pill-div">
+        <p>{{ booking.start_date|date:"d/m/Y" }}</p>
+      </div>
+      <div class="pill-div">
+        <p>{{ booking.end_date|date:"d/m/Y" }}</p>
+      </div>
+    </div>
+    <div class="date-time-container">
+      <div class="pill-div">
+        <p>{{ booking.start_date|date:"H:i A" }}</p>
+      </div>
+      <div class="pill-div">
+        <p>{{ booking.end_date|date:"H:i A" }}</p>
+      </div>
+    </div>
+    <div class="pet-info-div">
+      <p class="pet-info">
+        <i class="fa fa-paw"></i>Pet Name: {{ booking.pet_name }}
+      </p>
+      <p class="pet-info">
+        <i class="fa fa-dog"></i>Pet Species: {{ booking.pet_species }}
+      </p>
+      <p>
+        <strong>Service Description:</strong> 
+        <br/>
+        {{ booking.service_description }}
+      </p>
+      <i class="fa fa-ban"></i>
+    </div>
+  </div>
+</body>

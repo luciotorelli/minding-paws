@@ -6,7 +6,7 @@ from django.template.loader import render_to_string
 from django.http import JsonResponse
 from django.db.models import Q
 from .forms import PetOwnerCreationForm, MinderCreationForm, BookingCreationForm
-from .models import Minder
+from .models import Minder, Booking
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 
@@ -62,12 +62,13 @@ class CreateBookingView(LoginRequiredMixin, FormView):
         if pet_owner != initial_pet_owner or pet_owner_name != initial_pet_owner_name:
             raise ValidationError({
                 'pet_owner_name': "Pet owner name cannot be different from logged in user.",
-                'pet_owner':"Pet owner cannot be different from logged in user."
+                'pet_owner': "Pet owner cannot be different from logged in user."
             })
 
     def form_valid(self, form):
         form.save()
         return super().form_valid(form)
+
 
 class BrowseMindersView(ListView):
     model = Minder
@@ -88,7 +89,8 @@ class BrowseMindersView(ListView):
         query = self.request.GET.get('q')
 
         if query:
-            queryset = queryset.filter(Q(user__name__icontains=query) | Q(bio__icontains=query))
+            queryset = queryset.filter(
+                Q(user__name__icontains=query) | Q(bio__icontains=query))
 
         return queryset
 
@@ -103,7 +105,8 @@ class BrowseMindersView(ListView):
             dict: The context data for the view.
         """
         context = super().get_context_data(**kwargs)
-        context['is_ajax'] = self.request.headers.get("x-requested-with") == "XMLHttpRequest"
+        context['is_ajax'] = self.request.headers.get(
+            "x-requested-with") == "XMLHttpRequest"
         return context
 
     def render_to_response(self, context, **response_kwargs):
@@ -129,3 +132,21 @@ class BrowseMindersView(ListView):
             return JsonResponse(data=data_dict, safe=False)
         else:
             return super().render_to_response(context, **response_kwargs)
+
+
+class BookingsView(LoginRequiredMixin, ListView):
+    template_name = 'bookings.html'
+    context_object_name = 'bookings'
+
+    def get_queryset(self):
+        user = self.request.user
+        return Booking.objects.filter(pet_owner=user)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        bookings = context['bookings']
+        context['pending_bookings'] = bookings.filter(status='pending')
+        context['accepted_bookings'] = bookings.filter(status='accepted')
+        context['cancelled_bookings'] = bookings.filter(status='cancelled')
+        context['completed_bookings'] = bookings.filter(status='completed')
+        return context
