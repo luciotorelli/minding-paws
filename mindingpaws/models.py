@@ -42,7 +42,7 @@ class Minder(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     bio = models.TextField(max_length=500, blank=False, null=False)
     usual_availability = models.CharField(max_length=50, help_text="Example: Monday to Friday, 10am to 6pm.", blank=False, null=False)
-    photo = CloudinaryField('image', default='placeholder')
+    photo = CloudinaryField('image', default='https://res.cloudinary.com/dls3mbdix/image/upload/v1690889814/static/img/profile-placeholder_hgqisr.webp', null=True, blank=True)
 
     def __str__(self):
         """__str__ This method returns the `username` field from the `User` model in a readable format.

@@ -29,7 +29,8 @@ class MinderCreationForm(SignupForm):
         options={
             'folder': 'static/img/minders',
             'resource_type': 'image'
-        }
+        },
+        required=False
     )
 
     def save(self, request):

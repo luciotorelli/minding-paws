@@ -376,6 +376,17 @@ label {
     animation-direction: alternate;
   }
 
+/* ------------------------------------- Create Booking Page */
+.hidden-div {
+    display: none ;
+}
+
+.selected-minder-div {
+    display: flex;
+    align-self: center;
+    text-align: center;
+}
+
 /* ------------------------------------- Footer */
 footer {
     background-color: #0D444E;

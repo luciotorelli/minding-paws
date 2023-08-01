@@ -15,12 +15,14 @@
       </div>
       <div class="minder-name">
         <h5>{{ minder.user.name }}</h5>
-        <input type="hidden" name="{{ minder.user }}" value="pet-owner" />
         <button
           class="btn btn-select-minder"
           onclick="saveToSessionStorage(
             '{{ minder.user }}', 
-            '{{ minder.user.name }}',)"
+            '{{ minder.id }}',
+            '{{ minder.user.name }}',
+            '{{ minder.photo.url }}',
+            '{{ minder.usual_availability }}',)"
         >
           Book this Minder!
         </button>

@@ -12,14 +12,59 @@ Booking" %}{% endblock %} {% block content %}
 >
   {% csrf_token %}
 
-  <h1 hidden>Create Booking</h1>
+  <h2 class="text-center">Book a Minder</h2>
 
   {{ form.non_field_errors }}
 
-  <div class="row">
+  <div class="row mt-4">
+    <div class="col-12 col-md-6 form-user-details text-center mx-auto">
+
+        <div class="minder-photo">
+          <img src="" alt="" id="minder_photo_booking" />
+        </div>
+        <div class="px-3">
+          <p class="minder-name" id="minder-name-booking"></p>
+          <p id="minder-availability-booking"></p>
+        </div>
+
+    </div>
+
     <div class="col-12 col-md-6 form-user-details">
-      <!-- Pet Owner field -->
-      <div class="form-field form-group">
+      <!-- Minder field HIDDEN-->
+      <div class="form-field form-group hidden-div">
+        <label for="{{ form.minder.id_for_label }}">Minder:</label>
+        <br />
+        <div class="input-group">
+          <i class="fa fa-user fa-fw" aria-hidden="true"></i>
+          {{ form.minder}}
+        </div>
+      </div>
+
+      <!-- Minder Name field HIDDEN-->
+      <div class="form-field form-group hidden-div">
+        <label for="{{ form.minder_name.id_for_label }}">Minder Name:</label>
+        <br />
+        <div class="input-group">
+          <i class="fa fa-user fa-fw" aria-hidden="true"></i>
+          {{ form.minder_name }}
+        </div>
+        {% if form.minder_name.errors %}
+        <div class="field-error">{{ form.minder_name.errors }}</div>
+        {% endif %}
+      </div>
+
+      <!-- Status field HIDDEN-->
+      <div class="form-field form-group hidden-div">
+        <label for="{{ form.status.id_for_label }}">Status:</label>
+        <br />
+        <div class="input-group">
+          <i class="fa fa-check-circle fa-fw" aria-hidden="true"></i>
+          {{ form.status }}
+        </div>
+      </div>
+
+      <!-- Pet Owner field HIDDEN -->
+      <div class="form-field form-group hidden-div">
         <label for="{{ form.pet_owner.id_for_label }}">Pet Owner:</label>
         <br />
         <div class="input-group">
@@ -31,8 +76,8 @@ Booking" %}{% endblock %} {% block content %}
         {% endif %}
       </div>
 
-      <!-- Pet Owner name field -->
-      <div class="form-field form-group">
+      <!-- Pet Owner name field HIDDEN -->
+      <div class="form-field form-group hidden-div">
         <label for="{{ form.pet_owner_name.id_for_label }}"
           >Pet Owner Name:</label
         >
@@ -98,7 +143,7 @@ Booking" %}{% endblock %} {% block content %}
         <div class="field-error">{{ form.end_date.errors }}</div>
         {% endif %}
       </div>
-    
+
       <!-- Service description field -->
       <div class="form-field form-group">
         <label for="{{ form.service_description.id_for_label }}"
@@ -115,76 +160,15 @@ Booking" %}{% endblock %} {% block content %}
       </div>
 
     </div>
-
-    <div class="col-12 col-md-6 form-user-details">
-      <!-- Minder field -->
-      <div class="form-field form-group">
-        <label for="{{ form.minder.id_for_label }}">Minder:</label>
-        <br />
-        <div class="input-group">
-          <i class="fa fa-user fa-fw" aria-hidden="true"></i>
-          {{ form.minder }}
-        </div>
-        {% if form.minder.errors %}
-        <div class="field-error">{{ form.minder.errors }}</div>
-        {% endif %}
-      </div>
-
-      <!-- Minder Name field -->
-      <div class="form-field form-group">
-        <label for="{{ form.minder_name.id_for_label }}">Minder Name:</label>
-        <br />
-        <div class="input-group">
-          <i class="fa fa-user fa-fw" aria-hidden="true"></i>
-          {{ form.minder_name }}
-        </div>
-        {% if form.minder_name.errors %}
-        <div class="field-error">{{ form.minder_name.errors }}</div>
-        {% endif %}
-      </div>
-
-      <!-- Status field -->
-      <div class="form-field form-group">
-        <label for="{{ form.status.id_for_label }}">Status:</label>
-        <br />
-        <div class="input-group">
-          <i class="fa fa-check-circle fa-fw" aria-hidden="true"></i>
-          {{ form.status }}
-        </div>
-        {% if form.status.errors %}
-        <div class="field-error">{{ form.status.errors }}</div>
-        {% endif %}
-      </div>
-
-      <!-- Minder Bio field -->
-      <div class="form-field form-group">
-        <label for="{{ form.bio.id_for_label }}">Minder Bio:</label>
-        <br />
-        <div class="input-group">
-          <i class="fa fa-user fa-fw" aria-hidden="true"></i>
-          {{ form.bio }}
-        </div>
-        {% if form.bio.errors %}
-        <div class="field-error">{{ form.bio.errors }}</div>
-        {% endif %}
-      </div>
-
-      <!-- Minder Usual Availability field -->
-      <div class="form-field form-group">
-        <label for="{{ form.usual_availability.id_for_label }}"
-          >Minder Usual Availability:</label
-        >
-        <br />
-        <div class="input-group">
-          <i class="fa fa-user fa-fw" aria-hidden="true"></i>
-          {{ form.usual_availability }}
-        </div>
-        {% if form.usual_availability.errors %}
-        <div class="field-error">{{ form.usual_availability.errors }}</div>
-        {% endif %}
-      </div>
-    </div>
   </div>
+
+  {% if form.status.errors %}
+  <div class="field-error">{{ form.status.errors }}</div>
+  {% endif %}
+
+  {% if form.minder.errors %}
+  <div class="field-error">{{ form.minder.errors }}</div>
+  {% endif %}
 
   {% if form.subject.errors %}
   <ol>
