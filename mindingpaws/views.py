@@ -138,9 +138,22 @@ class BookingsView(LoginRequiredMixin, ListView):
     template_name = 'bookings.html'
     context_object_name = 'bookings'
 
+
     def get_queryset(self):
+        """get_queryset
+
+        Verify if the user is logged in and has a minder or a pet owner attached to it to filter the bookings.
+
+        Returns:
+            obj: The filtered objects
+        """
         user = self.request.user
-        return Booking.objects.filter(pet_owner=user)
+        if user.is_authenticated and hasattr(user, 'minder'):
+            return Booking.objects.filter(minder=user.minder)
+        elif user.is_authenticated and user.role == 'pet-owner':
+            return Booking.objects.filter(pet_owner=user)
+        else:
+            return Booking.objects.none()
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

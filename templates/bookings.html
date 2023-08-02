@@ -10,7 +10,15 @@
             <div class="accordion-item">
               <h2 class="accordion-header" id="pendingBooking{{ booking.id }}">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#pendingBookingCollapse{{ booking.id }}" aria-expanded="false" aria-controls="pendingBookingCollapse{{ booking.id }}">
-                    {{ forloop.counter }} - {{ booking.minder_name }} on {{ booking.start_date|date:"M. j" }}
+                    {{ forloop.counter }} - 
+                    {% if user.is_authenticated %}
+                        {% if user.role == 'pet-owner' %}
+                            {{ booking.minder_name }}
+                        {% elif user.role == 'minder' %}
+                            {{ booking.pet_owner_name }}
+                        {% endif %}
+                    {% endif %}
+                    on {{ booking.start_date|date:"M. j" }}
                 </button>
               </h2>
               <div id="pendingBookingCollapse{{ booking.id }}" class="accordion-collapse collapse" aria-labelledby="pendingBooking{{ booking.id }}" data-bs-parent="#pendingBookingsAccordion">
