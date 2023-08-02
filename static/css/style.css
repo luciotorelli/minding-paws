@@ -537,11 +537,31 @@ label {
     margin-right: 5px;
 }
 
-.fa-ban {
+.booking-details-btns {
+    display: flex;
+    justify-content: space-around;
+    align-content: center;
+    align-items: center;
+}
+
+.approve-btn {
     display: block;
     text-align: right !important;
-    font-size: 24px;
-    color: #ff8952;
+    font-size: 15px;
+    color: #fff;
+    background-color: #486e75;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.cancel-btn {
+    display: block;
+    text-align: right !important;
+    font-size: 15px;
+    color: #171717;
+    background-color: #ff8952;
+    border-radius: 5px;
+    padding: 5px;
 }
 
 /* ------------------------------------- Footer */
