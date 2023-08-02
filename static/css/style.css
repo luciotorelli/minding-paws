@@ -88,6 +88,28 @@ main {
     color: #DBDEEB;
 }
 
+/* Custom Scroll bar */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+
+::-webkit-scrollbar-thumb {
+    background: #171717;
+    border-radius: 10px;
+}
+
+
+::-webkit-scrollbar-thumb:hover {
+    background: #0D444E;
+}
+
 /* ------------------------------------- Sign-up Div */
 .sign-up-div {
     text-align: center;
@@ -410,12 +432,31 @@ label {
 }
 
 .bookings-div {
-    overflow: scroll;
-    padding: 20px;
+    overflow: hidden;
+    max-height: 50vh;
+    padding: 10px;
     background-color: #DBDEEB !important;
     border-radius: 15px;
 
 }
+
+.accordion {
+    overflow: auto;
+    max-height: 41vh;
+    padding: 10px 10px 0 10px ;
+    border-radius: 10px;
+    position: relative;
+  }
+    
+  .scroll-indicator {
+    position: sticky;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 20px;
+    background: linear-gradient(rgba(255, 255, 255, 0), rgba(219, 222, 235, 1.0));
+    z-index: 2;
+  }
 
 .grid-container {
     display: grid;
@@ -431,9 +472,9 @@ label {
 .accordion-button:active {
     background-color: #cce5ff;
     color: #000;
-    box-shadow: 0px 0px 17px 1px rgba(0, 0, 0, 0.75);
-    -webkit-box-shadow: 0px 0px 17px 1px rgba(0, 0, 0, 0.75);
-    -moz-box-shadow: 0px 0px 17px 1px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.75);
+    -webkit-box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.75);
 }
 
 .accordion-button:not(.collapsed) {
@@ -469,7 +510,8 @@ label {
     background-color: #f1f1f1;
     display: flex;
     align-items: center;
-    z-index: 2;/* Send the line to the background if goes over the dates */
+    z-index: 2;
+    /* Send the line to the background if goes over the dates */
 
 }
 
