@@ -1,4 +1,4 @@
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, View
 from django.views.generic.edit import FormView
 from django.views.generic import ListView
 from allauth.account.views import SignupView
@@ -8,10 +8,20 @@ from django.db.models import Q
 from .forms import PetOwnerCreationForm, MinderCreationForm, BookingCreationForm
 from .models import Minder, Booking
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.shortcuts import redirect
 
 
-class HomeView(TemplateView):
+class welcomeView(TemplateView):
     template_name = 'index.html'
+
+
+class HomeRedirectView(View):
+    # Redirect user to bookings if logged in, else, redirect user to welcome page.
+    def get(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            return redirect('bookings')
+        else:
+            return redirect('welcome')
 
 
 class PetOwnerSignUp(SignupView):
@@ -137,7 +147,6 @@ class BrowseMindersView(ListView):
 class BookingsView(LoginRequiredMixin, ListView):
     template_name = 'bookings.html'
     context_object_name = 'bookings'
-
 
     def get_queryset(self):
         """get_queryset
