@@ -30,15 +30,15 @@
         {{ booking.service_description }}
       </p>
 
-      <!-- Display the booking buttons based on user role, user authentication and booking status -->>
+      <!-- Display the booking buttons based on user role, user authentication and booking status -->
       {% if user.is_authenticated and user.role == 'minder' and booking.status == 'pending' %}
         <div class="booking-details-btns">
-          <button class="btn approve-btn">Approve</button>
-          <button class="btn cancel-btn">Cancel</button>
+            <button class="btn approve-btn">Approve</button>
+            <button class="btn cancel-btn">Cancel</button>
         </div>
-      {% elif (user.is_authenticated and user.role == 'pet-owner') or (user.is_authenticated and booking.status == 'active') %}
+      {% elif user.is_authenticated and user.role == 'pet-owner' or booking.status == 'active' %}
         <div class="booking-details-btns">
-          <button class="btn cancel-btn">Cancel</button>
+            <button class="btn cancel-btn">Cancel</button>
         </div>
       {% endif %}
 
