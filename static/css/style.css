@@ -434,6 +434,7 @@ label {
 .bookings-div {
     overflow: hidden;
     max-height: 50vh;
+    min-height: 40vh;
     padding: 10px;
     background-color: #DBDEEB !important;
     border-radius: 15px;
@@ -446,9 +447,9 @@ label {
     padding: 10px 10px 0 10px ;
     border-radius: 10px;
     position: relative;
-  }
+}
     
-  .scroll-indicator {
+.scroll-indicator {
     position: sticky;
     bottom: 0;
     left: 0;
@@ -456,7 +457,7 @@ label {
     height: 20px;
     background: linear-gradient(rgba(255, 255, 255, 0), rgba(219, 222, 235, 1.0));
     z-index: 2;
-  }
+}
 
 .grid-container {
     display: grid;
