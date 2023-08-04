@@ -5,7 +5,7 @@ from allauth.account.views import SignupView
 from django.template.loader import render_to_string
 from django.http import JsonResponse
 from django.db.models import Q
-from .forms import PetOwnerCreationForm, MinderCreationForm, BookingCreationForm
+from .forms import PetOwnerCreationForm, MinderCreationForm, BookingCreationForm, UpdateBookingStatusForm
 from .models import Minder, Booking
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import redirect
@@ -172,3 +172,14 @@ class BookingsView(LoginRequiredMixin, ListView):
         context['cancelled_bookings'] = bookings.filter(status='cancelled')
         context['completed_bookings'] = bookings.filter(status='completed')
         return context
+    
+class UpdateBookingStatus(View):
+    def post(self, request, *args, **kwargs):
+        form = UpdateBookingStatusForm(request.POST)
+        if form.is_valid():
+            booking_id = form.cleaned_data['booking_id']
+            status = form.cleaned_data['status']
+            Booking.objects.filter(id=booking_id).update(status=status)
+            return redirect('bookings')
+        else:
+            return redirect('bookings')

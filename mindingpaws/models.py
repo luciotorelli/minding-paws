@@ -63,7 +63,7 @@ class Booking(models.Model):
     STATUS_CHOICES = [
         ('accepted', 'Accepted'),
         ('pending', 'Pending'),
-        ('declined', 'Declined'),
+        ('cancelled', 'Cancelled'),
         ('completed', 'Completed')
     ]
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, blank=False, null=False)

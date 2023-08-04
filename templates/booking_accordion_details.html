@@ -32,14 +32,29 @@
 
       <!-- Display the booking buttons based on user role, user authentication and booking status -->
       {% if user.is_authenticated and user.role == 'minder' and booking.status == 'pending' %}
-        <div class="booking-details-btns">
-            <button class="btn approve-btn">Approve</button>
-            <button class="btn cancel-btn">Cancel</button>
-        </div>
+      <div class="booking-details-btns">
+          <form method="post" action="{% url 'update-booking-status' %}">
+              {% csrf_token %}
+              <input type="hidden" name="booking_id" value="{{ booking.id }}">
+              <input type="hidden" name="status" value="accepted">
+              <button class="btn approve-btn" type="submit">Approve</button>
+          </form>
+          <form method="post" action="{% url 'update-booking-status' %}">
+              {% csrf_token %}
+              <input type="hidden" name="booking_id" value="{{ booking.id }}">
+              <input type="hidden" name="status" value="cancelled">
+              <button class="btn cancel-btn" type="submit">Cancel</button>
+          </form>
+      </div>
       {% elif user.is_authenticated and user.role == 'pet-owner' or booking.status == 'active' %}
-        <div class="booking-details-btns">
-            <button class="btn cancel-btn">Cancel</button>
-        </div>
+          <div class="booking-details-btns">
+              <form method="post" action="{% url 'update-booking-status' %}">
+                  {% csrf_token %}
+                  <input type="hidden" name="booking_id" value="{{ booking.id }}">
+                  <input type="hidden" name="status" value="cancelled">
+                  <button class="btn cancel-btn" type="submit">Cancel</button>
+              </form>
+          </div>
       {% endif %}
 
     </div>

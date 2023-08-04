@@ -89,3 +89,7 @@ class BookingCreationForm(forms.ModelForm):
         if commit:
             instance.save()
         return instance
+    
+class UpdateBookingStatusForm(forms.Form):
+    booking_id = forms.IntegerField()
+    status = forms.CharField(max_length=10)
