@@ -9,7 +9,8 @@ from .forms import PetOwnerCreationForm, MinderCreationForm, BookingCreationForm
 from .models import Minder, Booking
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import redirect
-
+from django.core.exceptions import PermissionDenied
+from django.shortcuts import get_object_or_404
 
 class welcomeView(TemplateView):
     template_name = 'index.html'
@@ -179,7 +180,13 @@ class UpdateBookingStatus(View):
         if form.is_valid():
             booking_id = form.cleaned_data['booking_id']
             status = form.cleaned_data['status']
-            Booking.objects.filter(id=booking_id).update(status=status)
-            return redirect('bookings')
-        else:
-            return redirect('bookings')
+            booking = get_object_or_404(Booking, id=booking_id)
+
+            # If status being set to accepted, ensure user is a minder
+            if status == 'accepted' and request.user.role != 'minder':
+                raise PermissionDenied
+
+            booking.status = status
+            booking.save()
+
+        return redirect('bookings')
