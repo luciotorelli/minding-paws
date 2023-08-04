@@ -36,7 +36,7 @@
           <button class="btn approve-btn" type="button" data-bs-toggle="modal" data-bs-target="#approveModal">Approve</button>
           <button class="btn cancel-btn" type="button" data-bs-toggle="modal" data-bs-target="#cancelModal">Cancel</button>
       </div>
-      {% elif user.is_authenticated and user.role == 'pet-owner' or booking.status == 'active' %}
+      {% elif user.is_authenticated and user.role == 'pet-owner' or booking.status == 'accepted' %}
           <div class="booking-details-btns">
               <button class="btn cancel-btn" type="button" data-bs-toggle="modal" data-bs-target="#cancelModal">Cancel</button>
           </div>

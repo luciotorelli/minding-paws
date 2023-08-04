@@ -182,9 +182,13 @@ class UpdateBookingStatus(View):
             status = form.cleaned_data['status']
             booking = get_object_or_404(Booking, id=booking_id)
 
-            # If status being set to accepted, ensure user is a minder
+            # If status is being set to accepted and user is not a minder, raise PermissionDenied
             if status == 'accepted' and request.user.role != 'minder':
-                raise PermissionDenied
+                raise PermissionDenied("Only a minder can accept a booking.")
+
+            # If status is being set to cancelled, ensure status is not cancelled or completed
+            if status == 'cancelled' and (booking.status == 'cancelled' or booking.status == 'completed'):
+                raise PermissionDenied("You can't cancel a booking that is already cancelled or completed.")
 
             booking.status = status
             booking.save()
