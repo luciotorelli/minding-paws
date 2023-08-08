@@ -63,6 +63,11 @@ Minding Paws is a Django application designed to connect pet owners with pet min
 
 ## Project Management and Planning
 
+### Diagram
+
+<img id="diagram" src="readme-assets/diagram.png"
+     alt="App Diagram" style="max-width: 100%;"/>
+
 ### Agile Methodology
 
 This project was idealized following the Agile methodology where the user stories were ordered into sprints based on the importance, timeframe and logic flow. The sprints were them used to create the tasks found within Github built-in project management tool.  
