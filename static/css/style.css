@@ -426,6 +426,32 @@ label {
 
 /* ------------------------------------- Bookings Page */
 
+.new-booking-div {
+    background-color: #ff8952;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+.new-booking-div p {
+    font-size: 1.2em !important;
+    margin: 0 !important;
+}
+
+.new-booking-btn {
+    background-color: #0D444E;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+
 .bookings-container {
     width: 90%;
     margin-top: 15px;

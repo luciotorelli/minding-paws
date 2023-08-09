@@ -1,5 +1,11 @@
 {% extends 'base.html' %} {% block content %}
 <div class="container bookings-container">
+    {% if user.role == 'pet-owner' %}
+      <div class="new-booking-div main-div-shadow">
+        <p>Need a new booking?</p>
+        <a href="{% url 'browse-minders' %}" class="btn new-booking-btn text-decoration-none">Book a minder!</a>
+      </div>
+    {% endif %}
     <!-- Grid container -->
     <div class="grid-container">
       <!-- Div 1 Pending Bookings Accordion -->
