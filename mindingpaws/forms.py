@@ -124,8 +124,16 @@ class UpdateMinderForm(forms.ModelForm):
         cleaned_data = super().clean()
         password1 = cleaned_data.get('password1')
         password2 = cleaned_data.get('password2')
+       
+        if password1 and not password2:
+            self.add_error('password2', forms.ValidationError("This field must be filled if Password is entered."))
+
+        if password2 and not password1:
+            self.add_error('password1', forms.ValidationError("This field must be filled if Confirm Password is entered."))
 
         if password1 and password2 and password1 != password2:
-            self.add_error('password2', "Passwords do not match.")
+            self.add_error('password1', forms.ValidationError("Passwords do not match."))
+            self.add_error('password2', forms.ValidationError("Passwords do not match."))
+
 
         return cleaned_data
