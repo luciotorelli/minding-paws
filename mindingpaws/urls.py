@@ -10,4 +10,6 @@ urlpatterns = [
     path('browse-minders/', views.BrowseMindersView.as_view(), name='browse-minders'),
     path('bookings/', views.BookingsView.as_view(), name='bookings'),
     path('update_booking_status/', views.UpdateBookingStatus.as_view(), name='update-booking-status'),
+    path('my-profile-minder/', views.MinderProfileUpdateView.as_view(), name='my-profile-minder'),
+
 ]

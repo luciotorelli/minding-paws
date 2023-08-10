@@ -5,8 +5,8 @@ from allauth.account.views import SignupView
 from django.template.loader import render_to_string
 from django.http import JsonResponse
 from django.db.models import Q
-from .forms import PetOwnerCreationForm, MinderCreationForm, BookingCreationForm, UpdateBookingStatusForm
-from .models import Minder, Booking
+from .forms import PetOwnerCreationForm, MinderCreationForm, BookingCreationForm, UpdateBookingStatusForm, MinderProfileUpdateForm, PetOwnerProfileUpdateForm
+from .models import User, Minder, Booking
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import redirect
 from django.core.exceptions import PermissionDenied
@@ -194,3 +194,34 @@ class UpdateBookingStatus(View):
             booking.save()
 
         return redirect('bookings')
+
+class MinderProfileUpdateView(FormView):
+    template_name = 'my-profile-minder.html'
+    form_class = MinderProfileUpdateForm
+    success_url = '/my-profile-minder/'
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['user_instance'] = self.request.user
+        return kwargs
+
+    def form_valid(self, form):
+        try:
+            # Update the User attached to the minder
+            user = self.request.user
+            user.username = form.cleaned_data['username']
+            user.email = form.cleaned_data['email']
+            user.name = form.cleaned_data['name']
+            user.save()
+
+            # Update the minder
+            minder = get_object_or_404(Minder, user=user)
+            minder.bio = form.cleaned_data['bio']
+            minder.usual_availability = form.cleaned_data['usual_availability']
+            minder.photo = form.cleaned_data['photo']
+            minder.save()
+
+            return super().form_valid(form)
+        except ValueError as e:
+            form.add_error(None, str(e))
+            return self.form_invalid(form)
