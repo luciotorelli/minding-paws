@@ -1,16 +1,17 @@
 from django.views.generic import TemplateView, View
-from django.views.generic.edit import FormView
+from django.views.generic.edit import FormView, UpdateView
 from django.views.generic import ListView
 from allauth.account.views import SignupView
 from django.template.loader import render_to_string
 from django.http import JsonResponse
 from django.db.models import Q
-from .forms import PetOwnerCreationForm, MinderCreationForm, BookingCreationForm, UpdateBookingStatusForm, MinderProfileUpdateForm, PetOwnerProfileUpdateForm
+from .forms import PetOwnerCreationForm, MinderCreationForm, BookingCreationForm, UpdateMinderForm
 from .models import User, Minder, Booking
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import redirect
 from django.core.exceptions import PermissionDenied
 from django.shortcuts import get_object_or_404
+from django.contrib.auth import update_session_auth_hash
 
 class welcomeView(TemplateView):
     template_name = 'index.html'
@@ -195,33 +196,50 @@ class UpdateBookingStatus(View):
 
         return redirect('bookings')
 
-class MinderProfileUpdateView(FormView):
+class UpdateMinderView(UpdateView):
+    model = Minder
     template_name = 'my-profile-minder.html'
-    form_class = MinderProfileUpdateForm
+    form_class = UpdateMinderForm
     success_url = '/my-profile-minder/'
 
-    def get_form_kwargs(self):
-        kwargs = super().get_form_kwargs()
-        kwargs['user_instance'] = self.request.user
-        return kwargs
+    def get_object(self, queryset=None):
+        return self.request.user.minder  # Retrieve the logged-in user's Minder instance
+
+    def get_initial(self):
+        initial = super().get_initial()
+        initial['name'] = self.request.user.name
+        initial['email'] = self.request.user.email
+        initial['photo'] = None  # Set the photo field to None to make it show as empty
+        return initial
 
     def form_valid(self, form):
-        try:
-            # Update the User attached to the minder
-            user = self.request.user
-            user.username = form.cleaned_data['username']
-            user.email = form.cleaned_data['email']
-            user.name = form.cleaned_data['name']
+        # Save the Minder and User fields separately
+        minder = form.save(commit=False)
+        minder.bio = form.cleaned_data['bio']
+        minder.usual_availability = form.cleaned_data['usual_availability']
+        # Check if a new photo file is provided before saving
+        new_photo = form.cleaned_data['photo']
+        if new_photo:
+            minder.photo = new_photo
+        
+        minder.save()
+
+        user = self.request.user
+        user.name = form.cleaned_data['name']
+        user.email = form.cleaned_data['email']
+        # Update password only if provided
+        password1 = form.cleaned_data['password1']
+        password2 = form.cleaned_data['password2']
+        if password1 and password2 and password1 == password2:
+            user.set_password(password1)
             user.save()
+            # Keep the user logged in after changing password
+            update_session_auth_hash(self.request, user)
+        user.save()
 
-            # Update the minder
-            minder = get_object_or_404(Minder, user=user)
-            minder.bio = form.cleaned_data['bio']
-            minder.usual_availability = form.cleaned_data['usual_availability']
-            minder.photo = form.cleaned_data['photo']
-            minder.save()
+        return super().form_valid(form)
 
-            return super().form_valid(form)
-        except ValueError as e:
-            form.add_error(None, str(e))
-            return self.form_invalid(form)
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['action'] = 'Update'
+        return context

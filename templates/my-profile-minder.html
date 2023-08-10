@@ -10,8 +10,9 @@
 
   <h1 hidden>My Profile</h1>
 
-  {{ form.non_field_errors }}
-
+  {% if form.non_field_errors %}
+  <div class="non-field-error text-center">{{ form.non_field_errors }}</div>
+  {% endif %}
   <div class="row">
     <div class="col-12 col-md-6 form-user-details">
       <!-- Name field -->
@@ -39,6 +40,35 @@
         <div class="field-error">{{ form.email.errors }}</div>
         {% endif %}
       </div>
+
+      <!-- Password field -->
+      <div class="form-field form-group">
+        <label for="{{ form.password1.id_for_label }}">Password:</label>
+        <br />
+        <div class="input-group">
+          <i class="fa fa-key fa-fw" aria-hidden="true"></i>
+          {{ form.password1 }}
+        </div>
+        {% if form.password1.errors %}
+        <div class="field-error">{{ form.password1.errors }}</div>
+        {% endif %}
+      </div>
+
+      <!-- Password Confirmation field -->
+      <div class="form-field form-group">
+        <label for="{{ form.password2.id_for_label }}"
+          >Password Confirmation:</label
+        >
+        <br />
+        <div class="input-group">
+          <i class="fa fa-key fa-fw" aria-hidden="true"></i>
+          {{ form.password2 }}
+        </div>
+        {% if form.password2.errors %}
+        <div class="field-error">{{ form.password2.errors }}</div>
+        {% endif %}
+      </div>
+
 
       <!-- Bio field -->
       <div class="form-field form-group">
@@ -72,7 +102,7 @@
       <div class="form-field form-group">
         <label for="{{ form.photo.id_for_label }}">Photo:</label>
         <br />
-        <div class="input-group">
+        <div class="input-group photo-input">
           <i class="fa fa-id-badge fa-fw" aria-hidden="true"></i>
           {{ form.photo }}
         </div>

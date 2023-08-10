@@ -161,6 +161,11 @@ main {
     background-color: #ff8952;
 }
 
+.non-field-error {
+    border-radius: 25px;
+    background-color: #ff8952;
+}
+
 .errorlist {
     margin-bottom: 0 !important;
     box-shadow: #0D444E;

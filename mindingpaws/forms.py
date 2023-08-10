@@ -2,6 +2,7 @@ from django import forms
 from .models import Minder, User, Booking
 from allauth.account.forms import SignupForm
 from cloudinary.forms import CloudinaryFileField
+from django.forms import PasswordInput
 
 
 class PetOwnerCreationForm(SignupForm):
@@ -94,73 +95,37 @@ class UpdateBookingStatusForm(forms.Form):
     booking_id = forms.IntegerField()
     status = forms.CharField(max_length=10)
 
-class PetOwnerProfileUpdateForm(forms.ModelForm):
-    class Meta:
-        model = User
-        fields = ['username', 'email', 'name', 'pet_name', 'pet_species']
-        widgets = {
-            'username': forms.TextInput(attrs={'class': 'form-control'}),
-            'email': forms.EmailInput(attrs={'class': 'form-control'}),
-            'name': forms.TextInput(attrs={'class': 'form-control'}),
-            'pet_name': forms.TextInput(attrs={'class': 'form-control'}),
-            'pet_species': forms.TextInput(attrs={'class': 'form-control'}),
-        }
-        labels = {
-            'username': 'Username',
-            'email': 'Email Address',
-            'name': 'Owner Name',
-            'pet_name': 'Pet Name',
-            'pet_species': 'Pet Species',
-        }
-
-class MinderProfileUpdateForm(forms.ModelForm):
-    username = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}), label='Username')
-    email = forms.EmailField(widget=forms.EmailInput(attrs={'class': 'form-control'}), label='Email Address', max_length=100)
-    name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}), label='Minder Name', max_length=100)
-    bio = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 4}), label='Bio', max_length=500)
-    usual_availability = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}), label='Usual Availability', max_length=50)
-    photo = CloudinaryFileField(
-        options={
-            'folder': 'static/img/minders',
-            'resource_type': 'image'
-        },
-        required=False,
-        widget=forms.ClearableFileInput(attrs={'class': 'form-control-file'}),
-        label='Profile Photo'
-    )
-
+class UpdateMinderForm(forms.ModelForm):
     class Meta:
         model = Minder
         fields = ['bio', 'usual_availability', 'photo']
 
-    def __init__(self, *args, user_instance=None, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.user_instance = user_instance
-        self.fields['email'].initial = user_instance.email
-        self.fields['name'].initial = user_instance.name
-        try:
-            minder_instance = Minder.objects.get(user=user_instance)
-            self.fields['bio'].initial = minder_instance.bio
-            self.fields['usual_availability'].initial = minder_instance.usual_availability
-            self.fields['photo'].initial = minder_instance.photo
-        except Minder.DoesNotExist:
-            pass
+    name = forms.CharField(label='Name')
+    email = forms.EmailField(label='Email')
+    password1 = forms.CharField(
+        widget=PasswordInput(render_value=True),
+        required=False, 
+        label='Password'
+    )
+    password2 = forms.CharField(
+        widget=PasswordInput(render_value=True),
+        required=False,
+        label='Confirm Password'
+    )
 
-    def save(self, commit=True):
-        instance = super().save(commit=False)
-        self.user_instance.email = self.cleaned_data['email']
-        self.user_instance.name = self.cleaned_data['name']
-        self.user_instance.save()
-        if commit:
-            instance.save()
-        return instance
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['password1'].widget.attrs['value'] = ''  # Set empty value for the widget
+        self.fields['password2'].widget.attrs['value'] = ''  # Set empty value for the widget
+        self.fields['password1'].help_text = "Leave this field blank to keep the current password."
+        self.fields['password2'].help_text = "Leave this field blank to keep the current password."
 
     def clean(self):
         cleaned_data = super().clean()
-        bio = cleaned_data.get('bio')
-        usual_availability = cleaned_data.get('usual_availability')
-        
-        if not bio:
-            self.add_error('bio', 'Bio is required.')
-        if not usual_availability:
-            self.add_error('usual_availability', 'Usual Availability is required.')
+        password1 = cleaned_data.get('password1')
+        password2 = cleaned_data.get('password2')
+
+        if password1 and password2 and password1 != password2:
+            self.add_error('password2', "Passwords do not match.")
+
+        return cleaned_data
