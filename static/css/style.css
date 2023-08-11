@@ -488,8 +488,8 @@ label {
 
 .bookings-div {
     overflow: hidden;
-    max-height: 50vh;
-    min-height: 40vh;
+    max-height: 60vh;
+    min-height: 51vh;
     padding: 10px;
     background-color: #DBDEEB !important;
     border-radius: 15px;
@@ -498,7 +498,7 @@ label {
 
 .accordion {
     overflow: auto;
-    max-height: 41vh;
+    max-height: 51vh;
     padding: 10px 10px 0 10px ;
     border-radius: 10px;
     position: relative;
