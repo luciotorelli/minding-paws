@@ -566,16 +566,16 @@ label {
     background-color: #f1f1f1;
     display: flex;
     align-items: center;
-    z-index: 2;
     /* Send the line to the background if goes over the dates */
+    z-index: 2;
 
 }
 
 .pill-div p {
     margin: 0;
-    font-size: 0.9em;
+    font-size: 0.7em;
     border-radius: 20px;
-    padding: 5px 10px;
+    padding: 2px 2px;
 }
 
 .pet-info-div {
@@ -635,6 +635,11 @@ footer {
     .new-booking-btn {
         padding: 10px 20px;
     }
+
+    .pill-div p {
+        font-size: 0.8em;
+    }
+
 }
 
 
@@ -654,10 +659,6 @@ footer {
 
     .bookings-container {
         width: 70%;
-    }
-
-    .grid-container {
-        grid-template-columns: repeat(2, 1fr);
     }
 
 }
@@ -713,6 +714,9 @@ footer {
         width: 50%;
     }
 
+    .grid-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
 
     footer {
         margin-bottom: 10px !important;
