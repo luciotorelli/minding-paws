@@ -1,6 +1,55 @@
 /* Imports dancing script Google Font */
 @import url('https://fonts.googleapis.com/css2?family=Handlee&display=swap');
 
+/* ------------------------------------- Buttons */
+
+.custom-btn-1 {
+    background-color: #0D444E;
+    color: #DBDEEB;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.3s;;
+}
+
+.custom-btn-1:hover,
+.custom-btn-1:focus {
+    background-color: #0D444E;
+    color: #DBDEEB;
+    transform: scale(1.05);
+    box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.75);
+    -webkit-box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.75);
+}
+
+
+.custom-btn-2 {
+    background-color: #ff8952;
+    color: #171717;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1em;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.3s;
+}
+
+.custom-btn-2:hover,
+.custom-btn-2:focus {
+    background-color: #ff8952; /* Change the background color for hover and focus */
+    color: #171717;
+    transform: scale(1.05);
+    box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.75);
+    -webkit-box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.75);
+}
 /* ------------------------------------- Body */
 body {
     background-color: #0D444E !important;
@@ -75,17 +124,6 @@ main {
     -webkit-box-shadow: -1px 3px 18px 0px rgba(0, 0, 0, 0.75);
     -moz-box-shadow: -1px 3px 18px 0px rgba(0, 0, 0, 0.75);
     box-shadow: -1px 3px 18px 0px rgba(0, 0, 0, 0.75);
-}
-
-
-.custom-btn {
-    background-color: #ff8952 !important;
-}
-
-
-.custom-btn-2 {
-    background-color: #0D444E !important;
-    color: #DBDEEB;
 }
 
 /* Custom Scroll bar */
@@ -271,23 +309,12 @@ label {
     text-align: center;
 }
 
-.login-btn {
-    background-color: #ff8952 !important;
-    color: #0D444E;
-}
-
 /* ------------------------------------- Logout Modal */
 
 .modal-content {
-    background-color: #0D444E;
+    background-color: #171717;
     color: #DBDEEB;
     border: none;
-}
-
-.modal-footer .btn-primary {
-    background-color: #ff8952;
-    border-color: #ff8952;
-    color: #0D444E;
 }
 
 /* ------------------------------------- Search for Minders page */
@@ -351,7 +378,6 @@ label {
 }
 
 .btn-select-minder {
-    background-color: #ff8952 !important;
     border: solid 1px #0D444E;
     margin-bottom: 20px !important;
 }
@@ -426,7 +452,6 @@ label {
 .create-booking-btns-div button {
     padding: 10px 20px;
     margin: 5px;
-    background-color: #ff8952;
 }
 
 /* ------------------------------------- Bookings Page */
@@ -449,9 +474,7 @@ label {
 }
 
 .new-booking-btn {
-    background-color: #0D444E;
     border: none;
-    color: white;
     padding: 5px 20px;
     text-decoration: none;
     display: inline-block;
@@ -581,8 +604,6 @@ label {
     display: block;
     text-align: right !important;
     font-size: 15px;
-    color: #fff;
-    background-color: #486e75;
     border-radius: 5px;
     padding: 5px;
 }
@@ -591,8 +612,6 @@ label {
     display: block;
     text-align: right !important;
     font-size: 15px;
-    color: #171717;
-    background-color: #ff8952;
     border-radius: 5px;
     padding: 5px;
 }
