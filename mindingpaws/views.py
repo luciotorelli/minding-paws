@@ -25,6 +25,8 @@ class HomeRedirectView(View):
         else:
             return redirect('welcome')
 
+class AboutUsView(TemplateView):
+    template_name = 'about_us.html'
 
 class PetOwnerSignUp(SignupView):
     template_name = 'account/signup_pet_owner.html'

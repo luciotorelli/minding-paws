@@ -15,5 +15,6 @@ urlpatterns = [
     path('my-profile-pet-owner/', views.UpdatePetOwnerView.as_view(), name='update-pet-owner-profile'),
     path('my-profile/', views.ProfileRedirectView.as_view(), name='my-profile-redirect'),
     path('change-password/', PasswordChangeView.as_view(), name='change-password'),
+    path('about-us/', views.AboutUsView.as_view(), name='about_us'),
 
 ]
