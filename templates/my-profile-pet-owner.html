@@ -40,33 +40,6 @@
         {% endif %}
       </div>
 
-        <!-- Password field -->
-        <div class="form-field form-group">
-            <label for="{{ form.password1.id_for_label }}">Password:</label>
-            <br />
-            <div class="input-group">
-            <i class="fa fa-lock fa-fw" aria-hidden="true"></i>
-            {{ form.password1 }}
-            </div>
-            {% if form.password1.errors %}
-            <div class="field-error">{{ form.password1.errors }}</div>
-            {% endif %}
-        </div>
-
-        <!-- Password confirmation field -->
-        <div class="form-field form-group">
-            <label for="{{ form.password2.id_for_label }}">Confirm Password:</label>
-            <br />
-            <div class="input-group">
-            <i class="fa fa-lock fa-fw" aria-hidden="true"></i>
-            {{ form.password2 }}
-            </div>
-            {% if form.password2.errors %}
-            <div class="field-error">{{ form.password2.errors }}</div>
-            {% endif %}
-        </div>
-
-
     </div>
 
     <div class="col-12 col-md-6 form-user-details">
@@ -102,9 +75,12 @@
     </div>
   </div>
 
-  <div class="col text-center">
-    <button type="submit" class="btn custom-btn mt-4">
-      {% trans "Update Profile" %} &raquo;
+  <div class="col text-center mt-4 d-flex justify-content-evenly">
+    <a href="{% url 'account_change_password' %}" class="btn custom-btn-2 reselect-minder-btn">
+      {% trans "Change Password" %}
+    </a>
+    <button type="submit" class="btn custom-btn">
+      {% trans "Save Profile" %}
     </button>
   </div>
 </form>

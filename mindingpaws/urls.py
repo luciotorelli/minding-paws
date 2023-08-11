@@ -1,5 +1,6 @@
 from . import views
 from django.urls import path
+from allauth.account.views import PasswordChangeView
 
 urlpatterns = [
     path('', views.HomeRedirectView.as_view(), name='home'),
@@ -13,4 +14,6 @@ urlpatterns = [
     path('my-profile-minder/', views.UpdateMinderView.as_view(), name='my-profile-minder'),
     path('my-profile-pet-owner/', views.UpdatePetOwnerView.as_view(), name='update-pet-owner-profile'),
     path('my-profile/', views.ProfileRedirectView.as_view(), name='my-profile-redirect'),
+    path('change-password/', PasswordChangeView.as_view(), name='change-password'),
+
 ]
