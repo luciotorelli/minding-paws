@@ -5,7 +5,7 @@ from allauth.account.views import SignupView
 from django.template.loader import render_to_string
 from django.http import JsonResponse
 from django.db.models import Q
-from .forms import PetOwnerCreationForm, MinderCreationForm, BookingCreationForm, UpdateMinderForm, UpdatePetOwnerForm
+from .forms import PetOwnerCreationForm, MinderCreationForm, BookingCreationForm, UpdateMinderForm, UpdatePetOwnerForm, UpdateBookingStatusForm
 from .models import User, Minder, Booking
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import redirect
