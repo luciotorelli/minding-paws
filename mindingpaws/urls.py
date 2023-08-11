@@ -11,5 +11,5 @@ urlpatterns = [
     path('bookings/', views.BookingsView.as_view(), name='bookings'),
     path('update_booking_status/', views.UpdateBookingStatus.as_view(), name='update-booking-status'),
     path('my-profile-minder/', views.UpdateMinderView.as_view(), name='my-profile-minder'),
-
+    path('my-profile-pet-owner/', views.UpdatePetOwnerView.as_view(), name='update-pet-owner-profile'),
 ]

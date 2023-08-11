@@ -115,8 +115,8 @@ class UpdateMinderForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['password1'].widget.attrs['value'] = ''  # Set empty value for the widget
-        self.fields['password2'].widget.attrs['value'] = ''  # Set empty value for the widget
+        self.fields['password1'].widget.attrs['value'] = ''
+        self.fields['password2'].widget.attrs['value'] = ''
         self.fields['password1'].help_text = "Leave this field blank to keep the current password."
         self.fields['password2'].help_text = "Leave this field blank to keep the current password."
 
@@ -135,5 +135,41 @@ class UpdateMinderForm(forms.ModelForm):
             self.add_error('password1', forms.ValidationError("Passwords do not match."))
             self.add_error('password2', forms.ValidationError("Passwords do not match."))
 
+
+        return cleaned_data
+
+class UpdatePetOwnerForm(forms.ModelForm):
+
+    password1 = forms.CharField(
+        label="Password",
+        strip=False,
+        widget=forms.PasswordInput(attrs={'autocomplete': 'new-password'}),
+        required=False,
+    )
+    password2 = forms.CharField(
+        label="Confirm Password",
+        strip=False,
+        widget=forms.PasswordInput(attrs={'autocomplete': 'new-password'}),
+        required=False,
+    )
+
+    class Meta:
+        model = User
+        fields = ['name', 'email', 'pet_name', 'pet_species']
+
+    def clean(self):
+        cleaned_data = super().clean()
+        password1 = cleaned_data.get('password1')
+        password2 = cleaned_data.get('password2')
+       
+        if password1 and not password2:
+            self.add_error('password2', forms.ValidationError("This field must be filled if Password is entered."))
+
+        if password2 and not password1:
+            self.add_error('password1', forms.ValidationError("This field must be filled if Confirm Password is entered."))
+
+        if password1 and password2 and password1 != password2:
+            self.add_error('password1', forms.ValidationError("Passwords do not match."))
+            self.add_error('password2', forms.ValidationError("Passwords do not match."))
 
         return cleaned_data

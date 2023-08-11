@@ -5,7 +5,7 @@ from allauth.account.views import SignupView
 from django.template.loader import render_to_string
 from django.http import JsonResponse
 from django.db.models import Q
-from .forms import PetOwnerCreationForm, MinderCreationForm, BookingCreationForm, UpdateMinderForm
+from .forms import PetOwnerCreationForm, MinderCreationForm, BookingCreationForm, UpdateMinderForm, UpdatePetOwnerForm
 from .models import User, Minder, Booking
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import redirect
@@ -237,6 +237,43 @@ class UpdateMinderView(UpdateView):
             update_session_auth_hash(self.request, user)
         user.save()
 
+        return super().form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['action'] = 'Update'
+        return context
+    
+class UpdatePetOwnerView(UpdateView):
+    model = User
+    template_name = 'my-profile-pet-owner.html'
+    form_class = UpdatePetOwnerForm
+    success_url = '/my-profile-pet-owner/'
+
+    def get_object(self, queryset=None):
+        return self.request.user  # Retrieve the logged-in user's pet owner instance
+
+    def get_initial(self):
+        initial = super().get_initial()
+        initial['pet_name'] = self.request.user.pet_name
+        initial['pet_species'] = self.request.user.pet_species
+        return initial
+
+    def form_valid(self, form):
+        pet_owner = form.save(commit=False)
+        pet_owner.pet_name = form.cleaned_data['pet_name']
+        pet_owner.pet_species = form.cleaned_data['pet_species']
+        
+        # Update password if provided
+        password1 = form.cleaned_data['password1']
+        password2 = form.cleaned_data['password2']
+        if password1 and password2 and password1 == password2:
+            pet_owner.set_password(password1)
+            pet_owner.save()
+            # Keep the user logged in after changing password
+            update_session_auth_hash(self.request, pet_owner)
+        
+        pet_owner.save()
         return super().form_valid(form)
 
     def get_context_data(self, **kwargs):
