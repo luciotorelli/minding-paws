@@ -280,3 +280,16 @@ class UpdatePetOwnerView(UpdateView):
         context = super().get_context_data(**kwargs)
         context['action'] = 'Update'
         return context
+    
+class ProfileRedirectView(View):
+    def get(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            user = request.user
+
+            if user.role == 'pet-owner':
+                return redirect('update-pet-owner-profile')
+            elif hasattr(user, 'minder'):
+                return redirect('my-profile-minder')
+        else:
+            # If the user is not authenticated, redirect to welcome page.
+            return redirect('welcome')
