@@ -5,12 +5,12 @@ from allauth.account.views import SignupView
 from django.template.loader import render_to_string
 from django.http import JsonResponse
 from django.db.models import Q
-from .forms import PetOwnerCreationForm, MinderCreationForm, BookingCreationForm, UpdateMinderForm, UpdatePetOwnerForm, UpdateBookingStatusForm
+from .forms import *
 from .models import User, Minder, Booking
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import redirect
 from django.core.exceptions import PermissionDenied
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, render
 from django.contrib.auth import update_session_auth_hash
 from django.contrib import messages
 from django.utils import timezone
@@ -226,6 +226,24 @@ class UpdateBookingStatus(View):
     def form_invalid(self, form):
         messages.warning(self.request, "There was an issue updating the booking status. Verify any displayed errors or contact us.")
         return super().form_invalid(form)
+
+class EditBookingDetailsView(View):
+    def post(self, request, *args, **kwargs):
+        form = EditBookingDetailsForm(request.POST)
+        if form.is_valid():
+            booking_id = form.cleaned_data['booking_id']
+            booking = get_object_or_404(Booking, id=booking_id)
+            
+            # Check if the booking status is 'pending' and the user role is 'pet-owner'
+            if booking.status == 'pending' and request.user.role == 'pet-owner':
+                booking.pet_name = form.cleaned_data['pet_name']
+                booking.pet_species = form.cleaned_data['pet_species']
+                booking.service_description = form.cleaned_data['service_description']
+                booking.save()
+                messages.success(self.request, "Booking details updated successfully!")
+            else:
+                messages.warning(self.request, "You are not authorized to edit this booking.")
+        return redirect('bookings')
 
 class UpdateMinderView(UpdateView):
     model = Minder

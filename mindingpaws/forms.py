@@ -95,6 +95,12 @@ class UpdateBookingStatusForm(forms.Form):
     booking_id = forms.IntegerField()
     status = forms.CharField(max_length=10)
 
+class EditBookingDetailsForm(forms.Form):
+    booking_id = forms.IntegerField(widget=forms.HiddenInput())
+    pet_name = forms.CharField(max_length=100, label='Pet Name')
+    pet_species = forms.CharField(max_length=100, label='Pet Species')
+    service_description = forms.CharField(widget=forms.Textarea, label='Service Description')
+
 class UpdateMinderForm(forms.ModelForm):
     class Meta:
         model = Minder

@@ -31,21 +31,21 @@
       </p>
 
       <!-- Display the booking buttons based on user role, user authentication and booking status -->
-      {% if user.is_authenticated and user.role == 'minder' and booking.status == 'pending' %}
       <div class="booking-details-btns">
-          <button class="approve-btn custom-btn-1" type="button" data-bs-toggle="modal" data-bs-target="#approveModal{{ booking.id }}">Approve</button>
-          <button class="cancel-btn custom-btn-2" type="button" data-bs-toggle="modal" data-bs-target="#cancelModal{{ booking.id }}">Cancel</button>
-      </div>
-      {% elif user.is_authenticated and user.role == 'pet-owner' and booking.status == 'pending' or booking.status == 'accepted' %}
-          <div class="booking-details-btns">
+        {% if user.is_authenticated %}
+          {% if booking.status == 'pending' %}
+            {% if user.role == 'minder' %}
+              <button class="approve-btn custom-btn-1" type="button" data-bs-toggle="modal" data-bs-target="#approveModal{{ booking.id }}">Approve</button>
               <button class="cancel-btn custom-btn-2" type="button" data-bs-toggle="modal" data-bs-target="#cancelModal{{ booking.id }}">Cancel</button>
-          </div>
-      {% endif %}
-      {% if booking.status == 'completed' %}
-      <div class="booking-details-btns">
-          <button class="cancel-btn custom-btn-2" type="button" data-bs-toggle="modal" data-bs-target="#deleteModal{{ booking.id }}">Delete</button>
-      </div>
-      {% endif %}
+            {% elif user.role == 'pet-owner' %}
+              <button class="approve-btn custom-btn-1" type="button" data-bs-toggle="modal" data-bs-target="#editModal{{ booking.id }}">Edit Booking Details</button>
+              <button class="cancel-btn custom-btn-2" type="button" data-bs-toggle="modal" data-bs-target="#cancelModal{{ booking.id }}">Cancel</button>
+            {% endif %}
+          {% elif booking.status == 'completed' %}
+            <button class="cancel-btn custom-btn-2" type="button" data-bs-toggle="modal" data-bs-target="#deleteModal{{ booking.id }}">Delete</button>
+          {% endif %}
+        {% endif %}
+      </div>     
    </div>
   </div>
 
@@ -118,6 +118,40 @@
               <button type="button" class="custom-btn-2" data-bs-dismiss="modal">No, go back</button>
           </div>
       </div>
+  </div>
+</div>
+
+<!-- Edit Modal -->
+<div class="modal fade" tabindex="-1" role="dialog" id="editModal{{ booking.id }}">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header border-0">
+        <h5 class="modal-title">Edit Booking Details</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form method="post" action="{% url 'edit-booking-details' %}">
+          {% csrf_token %}
+          <input type="hidden" name="booking_id" value="{{ booking.id }}">
+          <div class="form-group">
+            <label for="pet_name">Pet Name:</label>
+            <input type="text" class="form-control" id="pet_name" name="pet_name" value="{{ booking.pet_name }}" required>
+          </div>
+          <div class="form-group">
+            <label for="pet_species">Pet Species:</label>
+            <input type="text" class="form-control" id="pet_species" name="pet_species" value="{{ booking.pet_species }}" required>
+          </div>
+          <div class="form-group">
+            <label for="service_description">Service Description:</label>
+            <textarea class="form-control" id="service_description" name="service_description" rows="4" required>{{ booking.service_description }}</textarea>
+          </div>
+      </div>
+      <div class="modal-footer border-0">
+        <button type="submit" class="custom-btn-1">Save Changes</button>
+        <button type="button" class="custom-btn-2" data-bs-dismiss="modal">Cancel</button>
+      </div>
+    </form>
+    </div>
   </div>
 </div>
 
