@@ -289,7 +289,7 @@ class ProfileRedirectView(View):
             user = request.user
 
             if user.role == 'pet-owner':
-                return redirect('update-pet-owner-profile')
+                return redirect('my-profile-pet-owner')
             elif hasattr(user, 'minder'):
                 return redirect('my-profile-minder')
         else:
