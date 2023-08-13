@@ -12,6 +12,7 @@ from django.shortcuts import redirect
 from django.core.exceptions import PermissionDenied
 from django.shortcuts import get_object_or_404
 from django.contrib.auth import update_session_auth_hash
+from django.contrib import messages
 
 class welcomeView(TemplateView):
     template_name = 'index.html'
@@ -81,7 +82,12 @@ class CreateBookingView(LoginRequiredMixin, FormView):
 
     def form_valid(self, form):
         form.save()
+        messages.success(self.request, "Booking created successfully!")
         return super().form_valid(form)
+
+    def form_invalid(self, form):
+        messages.warning(self.request, "There was an issue with your form submission. Verify any displayed errors or contact us.")
+        return super().form_invalid(form)
 
 
 class BrowseMindersView(ListView):
@@ -193,10 +199,16 @@ class UpdateBookingStatus(View):
             if status == 'cancelled' and (booking.status == 'cancelled' or booking.status == 'completed'):
                 raise PermissionDenied("You can't cancel a booking that is already cancelled or completed.")
 
+            messages.success(self.request, "Booking status updated successfully!")
+
             booking.status = status
             booking.save()
 
         return redirect('bookings')
+
+    def form_invalid(self, form):
+        messages.warning(self.request, "There was an issue updating the booking status. Verify any displayed errors or contact us.")
+        return super().form_invalid(form)
 
 class UpdateMinderView(UpdateView):
     model = Minder
@@ -239,13 +251,19 @@ class UpdateMinderView(UpdateView):
             update_session_auth_hash(self.request, user)
         user.save()
 
+        messages.success(self.request, "Profile updated successfully!")
+
         return super().form_valid(form)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['action'] = 'Update'
         return context
-    
+
+    def form_invalid(self, form):
+        messages.warning(self.request, "There was an issue updating your profile. Verify any displayed errors or contact us.")
+        return super().form_invalid(form)
+
 class UpdatePetOwnerView(UpdateView):
     model = User
     template_name = 'my-profile-pet-owner.html'
@@ -276,13 +294,20 @@ class UpdatePetOwnerView(UpdateView):
             update_session_auth_hash(self.request, pet_owner)
         
         pet_owner.save()
+
+        messages.success(self.request, "Profile updated successfully!")
+
         return super().form_valid(form)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['action'] = 'Update'
         return context
-    
+
+    def form_invalid(self, form):
+        messages.warning(self.request, "There was an issue updating your profile. Verify any displayed errors or contact us.")
+        return super().form_invalid(form)
+
 class ProfileRedirectView(View):
     def get(self, request, *args, **kwargs):
         if request.user.is_authenticated:
