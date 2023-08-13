@@ -5,13 +5,13 @@
   class="signup signup-form main-div-shadow"
   id="signup_form"
   method="post"
-  action="{% url 'minder-sign-up' %}"
+  action="{% url 'minder-signup' %}"
   enctype="multipart/form-data"
 >
   {% csrf_token %}
 
   <div class="sign-up-choice">
-    <a href="{% url 'pet-owner-sign-up' %}" class="sign-up-choice-non-active left-border btn">
+    <a href="{% url 'pet-owner-signup' %}" class="sign-up-choice-non-active left-border btn">
       I am a Pet Owner.
     </a>
     <a href="{% url 'minder-signup' %}" class="sign-up-choice-active right-border btn">

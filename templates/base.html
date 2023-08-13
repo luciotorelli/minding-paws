@@ -29,21 +29,22 @@
           {% if user.is_authenticated %}
           <!-- Navbar Item 1 Logged In -->
           <a
-            class="nav-item nav-link active btn flex-grow-1 rounded-0 btn-nav"
+            class="nav-item nav-link btn flex-grow-1 rounded-0 btn-nav {% if request.resolver_match.url_name == 'bookings' or request.resolver_match.url_name == 'browse-minders' or request.resolver_match.url_name == 'create-booking' %}active{% endif %}"
             href="{% url 'bookings' %}"
           >
             <i class="fa fa-calendar-check"></i>Bookings
           </a>
           <!-- Navbar Item 2 Logged In -->
           <a
-            class="nav-item nav-link btn flex-grow-1 rounded-0 btn-nav"
+            class="nav-item nav-link btn flex-grow-1 rounded-0 btn-nav {% if 'my-profile' in request.resolver_match.url_name or 'password' in request.resolver_match.url_name %}active{% endif %}
+            "
             href="{% url 'my-profile-redirect' %}"
           >
             <i class="fa fa-user"></i>My Profile
           </a>
           <!-- Navbar Item 3 Logged In -->
           <a
-            class="nav-item nav-link btn flex-grow-1 rounded-0 btn-nav"
+            class="nav-item nav-link btn flex-grow-1 rounded-0 btn-nav {% if request.resolver_match.url_name == 'about-us' %}active{% endif %}"
             href="{% url 'about-us' %}"
           >
             <i class="fa fa-solid fa-paw"></i>About us
@@ -60,28 +61,28 @@
           {% else %}
           <!-- Navbar Item 1 Logged Out -->
           <a
-            class="nav-item nav-link active btn flex-grow-1 rounded-0 btn-nav"
+            class="nav-item nav-link btn flex-grow-1 rounded-0 btn-nav {% if request.resolver_match.url_name == 'welcome' %}active{% endif %}"
             href="{% url 'welcome' %}"
           >
             <i class="fa fa-home"></i>Home
           </a>
           <!-- Navbar Item 2 Logged Out -->
           <a
-            class="nav-item nav-link btn flex-grow-1 rounded-0 btn-nav"
-            href="{% url 'pet-owner-sign-up' %}"
+            class="nav-item nav-link btn flex-grow-1 rounded-0 btn-nav {% if 'signup' in request.resolver_match.url_name %}active{% endif %}"
+            href="{% url 'pet-owner-signup' %}"
           >
-            <i class="fa fa-user-plus"></i>Sign-up
+            <i class="fa fa-user-plus"></i>Signup
           </a>
           <!-- Navbar Item 3 Logged Out -->
           <a
-            class="nav-item nav-link btn flex-grow-1 rounded-0 btn-nav"
-            href="{% url 'about_us' %}"
+            class="nav-item nav-link btn flex-grow-1 rounded-0 btn-nav {% if request.resolver_match.url_name == 'about-us' %}active{% endif %}"
+            href="{% url 'about-us' %}"
           >
             <i class="fa fa-solid fa-paw"></i>About us
           </a>
           <!-- Navbar Item 4 Logged Out (Sign In) -->
           <a
-            class="nav-item nav-link btn flex-grow-1 rounded-0 btn-nav"
+            class="nav-item nav-link btn flex-grow-1 rounded-0 btn-nav {% if 'login' in request.resolver_match.url_name %}active{% endif %}"
             href="{% url 'account_login' %}"
           >
             <i class="fa fa-sign-in-alt"></i>{% trans 'Sign In' %}
