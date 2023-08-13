@@ -13,6 +13,7 @@ from django.core.exceptions import PermissionDenied
 from django.shortcuts import get_object_or_404
 from django.contrib.auth import update_session_auth_hash
 from django.contrib import messages
+from django.utils import timezone
 
 class welcomeView(TemplateView):
     template_name = 'index.html'
@@ -174,9 +175,19 @@ class BookingsView(LoginRequiredMixin, ListView):
         else:
             return Booking.objects.none()
 
+    def update_completed_statuses(self, bookings):
+        now = timezone.now()
+        for booking in bookings:
+            if booking.status == 'accepted' and booking.end_date < now:
+                booking.status = 'completed'
+                booking.save()
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         bookings = context['bookings']
+
+        self.update_completed_statuses(bookings)
+
         context['pending_bookings'] = bookings.filter(status='pending')
         context['accepted_bookings'] = bookings.filter(status='accepted')
         context['cancelled_bookings'] = bookings.filter(status='cancelled')
