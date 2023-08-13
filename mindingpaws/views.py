@@ -198,6 +198,12 @@ class UpdateBookingStatus(View):
             # If status is being set to cancelled, ensure status is not cancelled or completed
             if status == 'cancelled' and (booking.status == 'cancelled' or booking.status == 'completed'):
                 raise PermissionDenied("You can't cancel a booking that is already cancelled or completed.")
+            
+            # If status is being set to deleted, ensure status is completed
+            if status == 'deleted':
+                if booking.status != 'completed':
+                    raise PermissionDenied("You can only delete completed bookings.")
+                booking.delete()
 
             messages.success(self.request, "Booking status updated successfully!")
 
