@@ -25,7 +25,9 @@
     <a href="{{ login_url }}">log-in</a>.{% endblocktrans %}
   </p>
 
-  {{ form.non_field_errors }}
+  {% if form.non_field_errors %}
+  <div class="non-field-error text-center">{{ form.non_field_errors }}</div>
+  {% endif %}
 
   <div class="row">
     <div class="col-12 col-md-6 form-user-details">

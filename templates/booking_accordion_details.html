@@ -132,6 +132,9 @@
       <div class="modal-body">
         <form method="post" action="{% url 'edit-booking-details' %}">
           {% csrf_token %}
+          {% if form.non_field_errors %}
+          <div class="non-field-error text-center">{{ form.non_field_errors }}</div>
+          {% endif %}
           <input type="hidden" name="booking_id" value="{{ booking.id }}">
           <div class="form-group">
             <label for="pet_name">Pet Name:</label>
