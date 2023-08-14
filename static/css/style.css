@@ -58,6 +58,11 @@ body {
     background-color: #0D444E !important;
 }
 
+/* ------------------------------------- Toastr */
+.toast {
+    opacity: 1 !important;
+}
+
 /* ------------------------------------- Navbar */
 .navbar {
     box-shadow: 0 8px 20px 6px black !important;
