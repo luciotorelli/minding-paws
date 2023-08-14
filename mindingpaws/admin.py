@@ -5,6 +5,20 @@ from .forms import MinderCreationForm, BookingCreationForm
 
 
 class CustomUserAdmin(UserAdmin):
+    """
+    Custom User admin configuration.
+
+    This admin configuration class is used to customize the User admin interface.
+    It defines the add_fieldsets, fieldsets, search_fields, list_display, and list_filter settings.
+
+    Attributes:
+        add_fieldsets (tuple): Defines the fields to display on the 'Add User page'.
+        fieldsets (tuple): Defines the order and fields to display on the 'Edit User page'.
+        search_fields (list): Fields to use for searching.
+        list_display (tuple): Fields to display in the list view.
+        list_filter (tuple): Fields to use for filtering in the list view.
+
+    """
     # Add fields to the 'Add User page'.
     add_fieldsets = (
         (None, {
@@ -32,23 +46,42 @@ class CustomUserAdmin(UserAdmin):
 
 
 class CustomMinderAdmin(admin.ModelAdmin):
-    def user_name(self, obj):
-        """user_name
+    """
+    Custom admin configuration for Minder model.
 
-        Returns the name connected to the Minder User to be used on list_display
+    This admin configuration class customizes the display, search, and form behavior for the Minder model in the admin interface.
+
+    Methods:
+        user_name(obj): Return the name connected to the Minder User for use in list_display.
+        user_username(obj): Return the username connected to the Minder User for use in list_display.
+        get_form(request, obj=None, **kwargs): Get the form to use for adding/editing a Minder.
+
+    Attributes:
+        search_fields (list): Fields to use for searching.
+        list_display (tuple): Fields to display in the list view.
+
+    """
+    def user_name(self, obj):
+        """
+        Return the name connected to the Minder User for use on list_display.
+
+        Args:
+            obj (Minder): The Minder object.
 
         Returns:
-            object: name of the user
+            str: The name of the user.
         """
         return obj.user.name
 
     def user_username(self, obj):
-        """user_username
+        """
+        Return the username connected to the Minder User for use on list_display.
 
-        Returns the username connected to the Minder User to be used on list_display
+        Args:
+            obj (Minder): The Minder object.
 
         Returns:
-            object: username of the user
+            str: The username of the user.
         """
         return obj.user.username
 
@@ -60,12 +93,37 @@ class CustomMinderAdmin(admin.ModelAdmin):
     list_display = ('user_name', 'user_username', 'bio', 'usual_availability')
 
     def get_form(self, request, obj=None, **kwargs):
+        """
+        Get the form to use for adding/editing a Minder.
+
+        Args:
+            request: The HTTP request.
+            obj: The Minder object being edited (or None for new additions).
+            **kwargs: Additional keyword arguments.
+
+        Returns:
+            form: The form to use.
+        """
         if obj is None:
             return MinderCreationForm
         return super().get_form(request, obj, **kwargs)
 
 
 class CustomBookingAdmin(admin.ModelAdmin):
+    """
+    Custom admin configuration for Booking model.
+
+    This admin configuration class customizes the display, search, and form behavior for the Booking model in the admin interface.
+
+    Attributes:
+        fieldsets (tuple): Defines the fieldsets for the admin detail view.
+        readonly_fields (list): Fields that are read-only in the admin interface.
+        list_display (tuple): Fields to display in the list view.
+        search_fields (list): Fields to use for searching.
+        list_filter (tuple): Fields to use for filtering in the list view.
+        form: The form to use for adding/editing a Booking.
+
+    """
     fieldsets = (
         ('Users Information', {
             'fields': ('pet_owner', 'pet_owner_name', 'minder', 'minder_name'),
@@ -73,7 +131,6 @@ class CustomBookingAdmin(admin.ModelAdmin):
         ('Booking Information', {
             'fields': ('start_date', 'end_date', 'status', 'service_description', 'pet_name', 'pet_species')
         }),
-
     )
     readonly_fields = ['pet_owner_name', 'minder_name']
     list_display = ('minder_name', 'pet_owner_name', 'status', 'start_date',
@@ -84,7 +141,7 @@ class CustomBookingAdmin(admin.ModelAdmin):
                    'pet_name', 'pet_species')
     form = BookingCreationForm
 
-
+# Register models with custom admin configurations
 admin.site.register(User, CustomUserAdmin)
 admin.site.register(Minder, CustomMinderAdmin)
 admin.site.register(Booking, CustomBookingAdmin)

@@ -4,7 +4,7 @@ from allauth.account.views import PasswordChangeView
 
 urlpatterns = [
     path('', views.HomeRedirectView.as_view(), name='home'),
-    path('welcome/', views.welcomeView.as_view(), name='welcome'),
+    path('welcome/', views.WelcomeView.as_view(), name='welcome'),
     path('pet-owner-signup/', views.PetOwnerSignUp.as_view(), name='pet-owner-signup'),
     path('minder-signup/', views.MinderSignUp.as_view(), name='minder-signup'),
     path('create-booking/', views.CreateBookingView.as_view(), name='create-booking'),
