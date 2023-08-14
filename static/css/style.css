@@ -123,6 +123,13 @@ body {
     background-size: cover;
 }
 
+.welcome-message {
+    background-color: #A6ACC7 !important;
+    color: #171717 !important;
+    width: 100%;
+    text-align: center;
+}
+
 /* ------------------------------------- Main */
 main {
     min-height: 70vh;

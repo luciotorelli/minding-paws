@@ -103,6 +103,10 @@
         <h1>Minding Paws</h1>
         <p>Connecting Pet Owners and Pet Minders.</p>
         <div class="hero-image"></div>
+        {% if user.is_authenticated %}
+          <div class="welcome-message">Welcome {{ user.name }}!</div>
+        {% endif %}
+        </script>        
       </section>
     </header>
 
