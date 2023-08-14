@@ -126,13 +126,13 @@
             <h5 class="modal-title">{% trans "Sign Out" %}</h5>
             <button
               type="button"
-              class="btn-close btn-close-white"
+              class="btn-close btn-close"
               data-bs-dismiss="modal"
               aria-label="{% trans 'Close' %}"
             ></button>
           </div>
           <div class="modal-body">
-            <p>{% trans 'Are you sure you want to sign out?' %}</p>
+            <p class="modal-text">Are you sure you want to sign out?</p>
           </div>
           <div class="modal-footer border-0">
             <form method="post" action="{% url 'account_logout' %}">
