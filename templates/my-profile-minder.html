@@ -98,13 +98,13 @@
     </div>
   </div>
 
-  <div class="col text-center mt-4 d-flex justify-content-evenly">
+  <div class="col text-center mt-4 d-flex justify-content-evenly my-profile-btns-div">
+    <button type="submit" class="custom-btn-1">
+      {% trans "Save Profile" %}
+    </button>    
     <a href="{% url 'account_change_password' %}" class="custom-btn-1">
       {% trans "Change Password" %}
     </a>
-    <button type="submit" class="custom-btn-1">
-      {% trans "Save Profile" %}
-    </button>
   </div>
 </form>
 {% endblock %}

@@ -340,6 +340,24 @@ label {
     font-size: 1.2em !important;
 }
 
+/* ------------------------------------- My Profile */
+
+.my-profile-btns-div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 10px 0;
+    
+}
+
+.my-profile-btns-div button {
+    margin: 10px 0;
+}
+
+.my-profile-btns-div a {
+    margin: 10px 0;
+}
+
 /* ------------------------------------- Search for Minders page */
 
 .browse-minders-div {
@@ -673,6 +691,13 @@ footer {
         justify-content: space-around;
         flex-direction: row-reverse;
     }
+
+    .my-profile-btns-div {
+        justify-content: space-around;
+        flex-direction: row-reverse;
+        margin: 10px 0 !important;
+        padding: 0 !important;
+    }    
 }
 
 /* -------------------- Screens above 768px width - Tablets */
