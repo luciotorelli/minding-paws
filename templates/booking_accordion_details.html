@@ -38,7 +38,7 @@
               <button class="approve-btn custom-btn-1" type="button" data-bs-toggle="modal" data-bs-target="#approveModal{{ booking.id }}">Approve</button>
               <button class="cancel-btn custom-btn-2" type="button" data-bs-toggle="modal" data-bs-target="#cancelModal{{ booking.id }}">Cancel</button>
             {% elif user.role == 'pet-owner' %}
-              <button class="approve-btn custom-btn-1" type="button" data-bs-toggle="modal" data-bs-target="#editModal{{ booking.id }}">Edit Booking Details</button>
+              <button class="approve-btn custom-btn-1" type="button" data-bs-toggle="modal" data-bs-target="#editModal{{ booking.id }}">&nbsp;Edit&nbsp;</button>
               <button class="cancel-btn custom-btn-2" type="button" data-bs-toggle="modal" data-bs-target="#cancelModal{{ booking.id }}">Cancel</button>
             {% endif %}
           {% elif booking.status == 'completed' %}
