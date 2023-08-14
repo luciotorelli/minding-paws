@@ -470,6 +470,7 @@ label {
     flex-wrap: wrap;
     justify-content: center;
     margin: 20px 0;
+    
 }
 
 .create-booking-btns-div button {
@@ -670,6 +671,7 @@ footer {
 @media screen and (min-width: 425px) {
     .create-booking-btns-div {
         justify-content: space-around;
+        flex-direction: row-reverse;
     }
 }
 
