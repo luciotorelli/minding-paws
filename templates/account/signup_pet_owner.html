@@ -9,6 +9,8 @@
 >
   {% csrf_token %}
 
+  <h2 class="text-center">Sign Up</h2>
+
   <div class="sign-up-choice">
     <a href="{% url 'pet-owner-signup' %}" class="sign-up-choice-active left-border btn">
       I am a Pet Owner.
@@ -18,7 +20,6 @@
     </a>
   </div>
 
-  <h1 hidden>Pet Owner Sign-up</h1>
   <p>
     {% blocktrans %}Already have an account? Then please
     <a href="{{ login_url }}">log-in</a>.{% endblocktrans %}
