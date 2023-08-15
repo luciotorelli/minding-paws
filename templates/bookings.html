@@ -1,4 +1,5 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %} 
+{% block content %}
 <div class="container bookings-container">
     {% if user.role == 'pet-owner' %}
       <div class="new-booking-div main-div-shadow">
@@ -12,10 +13,46 @@
       <div class="bookings-div main-div-shadow">
         <h3 class="text-center">Pending Bookings</h3>
           <div id="pendingBookingsAccordion" class="accordion">
-            {% for booking in pending_bookings %}
-            <div class="accordion-item">
-              <h2 class="accordion-header" id="pendingBooking{{ booking.id }}">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#pendingBookingCollapse{{ booking.id }}" aria-expanded="false" aria-controls="pendingBookingCollapse{{ booking.id }}">
+            {% if pending_bookings %}
+              {% for booking in pending_bookings %}
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="pendingBooking{{ booking.id }}">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#pendingBookingCollapse{{ booking.id }}" aria-expanded="false" aria-controls="pendingBookingCollapse{{ booking.id }}">
+                        {{ forloop.counter }} - 
+                        {% if user.is_authenticated %}
+                            {% if user.role == 'pet-owner' %}
+                                {{ booking.minder_name }}
+                            {% elif user.role == 'minder' %}
+                                {{ booking.pet_owner_name }}
+                            {% endif %}
+                        {% endif %}
+                        on {{ booking.start_date|date:"M. j" }}
+                    </button>
+                  </h2>
+                  <div id="pendingBookingCollapse{{ booking.id }}" class="accordion-collapse collapse" aria-labelledby="pendingBooking{{ booking.id }}" data-bs-parent="#pendingBookingsAccordion">
+                    <div class="accordion-body">
+                        {% include 'booking_accordion_details.html' %}
+                    </div>
+                  </div>
+                </div>
+              {% endfor %}
+              <div class="scroll-indicator"></div>
+            {% else %}
+              <div class="alert alert-info text-center" role="alert">
+                You have no pending bookings.
+              </div>
+            {% endif %}
+          </div>
+      </div>
+      <!-- Div 2 Accepted Bookings -->
+      <div class="bookings-div main-div-shadow">
+        <h3 class="text-center">Accepted Bookings</h3>
+        <div id="acceptedBookingsAccordion" class="accordion">
+          {% if accepted_bookings %}
+            {% for booking in accepted_bookings %}
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="acceptedBooking{{ booking.id }}">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#acceptedBookingCollapse{{ booking.id }}" aria-expanded="false" aria-controls="acceptedBookingCollapse{{ booking.id }}">
                     {{ forloop.counter }} - 
                     {% if user.is_authenticated %}
                         {% if user.role == 'pet-owner' %}
@@ -25,106 +62,94 @@
                         {% endif %}
                     {% endif %}
                     on {{ booking.start_date|date:"M. j" }}
-                </button>
-              </h2>
-              <div id="pendingBookingCollapse{{ booking.id }}" class="accordion-collapse collapse" aria-labelledby="pendingBooking{{ booking.id }}" data-bs-parent="#pendingBookingsAccordion">
-                <div class="accordion-body">
-                    {% include 'booking_accordion_details.html' %}
+                  </button>
+                </h2>
+                <div id="acceptedBookingCollapse{{ booking.id }}" class="accordion-collapse collapse" aria-labelledby="acceptedBooking{{ booking.id }}" data-bs-parent="#acceptedBookingsAccordion">
+                  <div class="accordion-body">
+                      {% include 'booking_accordion_details.html' %}
+                  </div>
                 </div>
               </div>
-            </div>
             {% endfor %}
             <div class="scroll-indicator"></div>
-          </div>
-      </div>
-      <!-- Div 2 Accepted Bookings -->
-      <div class="bookings-div main-div-shadow">
-        <h3 class="text-center">Accepted Bookings</h3>
-        <div id="acceptedBookingsAccordion" class="accordion">
-          {% for booking in accepted_bookings %}
-          <div class="accordion-item">
-            <h2 class="accordion-header" id="acceptedBooking{{ booking.id }}">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#acceptedBookingCollapse{{ booking.id }}" aria-expanded="false" aria-controls="acceptedBookingCollapse{{ booking.id }}">
-                {{ forloop.counter }} - 
-                {% if user.is_authenticated %}
-                    {% if user.role == 'pet-owner' %}
-                        {{ booking.minder_name }}
-                    {% elif user.role == 'minder' %}
-                        {{ booking.pet_owner_name }}
-                    {% endif %}
-                {% endif %}
-                on {{ booking.start_date|date:"M. j" }}
-              </button>
-            </h2>
-            <div id="acceptedBookingCollapse{{ booking.id }}" class="accordion-collapse collapse" aria-labelledby="acceptedBooking{{ booking.id }}" data-bs-parent="#acceptedBookingsAccordion">
-              <div class="accordion-body">
-                  {% include 'booking_accordion_details.html' %}
-              </div>
+          {% else %}
+            <div class="alert alert-info text-center" role="alert">
+              You have no accepted bookings.
             </div>
-          </div>
-          {% endfor %}
+          {% endif %}
         </div>
-        <div class="scroll-indicator"></div>
       </div>
 
       <!-- Div 3 Cancelled Bookings -->
       <div class="bookings-div main-div-shadow">
         <h3 class="text-center">Cancelled Bookings</h3>
         <div id="cancelledBookingsAccordion" class="accordion">
-          {% for booking in cancelled_bookings %}
-          <div class="accordion-item">
-            <h2 class="accordion-header" id="cancelledBooking{{ booking.id }}">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#cancelledBookingCollapse{{ booking.id }}" aria-expanded="false" aria-controls="cancelledBookingCollapse{{ booking.id }}">
-                {{ forloop.counter }} - 
-                {% if user.is_authenticated %}
-                    {% if user.role == 'pet-owner' %}
-                        {{ booking.minder_name }}
-                    {% elif user.role == 'minder' %}
-                        {{ booking.pet_owner_name }}
+          {% if cancelled_bookings %}
+            {% for booking in cancelled_bookings %}
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="cancelledBooking{{ booking.id }}">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#cancelledBookingCollapse{{ booking.id }}" aria-expanded="false" aria-controls="cancelledBookingCollapse{{ booking.id }}">
+                    {{ forloop.counter }} - 
+                    {% if user.is_authenticated %}
+                        {% if user.role == 'pet-owner' %}
+                            {{ booking.minder_name }}
+                        {% elif user.role == 'minder' %}
+                            {{ booking.pet_owner_name }}
+                        {% endif %}
                     {% endif %}
-                {% endif %}
-                on {{ booking.start_date|date:"M. j" }}
-              </button>
-            </h2>
-            <div id="cancelledBookingCollapse{{ booking.id }}" class="accordion-collapse collapse" aria-labelledby="cancelledBooking{{ booking.id }}" data-bs-parent="#cancelledBookingsAccordion">
-              <div class="accordion-body">
-                  {% include 'booking_accordion_details.html' %}
+                    on {{ booking.start_date|date:"M. j" }}
+                  </button>
+                </h2>
+                <div id="cancelledBookingCollapse{{ booking.id }}" class="accordion-collapse collapse" aria-labelledby="cancelledBooking{{ booking.id }}" data-bs-parent="#cancelledBookingsAccordion">
+                  <div class="accordion-body">
+                      {% include 'booking_accordion_details.html' %}
+                  </div>
+                </div>
               </div>
+            {% endfor %}
+            <div class="scroll-indicator"></div>
+          {% else %}
+            <div class="alert alert-info text-center" role="alert">
+              You have no cancelled bookings.
             </div>
-          </div>
-          {% endfor %}
+          {% endif %}
         </div>
-        <div class="scroll-indicator"></div>
       </div>
 
       <!-- Div 4 Completed Bookings -->
       <div class="bookings-div main-div-shadow">
         <h3 class="text-center">Completed Bookings</h3>
         <div id="completedBookingsAccordion" class="accordion">
-          {% for booking in completed_bookings %}
-          <div class="accordion-item">
-            <h2 class="accordion-header" id="completedBooking{{ booking.id }}">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#completedBookingCollapse{{ booking.id }}" aria-expanded="false" aria-controls="completedBookingCollapse{{ booking.id }}">
-                {{ forloop.counter }} - 
-                {% if user.is_authenticated %}
-                    {% if user.role == 'pet-owner' %}
-                        {{ booking.minder_name }}
-                    {% elif user.role == 'minder' %}
-                        {{ booking.pet_owner_name }}
+          {% if completed_bookings %}
+            {% for booking in completed_bookings %}
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="completedBooking{{ booking.id }}">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#completedBookingCollapse{{ booking.id }}" aria-expanded="false" aria-controls="completedBookingCollapse{{ booking.id }}">
+                    {{ forloop.counter }} - 
+                    {% if user.is_authenticated %}
+                        {% if user.role == 'pet-owner' %}
+                            {{ booking.minder_name }}
+                        {% elif user.role == 'minder' %}
+                            {{ booking.pet_owner_name }}
+                        {% endif %}
                     {% endif %}
-                {% endif %}
-                on {{ booking.start_date|date:"M. j" }}
-              </button>
-            </h2>
-            <div id="completedBookingCollapse{{ booking.id }}" class="accordion-collapse collapse" aria-labelledby="completedBooking{{ booking.id }}" data-bs-parent="#completedBookingsAccordion">
-              <div class="accordion-body">
-                  {% include 'booking_accordion_details.html' %}
+                    on {{ booking.start_date|date:"M. j" }}
+                  </button>
+                </h2>
+                <div id="completedBookingCollapse{{ booking.id }}" class="accordion-collapse collapse" aria-labelledby="completedBooking{{ booking.id }}" data-bs-parent="#completedBookingsAccordion">
+                  <div class="accordion-body">
+                      {% include 'booking_accordion_details.html' %}
+                  </div>
+                </div>
               </div>
+            {% endfor %}
+            <div class="scroll-indicator"></div>
+          {% else %}
+            <div class="alert alert-info text-center" role="alert">
+              You have no completed bookings.
             </div>
-          </div>
-          {% endfor %}
+          {% endif %}
         </div>
-        <div class="scroll-indicator"></div>
       </div>
     </div>
 </div>
