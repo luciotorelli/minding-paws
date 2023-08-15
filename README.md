@@ -300,7 +300,7 @@ The "Handlee" Google Font was selected for its handwritten and playful appearanc
 ---
 
 
-### Browser Compatibility Tested
+### Browser Compatibility
 #### The app was manually tested on the following browsers. All forms, buttons, views, templates, scripts and functions worked as expected. Database updates are consistent for all browsers.
 
 | Browser | Compatible    | Notes | Version Tested |
@@ -350,10 +350,46 @@ They were tagged as either bug, enhancement, documentation or user stories accor
 | My Profile - User | My Profile - User  | My Profile - User  | X |
 | Minder | Minder  | Minder  | X |
 ---
-
 <br>
 
-## Deployment
+### Deployment
+
+1. **Database Setup**: Begin by configuring the database. If you're using PostgreSQL, you can set up a PostgreSQL database using [ElephantSQL](https://www.elephantsql.com). Follow these steps:
+   - Sign up for an account on ElephantSQL.
+   - Create a new instance with a unique name, like your project name.
+   - Choose the Tiny Turtle (Free) plan.
+   - Select the region and data center closest to you.
+   - Once created, note down the database URL and password.
+
+2. **Cloudinary API Integration**: To store media assets online, integrate the [Cloudinary API](https://cloudinary.com) into your application:
+   - Create a Cloudinary account.
+   - On your Cloudinary Dashboard, obtain your API Environment Variable.
+   - Copy the API key, removing `CLOUDINARY_URL=` to leave only the key.
+   - Add to your environment variable "DATABASE_URL"
+
+3. **Deploying on Heroku**:
+   - Sign up for a Heroku account if you haven't already.
+   - Create a new app from your Heroku Dashboard.
+   - Access your app's settings and set up environment variables:
+      - CLOUDINARY_URL: Paste your Cloudinary API key.
+      - DATABASE_URL: Use the ElephantSQL database URL.
+      - SECRET_KEY: Choose any random secret key.
+      - DEBUG VALUE: Choose True or False.
+   - Ensure you have the following files in your project:
+      - requirements.txt: List your project's requirements.
+      - Procfile: Create this file with the content web: gunicorn app_name.wsgi.
+   - Connect your GitHub repository to your Heroku app.
+   - Choose automatic deployment from Heroku or manually push your code.
+
+* **Local Deployment for Testing**:
+   - Clone or fork the project repository to your local machine.
+   - Install project requirements using `pip3 install -r requirements.txt`.
+   - Create an env.py file at the root level, adding environment variables stated on step 3 for local testing and set DEBUG to True.
+   - Run the Django app: `python3 manage.py runserver`.
+   - Perform migrations: `python3 manage.py makemigrations`, then `python3 manage.py migrate`.
+   - Create a superuser for local testing: `python3 manage.py createsuperuser`.
+
+* In case you would like to fork, Click the "Fork" button at the top right of the repository's page. This creates a copy of the repository under your GitHub account and then you can follow the steps above for local or heroku deployment.
 
 
 ---
