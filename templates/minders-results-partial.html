@@ -15,10 +15,9 @@
       </div>
       <div class="minder-name">
         <h5>{{ minder.user.name }}</h5>
-        <button
-          class="custom-btn-1" onclick="saveToSessionStorage( '{{ minder.user }}','{{ minder.id }}','{{ minder.user.name }}','{{ minder.photo.url }}','{{ minder.usual_availability }}' ) ">
+        <button class='custom-btn-1' onclick='saveToSessionStorage("{{ minder.user }}", "{{ minder.id }}", "{{ minder.user.name }}", "{{ minder.photo.url }}", "{{ minder.usual_availability }}")'>
           Book this Minder!
-        </button>
+        </button>        
       </div>
     </div>
     <div class="col-12 col-md-8 minder-bio-availability-div">
