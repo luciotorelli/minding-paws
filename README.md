@@ -398,16 +398,70 @@ They were tagged as either bug, enhancement, documentation or user stories accor
 
 ### Special Thanks!
 
+- Can - Code Institutor Mentor - I am very grateful for the guidance provided by Can for my project.
+- My colleague group - Thanks for testing my project on multiple devices and providing feedback during development.
+- My family and friends that were kind enough to test the terminal app on their devices and provide me with feedback and screenshots.
+- My study group for sharing the struggles/challenges and keeping each other progressing! ([@alexiiasantos](https://github.com/alexiiasantos), Bohdan, [@GaryS007](https://github.com/GaryS007), [@oconnorian3](https://github.com/oconnorian3), [@James-Fitz](https://github.com/James-Fitz), [@zemaciel](https://github.com/zemaciel), Thomas and Yanina).
+
 
 ### Resources used
 
+- [Code Institute Full Stack - Course material, slack, mentoring and tutoring.](https://codeinstitute.net/ie/full-stack-software-development-diploma/)
+- [Stackoverflow - Having the answers to many of my questions.](https://stackoverflow.com/)
+- [Notion - Used to take notes of bugs, resources and tutorials prior to uploading them to README](https://www.notion.so/)
+- [draw.io (diagrams) - Used to draw the chart of the project.](https://app.diagrams.net/)
+- [CI Python Linter - Used to check all Python files against pep8.](https://pep8ci.herokuapp.com/#)
+- [CSS Validator - W3C](https://jigsaw.w3.org/css-validator/)
+- [JSHint - JavaScript Code Quality Tool](https://jshint.com/)
+- [VScode - Used to write the code for this project.](https://code.visualstudio.com/)
+- [Gitpod - Used to share a virtual environment with tutors.](https://gitpod.io/workspaces)
+- [AutoDocString VS code extension](https://marketplace.visualstudio.com/items?itemName=njpwerner.autodocstring)
+- [Google Python Style Guide](https://google.github.io/styleguide/pyguide.html)
+- [Django Models Documentation](https://docs.djangoproject.com/en/4.2/ref/models/fields/)
+- [Django Auth - AbstractUser](https://docs.djangoproject.com/en/4.2/topics/auth/customizing/)
+- [Adding extra field in admin for custom user in Django 1.11](https://stackoverflow.com/questions/50583113/adding-extra-field-in-admin-for-custom-user-in-django-1-11)
+- [Displaying ForeignKey fields in Django Admin](https://books.agiliq.com/projects/django-admin-cookbook/en/latest/fk_display.html)
+- [Search Fields in Django Admin](https://docs.djangoproject.com/en/3.2/ref/contrib/admin/#django.contrib.admin.ModelAdmin.search_fields)
+- [List Display in Django Admin](https://docs.djangoproject.com/en/3.2/ref/contrib/admin/#django.contrib.admin.ModelAdmin.list_display)
+- [User's get_full_name method in Django](https://docs.djangoproject.com/en/4.2/ref/contrib/auth/#django.contrib.auth.models.User.get_full_name)
+- [Readonly Fields in Django Admin](https://docs.djangoproject.com/en/4.2/ref/contrib/admin/#django.contrib.admin.ModelAdmin.readonly_fields)
+- [Reordering fields in Django Admin](https://docs.djangoproject.com/en/4.2/ref/contrib/admin/#django.contrib.admin.ModelAdmin.fieldsets)
+- [Difference between fieldset and add_fieldset in UserAdmin](https://stackoverflow.com/questions/50436596/what-is-add-fieldsets-for-in-useradmin-in-django)
+- [Positioning the hamburger menu in mobile websites](https://ux.stackexchange.com/questions/101595/mobile-website-menu-should-hamburger-menu-be-on-left-or-the-right)
+- [Lorem Ipsum generator](https://loremipsum.io/)
+- [Adding spacing between columns](https://stackoverflow.com/a/37566310)
+- [Using JS local storage data in Django views](https://stackoverflow.com/questions/52327176/how-do-i-access-data-from-local-storage-in-django-views)
+- [Converting Font Awesome icons to favicon](https://gauger.io/fonticon/)
+ - [YouTube Music - Used to listen to hours of lofi song during the project development.](https://music.youtube.com/)
 
 ### Tutorials used (No code was copied and pasted, only inspired or adapted)
+  - [As you type search AJAX Search](https://openfolder.sh/django-tutorial-as-you-type-search-with-ajax)
 
 
 
-### Imported libraries
+### Imported templates/libraries
+
+- [toastr](https://codeseven.github.io/toastr/): Provides simple and attractive JavaScript toast notifications for your web application.
+- [cloudinary](https://pypi.org/project/cloudinary/): Simplifies image and video management, providing tools for uploading, storing, optimizing, and delivering media files.
+- [dj3-cloudinary-storage](https://pypi.org/project/dj3-cloudinary-storage/): Integrates Cloudinary storage with Django, allowing easy management of media files in Cloudinary.
+- [Django](https://www.djangoproject.com/): A high-level Python web framework that enables rapid development of secure and maintainable web applications.
+- [django-allauth](https://pypi.org/project/django-allauth/): Offers user authentication, registration, and account management functionality for Django projects.
+- [django-bootstrap5](https://pypi.org/project/django-bootstrap5/): Integrates Bootstrap 5 styling and components into Django templates.
+- [django-browser-reload](https://pypi.org/project/django-browser-reload/): Facilitates automatic browser reloading during Django development for a smoother testing workflow.
+- [filelock](https://pypi.org/project/filelock/): Provides a simple file-based locking mechanism, useful for coordinating access to shared resources.
+- [gunicorn](https://pypi.org/project/gunicorn/): A production-ready WSGI (Web Server Gateway Interface) HTTP server for running Python web applications.
+- [httplib2](https://pypi.org/project/httplib2/): A comprehensive HTTP client library that supports many features, including HTTP caching and handling of various authentication methods.
+- [oauthlib](https://pypi.org/project/oauthlib/): Offers a generic implementation of the OAuth1 and OAuth2 authorization frameworks, supporting various providers and clients.
+- [packaging](https://pypi.org/project/packaging/): Provides utilities for working with Python package metadata, such as parsing version numbers and managing dependencies.
+- [psycopg2](https://pypi.org/project/psycopg2/): PostgreSQL adapter for Python, enabling Python applications to interact with PostgreSQL databases efficiently.
+- [PyJWT](https://pypi.org/project/PyJWT/): Allows encoding and decoding JSON Web Tokens (JWT) for secure data exchange and authentication.
+- [python3-openid](https://pypi.org/project/python3-openid/): Enables OpenID authentication in Python applications, allowing users to log in using their OpenID identity.
+- [pytz](https://pypi.org/project/pytz/): Provides timezone support for Python, allowing accurate time conversions and manipulations across different timezones.
+- [requests](https://pypi.org/project/requests/): A user-friendly HTTP library for making HTTP requests, simplifying interactions with web services.
+- [requests-oauthlib](https://pypi.org/project/requests-oauthlib/): Extends the `requests` library with OAuth support, making it easier to interact with OAuth-protected APIs.
+- [SecretStorage](https://pypi.org/project/SecretStorage/): Offers a secure way to store and retrieve passwords and other sensitive data on various platforms.
+- [sqlparse](https://pypi.org/project/sqlparse/): A SQL parsing library that helps format, analyze, and manipulate SQL queries and statements.
 
 
-  
+
 ---
