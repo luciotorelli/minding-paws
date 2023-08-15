@@ -299,12 +299,20 @@ The "Handlee" Google Font was selected for its handwritten and playful appearanc
 | As the Site Owner, I want to have an administrative dashboard to manage user accounts and track bookings, so that I can effectively manage the site and ensure that it is running smoothly. | <img src="readme-assets/features/admin.png" width="1000px" />   | Yes   |
 ---
 
-<br>
----
-
-<br>
 
 ### Browser Compatibility
+
+| Browser | Compatible    | Notes | Version Tested |
+| :---:   | :---: | :---: | :---: |
+| Chrome Desktop | Yes  | N/A   | 116.0.5845.82   |
+| Opera Desktop | Yes  | N/A   | 102.0.4871.0   |
+| Edge Desktop | Yes  | N/A   | 	115.0.1901.203   |
+| Firefox Desktop | Yes  | N/A   | 116.0.2   |
+| Chrome Mobile | Yes  | Scroll bar and datetime picker are displayed differently |  116.0.5845.78  |
+| Safari Desktop or Mobile | Yes  | Scroll bar and datetime picker are displayed differently | 16.5 |
+
+<br>
+---
 
 
 <br>
