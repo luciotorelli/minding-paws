@@ -300,7 +300,8 @@ The "Handlee" Google Font was selected for its handwritten and playful appearanc
 ---
 
 
-### Browser Compatibility
+### Browser Compatibility Tested
+#### The app was manually tested on the following browsers. All forms, buttons, views, templates, scripts and functions worked as expected. Database updates are consistent for all browsers.
 
 | Browser | Compatible    | Notes | Version Tested |
 | :---:   | :---: | :---: | :---: |
@@ -311,20 +312,31 @@ The "Handlee" Google Font was selected for its handwritten and playful appearanc
 | Chrome Mobile | Yes  | Scroll bar and datetime picker are displayed differently |  116.0.5845.78  |
 | Safari Desktop or Mobile | Yes  | Scroll bar and datetime picker are displayed differently | 16.5 |
 
-<br>
----
+### Automated Testing
+
+The code was fully passed for the automated tests created for Python and JavaScript. 
 
 
-<br>
+### Issues
 
-### Bugs
+Issues were logged using GitHub native issue tracking system. All logged issues can be [viewed here.](https://github.com/luciotorelli/minding-paws/issues)
+They were tagged as either bug, enhancement, documentation or user stories accordingly. 
 
+<img src="readme-assets/bugs.jpg" width="1000px" />
 
-
-<br>
 
 ### Feedback
 
+| Feedback | Implemented/Fixed  | Notes |
+| :---:   | :---: | :---: |
+| No confirmation message when forms are submitted successfully | Yes  | Toastr was used to implement this  |
+| Apart from navbar button updates, no confirmation user is currently logged in | Yes  | Welcome message displayed under hero image on every page and toast message added. |
+| Order of create booking buttons are confusing on mobile, made me click on "select another minder" by mistake | Yes  | The order is now changed based on mobile views |
+| Option to add more than one pet per pet owner | No  | Added to future features |
+| Separate pets and minder services into their own models | No  | Added to future features |
+| Buttons are inconsistent across app | Yes  | Two custom button styles were created and applied to all buttons. Hover effect is also consistent apart from sign-up page as pill-shaped buttons are intentionally used|
+| Desktop navbarbar most commonly placed top or left.   | Yes  | The navbar for mobile is displayed on the bottom and on desktop to the left |
+| Display all bookings in one single page   | Yes  | The booking page was divided into 4 sections to display all bookings of the current logged in user.  |
 ---
 
 <br>
