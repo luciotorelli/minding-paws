@@ -663,6 +663,12 @@ label {
     padding: 5px;
 }
 
+/* ------------------------------------- About Us Page */
+
+.policies-div{
+    justify-content: flex-start !important;
+}
+
 /* ------------------------------------- Footer */
 footer {
     background-color: #0D444E;
