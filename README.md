@@ -102,7 +102,7 @@ During this stage, I established connections between the models, views, and cont
      alt="data model for minding paws project"
      width="1000px" style="max-width: 100%;"/>
 
-### User Entity
+## User Entity
 
 | Key | Name | Type | Notes | Arguments |
 |---|---|---|---|---|
@@ -110,35 +110,35 @@ During this stage, I established connections between the models, views, and cont
 |  | name | CharField | | max_length=40, blank=False, null=False |
 |  | email | EmailField | |
 |  | password | CharField | |
-|  | role | CharField | Role choices options: pet-owner, minder or admin | max_length=9, choices=ROLE_CHOICES, blank=False, null=False |
+|  | role | CharField | Role choices options: pet-owner, minder, or admin | max_length=9, choices=ROLE_CHOICES, blank=False, null=False |
 |  | pet_name | CharField | Only required if role equals to Pet Owner | max_length=50, blank=True, null=True |
-|  | pet_species | CharField | Only required role equals to Pet Owner | max_length=50, blank=True, null=True |
+|  | pet_species | CharField | Only required if role equals to Pet Owner | max_length=50, blank=True, null=True |
 
-### Minder Entity
+## Minder Entity
 
 | Key | Name | Type | Notes | Arguments |
 |---|---|---|---|---|
 | Primary key | id | AutoField | |
-| One to One | user_id | User Model | | User, on_delete=models.CASCADE |
+| One to One | user | User Model | | on_delete=models.CASCADE |
 |  | bio | TextField | | max_length=500, blank=False, null=False |
-|  | usual_availability | CharField | Text description about periods minder is usually available. | max_length=50, help_text="Example: Monday to Friday, 10am to 6pm.", blank=False, null=False |
-|  | photo | CloudinaryField | | 'image', default='placeholder' |
+|  | usual_availability | CharField | Text description about periods the minder is usually available. | max_length=50, help_text="Example: Monday to Friday, 10am to 6pm.", blank=False, null=False |
+|  | photo | CloudinaryField | | 'image', default='placeholder', null=True, blank=True |
 
-### Booking Entity
+## Booking Entity
 
 | Key | Name | Type | Notes | Arguments |
 |---|---|---|---|---|
 | Primary key | id | AutoField | |
-| Foreign Key | minder | Minder Model |  | Minder, on_delete=models.SET_NULL, null=True |
-| | pet_owner | User Model |  | User, on_delete=models.SET_NULL, null=True |
-| | minder_name | CharField |  | max_length=50, blank=True, null=True, help_text="This field will be prepopulated on save based on the minder selected" |
-| | pet_owner_name | CharField |  | max_length=50, blank=True, null=True, help_text="This field will be prepopulated on save based on the pet owner selected | 
+| Foreign Key | minder | Minder Model |  | on_delete=models.SET_NULL, null=True |
+| | pet_owner | User Model |  | on_delete=models.SET_NULL, null=True |
+| | minder_name | CharField | Prepopulated based on the minder selected | max_length=50, blank=True, null=True, help_text="This field will be prepopulated on save based on the minder selected" |
+| | pet_owner_name | CharField | Prepopulated based on the pet owner selected | max_length=50, blank=True, null=True, help_text="This field will be prepopulated on save based on the pet owner selected" |
 |  | start_date | DateTimeField | | blank=False, null=False |
 |  | end_date | DateTimeField | | blank=False, null=False |
-|  | status | CharField |  | max_length=20, choices=STATUS_CHOICES, blank=False, null=False |
+|  | status | CharField | | max_length=20, choices=STATUS_CHOICES, blank=False, null=False |
 |  | service_description | TextField | | max_length=400, blank=False, null=False |
-|  | pet_name | CharField | Preloads from pet_owner but can be edited during booking without updating Pet Owner profile | max_length=50, blank=False, null=False |
-|  | pet_species | CharField | Preloads from pet_owner but can be edited during booking without updating Pet Owner profile | max_length=50, blank=False, null=False |
+|  | pet_name | CharField | Can be edited during booking without updating Pet Owner profile | max_length=50, blank=False, null=False |
+|  | pet_species | CharField | Can be edited during booking without updating Pet Owner profile | max_length=50, blank=False, null=False |
 
 ## UX
 
@@ -197,6 +197,19 @@ During this stage, I established connections between the models, views, and cont
 ### Color palette
 
 <img src="readme-assets/color-palette.png" alt="Color Palette for the app/site" width="800px" />
+
+| Color Code | Usage                                   |
+|------------|-----------------------------------------|
+| 419CA5     | Certain interactive elements, emphasis. |
+| 0D444E     | Primary Buttons, body, active navbar, sections. |
+| DBDEEB     | Text, form elements, even rows, content area. |
+| ff8952     | Secondary Buttons, interaction.    |
+| 171717     | Text, forms, sections.                  |
+
+### Font
+
+The "Handlee" Google Font was selected for its handwritten and playful appearance, adding a personal and friendly touch to the website's design.
+
 
 ## Features
 <br>
