@@ -1,8 +1,8 @@
-<img id="overview" src="readme-assets/main.png"
+<img id="overview" src="readme-assets/minding-paws-readme.png"
      alt="Am I responsive"
      width="800px" style="max-width: 100%;"/>
 
-<h2><a href="" target="_blank">Live App here</a></h2>
+<h2><a href="https://minding-paws-9dfff64ed9cc.herokuapp.com/" target="_blank">Live App here</a></h2>
 
 
 Minding Paws
@@ -337,6 +337,7 @@ They were tagged as either bug, enhancement, documentation or user stories accor
 | Buttons are inconsistent across app | Yes  | Two custom button styles were created and applied to all buttons. Hover effect is also consistent apart from sign-up page as pill-shaped buttons are intentionally used|
 | Desktop navbarbar most commonly placed top or left.   | Yes  | The navbar for mobile is displayed on the bottom and on desktop to the left |
 | Display all bookings in one single page   | Yes  | The booking page was divided into 4 sections to display all bookings of the current logged in user.  |
+| Unable to select certain minders  | Partially fixed  | See [issue 24](https://github.com/luciotorelli/minding-paws/issues/24) for more details  |
 ---
 
 <br>
