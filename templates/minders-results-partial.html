@@ -8,9 +8,9 @@
         <img
           src="{% static 'img/profile-placeholder.webp' %}"
           alt="{{ minder.user.name }}"
-        />
+       >
         {% else %}
-        <img src="{{ minder.photo.url }}" alt="{{ minder.user.name }}" />
+        <img src="{{ minder.photo.url }}" alt="{{ minder.user.name }}">
         {% endif %}
       </div>
       <div class="minder-name">
