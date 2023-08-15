@@ -219,7 +219,8 @@ The "Handlee" Google Font was selected for its handwritten and playful appearanc
     <img src="readme-assets/features/sign-up.png" width="1000px" />
     3. Once the user is sucessfully signed-in or logged-in, they will see a toast message and be redirected to their bookings page. The toast message are present in other parts of the project to display changes in the database or authentication.
     <img src="readme-assets/features/bookings.png" width="1000px" />
-    4. On the bookings page accordion, the user is able to edit, cancel, approve or delete bookings based on their role and booking statuses. 
+    4. On the bookings page accordion, the user is able to edit, cancel, approve or delete bookings based on their role and booking statuses.
+    New bookings are automatically created as pending.  Pending bookings can be cancelled by pet owners or minders. If the Minder approves a pending booking, it is set to accepted. Accepted bookings that have end date earlier than the user current time is automatically marked as completed. Completed bookings can be permanently deleted. 
     <img src="readme-assets/features/booking-accordion.png" width="1000px" />
     5. When the user performs an action that changes their authentication status or update the database, they will see a modal to confirm or cancel the action.
     <img src="readme-assets/features/modals.png" width="1000px" />
@@ -237,6 +238,8 @@ The "Handlee" Google Font was selected for its handwritten and playful appearanc
     <img src="readme-assets/features/about-us.png" width="1000px" />
     12. Django admin has been customized to display, filter and search for fields based on the requirements of this project.
     <img src="readme-assets/features/admin.png" width="1000px" />
+    13. The User is able to identify if they are logged-in or out based on the navbar options and the welcome message displayed under the hero image.
+    <img src="readme-assets/features/welcome-message.png" width="1000px" />
 
 ### Future Features
 #### Some features were considered for implementation of this project. However, due to the time constrains and importance those were added to future features instead.
