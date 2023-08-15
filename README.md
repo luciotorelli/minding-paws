@@ -208,7 +208,7 @@ During this stage, I established connections between the models, views, and cont
 
 ### Font
 
-The "Handlee" Google Font was selected for its handwritten and playful appearance, adding a personal and friendly touch to the website's design.
+The "Handlee" Google Font was selected for its handwritten and playful appearance, adding a personal and friendly touch to platform logo.
 
 
 ## Features
@@ -338,6 +338,17 @@ They were tagged as either bug, enhancement, documentation or user stories accor
 | Desktop navbarbar most commonly placed top or left.   | Yes  | The navbar for mobile is displayed on the bottom and on desktop to the left |
 | Display all bookings in one single page   | Yes  | The booking page was divided into 4 sections to display all bookings of the current logged in user.  |
 | Unable to select certain minders  | Partially fixed  | See [issue 24](https://github.com/luciotorelli/minding-paws/issues/24) for more details  |
+
+
+
+### CRUD (Create, read, update and delete)
+#### During automated and manual tests, the following data manipulation permission through front-end (not including admin) was confirmed working as expected.
+
+| Create | Read  | Update | Delete |
+| :---:   | :---: | :---: | :---: |
+| Booking | Booking  | Booking  | Booking |
+| My Profile - User | My Profile - User  | My Profile - User  | X |
+| Minder | Minder  | Minder  | X |
 ---
 
 <br>
