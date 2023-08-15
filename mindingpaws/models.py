@@ -130,8 +130,8 @@ class Booking(models.Model):
         Raises:
             ValidationError: If start date is in the past.
         """
-        if self.start_date < timezone.now():
-            raise ValidationError("Start date can not be in the past.")
+        if self.start_date and self.start_date < timezone.now():
+            raise ValidationError("Start date cannot be in the past.")
 
     def clean_end_date(self):
         """
@@ -140,7 +140,7 @@ class Booking(models.Model):
         Raises:
             ValidationError: If end date is prior to start date.
         """
-        if self.end_date < self.start_date:
+        if self.start_date and self.end_date < self.start_date:
             raise ValidationError(
                 "Select an end date later than the start date.")
 
