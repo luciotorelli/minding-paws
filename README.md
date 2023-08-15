@@ -213,10 +213,50 @@ The "Handlee" Google Font was selected for its handwritten and playful appearanc
 
 ## Features
 <br>
-      
+    1. In a first logged-out access the user is brought to the landing page where the purpose of the site is clear. The UI is easy to navigate and simple.
+    <img src="readme-assets/features/landing.png" width="1000px" />
+    2. During sign-up the user can decide if they are a Pet Owner or a Pet Minder. The form is updated to match the requirements of each user role.
+    <img src="readme-assets/features/sign-up.png" width="1000px" />
+    3. Once the user is sucessfully signed-in or logged-in, they will see a toast message and be redirected to their bookings page. The toast message are present in other parts of the project to display changes in the database or authentication.
+    <img src="readme-assets/features/bookings.png" width="1000px" />
+    4. On the bookings page accordion, the user is able to edit, cancel, approve or delete bookings based on their role and booking statuses. 
+    <img src="readme-assets/features/booking-accordion.png" width="1000px" />
+    5. When the user performs an action that changes their authentication status or update the database, they will see a modal to confirm or cancel the action.
+    <img src="readme-assets/features/modals.png" width="1000px" />
+    6. Pet Owner users are able to click on the Book a Minder! button to browse and search all available minders on the platform.
+    <img src="readme-assets/features/browse-minders.png" width="1000px" />
+    7. Once a Minder is selected, the user is able to complete and submit the form or return to select another minder. To stop multiple calls to the database, the selected Minder is stored on a Session Storage, then retrieved only when the form is submitted.
+    <img src="readme-assets/features/create-booking.png" width="1000px" />
+    8. On the My Profile page the user is able to update their details and change their password.
+    <img src="readme-assets/features/my-profile.png" width="1000px" />
+    9. The forms changes based on the user role logged in to display the correct fields. For example Minders will see a Photo, Bio and Usual availability fields on the my profile page.
+    <img src="readme-assets/features/my-profile-minder.png" width="1000px" />
+    10. The forms are validated at Template level but also in the forms.py, views.py and models.py. Once an invalid input is added to the form, it will be clearly displayed to the user the reason.
+    <img src="readme-assets/features/form-errors.png" width="1000px" />
+    11. The about us page display information about the platform and it's services.
+    <img src="readme-assets/features/about-us.png" width="1000px" />
+    12. Django admin has been customized to display, filter and search for fields based on the requirements of this project.
+    <img src="readme-assets/features/admin.png" width="1000px" />
 
 ### Future Features
-  
+#### Some features were considered for implementation of this project. However, due to the time constrains and importance those were added to future features instead.
+<br>
+ 1. <a href="https://github.com/luciotorelli/minding-paws/issues/10">Django Jet was considered to improve the Admin UI.</a>
+<br>
+ 2. <a href="https://github.com/luciotorelli/minding-paws/issues/15">Storing pet names and species on an array or object to be selected by Pet Owner at booking creation. </a>
+<br>
+ 3. <a href="https://github.com/luciotorelli/minding-paws/issues/15">Separate Models for: Pets, PetOwner and Minder Services </a>
+<br>
+ 4. <a href="https://github.com/luciotorelli/minding-paws/issues/9">Dynamically hide/show pet_name and pet_species on Django admin edit user page based on User role to stop admins from adding those fields to minders</a>
+<br>
+ 5. <a href="https://github.com/luciotorelli/minding-paws/issues/18">Preview of image being uploaded during Minder sign-up</a>
+<br>
+ 6. Allow minders to select timeslots of availability.
+<br>
+ 7. Allow minders to set availability for new bookings or new clients.
+<br>
+ 8. A messaging system to allow minders and pet owners to communicate through the platform.
+
 
 
 ---
