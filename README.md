@@ -263,6 +263,19 @@ The "Handlee" Google Font was selected for its handwritten and playful appearanc
 
 ## Technologies used
 
+- [HTML](https://en.wikipedia.org/wiki/HTML) used for the main template contents.
+- [CSS](https://en.wikipedia.org/wiki/CSS) used for the styling, design and layout.
+- [Bootstrap](https://getbootstrap.com) used as the front-end CSS framework for responsiveness and pre-built components.
+- [JavaScript](https://www.javascript.com) used to dynamically display searchs on the front-end, to save information to Session Storage and to replace html content on the dom.
+- [Python](https://en.wikipedia.org/wiki/Python_(programming_language)) - Python is a high-level, general-purpose language, used to code django files.
+- [Gitpod](https://www.gitpod.io/about) - Gitpod is an open source developer platform automating the provisioning of ready-to-code developer environments. Used to create the tests due to limitation of local development.
+- [Heroku](https://dashboard.heroku.com/) - Heroku is a cloud platform as a service supporting several programming languages, used to host the live application.
+- [Github and Git](https://docs.github.com/en/get-started/using-git/about-git) - Used to host the development of the project and version control using Git.
+- [Django](https://www.djangoproject.com) - used as the Python framework for the site.
+- [PostgreSQL](https://www.postgresql.org) - used as the relational database management.
+- [ElephantSQL](https://www.elephantsql.com) - used as the database host.
+- [Cloudinary](https://cloudinary.com) - used for hosting and serving static files.
+
 ---
 
 ## Testing
