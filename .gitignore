@@ -9,3 +9,5 @@ node_modules/
 Pipfile.lock
 .gitignore
 templates/account/signup-styled.html
+yarn.lock
+.gitpod.yml
