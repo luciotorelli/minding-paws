@@ -584,7 +584,7 @@ class UpdateMinderView(UpdateView):
         """
         minder = form.save(commit=False)
         minder.bio = form.cleaned_data['bio']
-        minder.availability = form.cleaned_data['availability']
+        minder.usual_availability = form.cleaned_data['usual_availability']
         new_photo = form.cleaned_data['photo']
         if new_photo:
             minder.photo = new_photo
