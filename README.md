@@ -106,7 +106,7 @@ During this stage, I established connections between the models, views, and cont
 |---|---|---|---|---|
 | Primary key | id | AutoField | |
 |  | name | CharField | | max_length=40, blank=False, null=False |
-|  | email | EmailField | | blank=False, null=False
+|  | email | EmailField | | blank=True, null=True
 |  | password | CharField | | blank=False, null=False
 |  | role | CharField | Role choices options: pet-owner, minder, or admin | max_length=9, choices=ROLE_CHOICES, blank=False, null=False |
 |  | pet_name | CharField | Only required if role equals to Pet Owner | max_length=50, blank=True, null=True |
