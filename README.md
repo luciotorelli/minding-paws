@@ -106,8 +106,8 @@ During this stage, I established connections between the models, views, and cont
 |---|---|---|---|---|
 | Primary key | id | AutoField | |
 |  | name | CharField | | max_length=40, blank=False, null=False |
-|  | email | EmailField | |
-|  | password | CharField | |
+|  | email | EmailField | | blank=False, null=False
+|  | password | CharField | | blank=False, null=False
 |  | role | CharField | Role choices options: pet-owner, minder, or admin | max_length=9, choices=ROLE_CHOICES, blank=False, null=False |
 |  | pet_name | CharField | Only required if role equals to Pet Owner | max_length=50, blank=True, null=True |
 |  | pet_species | CharField | Only required if role equals to Pet Owner | max_length=50, blank=True, null=True |
@@ -347,6 +347,21 @@ They were tagged as either bug, enhancement, documentation or user stories accor
 | Booking | Booking  | Booking  | Booking |
 | My Profile - User | My Profile - User  | My Profile - User  | X |
 | Minder | Minder  | Minder  | X |
+
+
+### Validation
+
+<li>The code for all Python files (aside from settings.py) was tested against <a href="https://pep8ci.herokuapp.com">provided CI Python Linter</a></li>
+<li>The code for all HTML files was tested against <a href="https://validator.w3.org/">W3C Markup validation service.</a></li>
+<li>The code for the CSS file was tested against <a href="https://jigsaw.w3.org/css-validator/">W3C CSS validation service.</a></li>
+<li>The code for the JavaScript file was tested against <a href="https://jshint.com/">JShint</a></li>   
+<br>
+No errors were displayed at final deployment.
+
+### Lighthouse
+
+Google chrome built lighthouse was used to test all pages that returned an acceptable average score of 92 for all categories.
+
 ---
 <br>
 
