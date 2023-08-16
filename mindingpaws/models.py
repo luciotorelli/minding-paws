@@ -25,7 +25,8 @@ class User(AbstractUser):
         Validate the user's fields based on their role.
 
         Raises:
-            ValidationError: If pet_name or pet_species is empty for pet owners.
+            ValidationError: If pet_name or pet_species
+                is empty for pet owners.
         """
         if self.role == 'pet-owner' and not self.pet_name:
             raise ValidationError("Pet name is required for Pet Owners.")
@@ -49,8 +50,16 @@ class Minder(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     bio = models.TextField(max_length=500, blank=False, null=False)
     usual_availability = models.CharField(
-        max_length=50, help_text="Example: Monday to Friday, 10am to 6pm.", blank=False, null=False)
-    photo = CloudinaryField('image', default='https://res.cloudinary.com/dls3mbdix/image/upload/v1690889814/static/img/profile-placeholder_hgqisr.webp', null=True, blank=True)
+        max_length=50,
+        help_text="Example: Monday to Friday, 10am to 6pm.",
+        blank=False,
+        null=False)
+    photo = CloudinaryField(
+        'image',
+        default='https://res.cloudinary.com/dls3mbdix/image/upload/ \
+                 v1690889814/static/img/profile-placeholder_hgqisr.webp',
+        null=True,
+        blank=True)
 
     def __str__(self):
         """
@@ -69,9 +78,17 @@ class Booking(models.Model):
     minder = models.ForeignKey(Minder, on_delete=models.SET_NULL, null=True)
     pet_owner = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     minder_name = models.CharField(
-        max_length=50, blank=True, null=True, help_text="This field will be prepopulated on save based on the minder selected")
+        max_length=50,
+        blank=True,
+        null=True,
+        help_text="This field will be prepopulated \
+                   on save based on the minder selected")
     pet_owner_name = models.CharField(
-        max_length=50, blank=True, null=True, help_text="This field will be prepopulated on save based on the pet owner selected")
+        max_length=50,
+        blank=True,
+        null=True,
+        help_text="This field will be prepopulated \
+                   on save based on the pet owner selected")
     start_date = models.DateTimeField(blank=False, null=False)
     end_date = models.DateTimeField(blank=False, null=False)
     STATUS_CHOICES = [
@@ -80,7 +97,11 @@ class Booking(models.Model):
         ('cancelled', 'Cancelled'),
         ('completed', 'Completed')
     ]
-    status = models.CharField(max_length=20, choices=STATUS_CHOICES, blank=False, null=False)
+    status = models.CharField(
+        max_length=20,
+        choices=STATUS_CHOICES,
+        blank=False,
+        null=False)
     service_description = models.TextField(
         max_length=400, blank=False, null=False)
     pet_name = models.CharField(max_length=50, blank=False, null=False)

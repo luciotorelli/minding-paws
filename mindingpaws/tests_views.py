@@ -13,13 +13,15 @@ class WelcomeViewTest(TestCase):
         response = self.client.get(reverse('welcome'))
         self.assertTemplateUsed(response, 'index.html')
 
+
 class HomeRedirectViewTest(TestCase):
     def test_authenticated_user_redirect(self):
         """
         Test that an authenticated user is redirected to the 'bookings' page.
         """
         User = get_user_model()  # Get the custom user model
-        user = User.objects.create_user(username='testuser', password='testpassword')
+        user = User.objects.create_user(
+            username='testuser', password='testpassword')
 
         self.client.login(username='testuser', password='testpassword')
         response = self.client.get(reverse('home'))
@@ -31,6 +33,7 @@ class HomeRedirectViewTest(TestCase):
         """
         response = self.client.get(reverse('home'))
         self.assertRedirects(response, reverse('welcome'))
+
 
 class AboutUsViewTest(TestCase):
     def test_about_us_view_template(self):
@@ -47,7 +50,10 @@ class AboutUsViewTest(TestCase):
         """
         response = self.client.get(reverse('about-us'))
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.context['view'].template_name, 'about_us.html')
+        self.assertEqual(
+            response.context['view'].template_name,
+            'about_us.html')
+
 
 class PetOwnerSignUpViewTest(TestCase):
     def test_pet_owner_sign_up_view_template(self):
@@ -63,7 +69,10 @@ class PetOwnerSignUpViewTest(TestCase):
         Test that the PetOwnerSignUp view uses the correct form class.
         """
         response = self.client.get(reverse('pet-owner-signup'))
-        self.assertIsInstance(response.context['view'].form_class(), PetOwnerCreationForm)
+        self.assertIsInstance(
+            response.context['view'].form_class(),
+            PetOwnerCreationForm)
+
 
 class MinderSignUpViewTest(TestCase):
     def test_minder_sign_up_view_template(self):
@@ -80,5 +89,9 @@ class MinderSignUpViewTest(TestCase):
         """
         response = self.client.get(reverse('minder-signup'))
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.context['view'].template_name, 'account/signup_minder.html')
-        self.assertIsInstance(response.context['view'].form_class(), MinderCreationForm)
+        self.assertEqual(
+            response.context['view'].template_name,
+            'account/signup_minder.html')
+        self.assertIsInstance(
+            response.context['view'].form_class(),
+            MinderCreationForm)

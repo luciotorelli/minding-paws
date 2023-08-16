@@ -5,7 +5,8 @@ class MindingpawsConfig(AppConfig):
     """
     Configuration class for the Mindingpaws app.
 
-    This configuration class specifies the default auto field and the name of the app.
+    This configuration class specifies the
+        default auto field and the name of the app.
 
     Attributes:
         default_auto_field (str): The default auto field setting for the app.

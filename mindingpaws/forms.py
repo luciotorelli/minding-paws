@@ -9,19 +9,15 @@ class PetOwnerCreationForm(SignupForm):
     """
     Form for creating a Pet Owner user.
 
-    This form extends the base SignupForm and adds fields specific to Pet Owners,
-    such as name, role, pet_name, and pet_species. The form handles saving the user
-    instance with the provided data.
+    Extends the base SignupForm, adds fields specific
+    to Pet Owners, like name, role, pet_name, pet_species.
+    Saves user instance with provided data.
 
     Fields:
-        name (CharField): The full name of the Pet Owner.
-        role (CharField): The role of the user (set as 'pet-owner').
-        pet_name (CharField): The name of the pet owned by the Pet Owner.
-        pet_species (CharField): The species of the pet owned by the Pet Owner.
+        name, role, pet_name, pet_species (CharField).
 
     Methods:
-        save(request): Saves the user instance with the provided data.
-
+        save(request): Saves user with provided data.
     """
     name = forms.CharField(label='Full Name')
     role = forms.CharField(label='Role')
@@ -30,15 +26,15 @@ class PetOwnerCreationForm(SignupForm):
 
     def save(self, request):
         """
-        Save the user instance with the provided data.
+        Save user instance with provided data.
 
         Args:
-            request (HttpRequest): The HTTP request object.
+            request (HttpRequest): HTTP request object.
 
         Returns:
-            User: The saved user instance.
+            User: Saved user instance.
         """
-        user = super(PetOwnerCreationForm, self).save(request)
+        user = super().save(request)
         user.name = self.cleaned_data['name']
         user.role = 'pet-owner'
         user.pet_name = self.cleaned_data['pet_name']
@@ -52,19 +48,16 @@ class MinderCreationForm(SignupForm):
     """
     Form for creating a Minder user.
 
-    This form extends the base SignupForm and adds fields specific to Minders,
-    such as name, bio, usual_availability, and photo. The form handles saving
-    the user instance and creating a corresponding Minder instance with the provided data.
+    Extends SignupForm, adds fields for Minders,
+    like name, bio, usual_availability, photo.
+    Saves user and creates Minder with provided data.
 
     Fields:
-        name (CharField): The name of the Minder.
-        bio (CharField): The bio/description of the Minder.
-        usual_availability (CharField): The usual availability of the Minder.
-        photo (CloudinaryFileField): The photo of the Minder (optional).
+        name, bio, usual_availability (CharField),
+        photo (CloudinaryFileField).
 
     Methods:
-        save(request): Saves the user instance and creates a corresponding Minder instance with the provided data.
-
+        save(request): Saves user, creates Minder.
     """
     name = forms.CharField(label='Name')
     bio = forms.CharField(label='Bio')
@@ -79,13 +72,13 @@ class MinderCreationForm(SignupForm):
 
     def save(self, request):
         """
-        Save the user instance and create a corresponding Minder instance with the provided data.
+        Save user, create corresponding Minder with provided data.
 
         Args:
-            request (HttpRequest): The HTTP request object.
+            request (HttpRequest): HTTP request object.
 
         Returns:
-            User: The saved user instance.
+            User: Saved user instance.
         """
         user = super().save(request)
         user.role = 'minder'
@@ -105,30 +98,33 @@ class BookingCreationForm(forms.ModelForm):
     """
     Form for creating a booking.
 
-    This form extends from ModelForm and is used to create a new booking instance.
-    It includes fields for the Booking model along with predefined widgets and
-    customized initialization and save methods.
+    Extends ModelForm for new booking instance.
+    Includes fields, widgets, custom initialization,
+    and save methods.
 
     Fields:
-        All fields from the Booking model.
+        All fields from Booking model.
 
     Widgets:
-        Various widgets to customize the rendering of specific fields.
+        Various widgets for specific fields.
 
     Methods:
-        __init__(*args, **kwargs): Redefines field values on initialization.
-        save(commit=True): Saves the booking instance, setting the status to pending if new.
-
+        __init__, save(commit=True).
     """
     class Meta:
         model = Booking
         fields = '__all__'
         widgets = {
-            'start_date': forms.DateTimeInput(attrs={'type': 'datetime-local'}),
-            'end_date': forms.DateTimeInput(attrs={'type': 'datetime-local'}),
-            'pet_owner_name': forms.TextInput(attrs={'readonly': 'readonly'}),
-            'bio': forms.TextInput(attrs={'readonly': 'readonly'}),
-            'usual_availability': forms.TextInput(attrs={'readonly': 'readonly'}),
+            'start_date': forms.DateTimeInput(
+                attrs={'type': 'datetime-local'}),
+            'end_date': forms.DateTimeInput(
+                attrs={'type': 'datetime-local'}),
+            'pet_owner_name': forms.TextInput(
+                attrs={'readonly': 'readonly'}),
+            'bio': forms.TextInput(
+                attrs={'readonly': 'readonly'}),
+            'usual_availability': forms.TextInput(
+                attrs={'readonly': 'readonly'}),
         }
 
     def __init__(self, *args, **kwargs):
@@ -136,48 +132,42 @@ class BookingCreationForm(forms.ModelForm):
         Redefine values for fields on initialization.
 
         Args:
-            *args: Variable length argument list.
-            **kwargs: Arbitrary keyword arguments.
+            *args, **kwargs: Variable arguments.
         """
         super().__init__(*args, **kwargs)
         self.fields['pet_owner'].queryset = User.objects.filter(
             role='pet-owner')
-
-        # Set the status value to pending
         self.fields['status'].initial = 'pending'
 
     def save(self, commit=True):
         """
-        Save the booking instance.
+        Save booking instance.
 
-        Set status to pending if it's being created for the first time, but allows
-        it to be edited from the admin later on.
+        Sets status to pending if new, editable later.
 
         Args:
-            commit (bool, optional): If it should be saved to the data. Defaults to True.
+            commit (bool, optional): Defaults to True.
 
         Returns:
             instance: The instance of the form/data opened.
         """
         instance = super().save(commit=False)
-        if not instance.pk:  
+        if not instance.pk:
             instance.status = 'pending'
         if commit:
             instance.save()
         return instance
 
-    
+
 class UpdateBookingStatusForm(forms.Form):
     """
     Form for updating booking status.
 
-    This form is used to update the status of a booking. It includes fields for the
-    booking_id and status, with appropriate data types and maximum lengths.
+    Includes fields for booking_id and status.
 
     Fields:
-        booking_id (IntegerField): The ID of the booking.
-        status (CharField): The updated status of the booking.
-
+        booking_id (IntegerField): ID of booking.
+        status (CharField): Updated status of booking.
     """
     booking_id = forms.IntegerField()
     status = forms.CharField(max_length=10)
@@ -187,43 +177,35 @@ class EditBookingDetailsForm(forms.Form):
     """
     Form for editing booking details.
 
-    This form is used to edit the details of a booking. It includes fields for the
-    booking_id, pet_name, pet_species, and service_description.
+    Includes fields for booking_id, pet_name, pet_species,
+    and service_description.
 
     Fields:
-        booking_id (IntegerField): The ID of the booking (hidden input).
-        pet_name (CharField): The name of the pet for the booking.
-        pet_species (CharField): The species of the pet for the booking.
-        service_description (CharField): The description of the service for the booking.
-
+        booking_id (IntegerField): ID of booking (hidden).
+        pet_name, pet_species (CharField): Pet details.
+        service_description (CharField): Service details.
     """
     booking_id = forms.IntegerField(widget=forms.HiddenInput())
     pet_name = forms.CharField(max_length=100, label='Pet Name')
     pet_species = forms.CharField(max_length=100, label='Pet Species')
-    service_description = forms.CharField(widget=forms.Textarea, label='Service Description')
+    service_description = forms.CharField(
+        widget=forms.Textarea, label='Service Description')
 
 
 class UpdateMinderForm(forms.ModelForm):
     """
     Form for updating a Minder's profile.
 
-    This form is used to update a Minder's profile information, including fields such
-    as bio, usual_availability, and photo. Additionally, the form allows changing the
-    name, email, and password of the Minder.
+    Update Minder's profile, including bio, usual_availability,
+    photo, name, email, password.
 
     Fields:
-        bio (CharField): The bio/description of the Minder.
-        usual_availability (CharField): The usual availability of the Minder.
-        photo (CloudinaryFileField): The photo of the Minder.
-        name (CharField): The name of the Minder.
-        email (EmailField): The email of the Minder.
-        password1 (CharField): The new password for the Minder (optional).
-        password2 (CharField): The confirmation of the new password (optional).
+        bio, usual_availability (CharField),
+        photo (CloudinaryFileField), name, email,
+        password1, password2 (CharField).
 
     Methods:
-        __init__(*args, **kwargs): Customize widget attributes and help text on initialization.
-        clean(): Validate password fields and check for matching passwords.
-
+        __init__, clean.
     """
     class Meta:
         model = Minder
@@ -233,7 +215,7 @@ class UpdateMinderForm(forms.ModelForm):
     email = forms.EmailField(label='Email')
     password1 = forms.CharField(
         widget=PasswordInput(render_value=True),
-        required=False, 
+        required=False,
         label='Password'
     )
     password2 = forms.CharField(
@@ -244,21 +226,22 @@ class UpdateMinderForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         """
-        Customize widget attributes and help text on initialization.
+        Customize widget attributes, help text on initialization.
 
         Args:
-            *args: Variable length argument list.
-            **kwargs: Arbitrary keyword arguments.
+            *args, **kwargs: Variable arguments.
         """
         super().__init__(*args, **kwargs)
         self.fields['password1'].widget.attrs['value'] = ''
         self.fields['password2'].widget.attrs['value'] = ''
-        self.fields['password1'].help_text = "Leave this field blank to keep the current password."
-        self.fields['password2'].help_text = "Leave this field blank to keep the current password."
+        self.fields['password1'].help_text = (
+            "Leave this field blank to keep the current password.")
+        self.fields['password2'].help_text = (
+            "Leave this field blank to keep the current password.")
 
     def clean(self):
         """
-        Validate password fields and check for matching passwords.
+        Validate password fields, check for matching passwords.
 
         Returns:
             dict: Cleaned data after validation.
@@ -266,38 +249,36 @@ class UpdateMinderForm(forms.ModelForm):
         cleaned_data = super().clean()
         password1 = cleaned_data.get('password1')
         password2 = cleaned_data.get('password2')
-       
         if password1 and not password2:
-            self.add_error('password2', forms.ValidationError("This field must be filled if Password is entered."))
-
+            self.add_error('password2', forms.ValidationError(
+                "This field must be filled if Password is entered."))
         if password2 and not password1:
-            self.add_error('password1', forms.ValidationError("This field must be filled if Confirm Password is entered."))
-
+            self.add_error('password1', forms.ValidationError(
+                "This field must be filled if Confirm Password is entered."))
         if password1 and password2 and password1 != password2:
-            self.add_error('password1', forms.ValidationError("Passwords do not match."))
-            self.add_error('password2', forms.ValidationError("Passwords do not match."))
+            self.add_error(
+                'password1',
+                forms.ValidationError("Passwords do not match."))
+            self.add_error(
+                'password2',
+                forms.ValidationError("Passwords do not match."))
 
         return cleaned_data
+
 
 class UpdatePetOwnerForm(forms.ModelForm):
     """
     Form for updating a Pet Owner's profile.
 
-    This form is used to update a Pet Owner's profile information, including fields such
-    as name, email, pet_name, and pet_species. Additionally, the form allows changing the
-    password of the Pet Owner.
+    Update Pet Owner's profile, including name, email,
+    pet_name, pet_species, password.
 
     Fields:
-        password1 (CharField): The new password for the Pet Owner (optional).
-        password2 (CharField): The confirmation of the new password (optional).
-
-    Meta:
-        model (User): The User model that the form is based on.
-        fields (list): The list of fields from the User model that should be included in the form.
+        password1, password2 (CharField),
+        model fields: name, email, pet_name, pet_species.
 
     Methods:
-        clean(): Validate password fields and check for matching passwords.
-
+        clean.
     """
     password1 = forms.CharField(
         label="Password",
@@ -318,7 +299,7 @@ class UpdatePetOwnerForm(forms.ModelForm):
 
     def clean(self):
         """
-        Validate password fields and check for matching passwords.
+        Validate password fields, check for matching passwords.
 
         Returns:
             dict: Cleaned data after validation.
@@ -326,15 +307,21 @@ class UpdatePetOwnerForm(forms.ModelForm):
         cleaned_data = super().clean()
         password1 = cleaned_data.get('password1')
         password2 = cleaned_data.get('password2')
-       
+
         if password1 and not password2:
-            self.add_error('password2', forms.ValidationError("This field must be filled if Password is entered."))
+            self.add_error('password2', forms.ValidationError(
+                "This field must be filled if Password is entered."))
 
         if password2 and not password1:
-            self.add_error('password1', forms.ValidationError("This field must be filled if Confirm Password is entered."))
+            self.add_error('password1', forms.ValidationError(
+                "This field must be filled if Confirm Password is entered."))
 
         if password1 and password2 and password1 != password2:
-            self.add_error('password1', forms.ValidationError("Passwords do not match."))
-            self.add_error('password2', forms.ValidationError("Passwords do not match."))
+            self.add_error(
+                'password1',
+                forms.ValidationError("Passwords do not match."))
+            self.add_error(
+                'password2',
+                forms.ValidationError("Passwords do not match."))
 
         return cleaned_data

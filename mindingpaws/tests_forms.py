@@ -1,10 +1,11 @@
 from django.test import TestCase
 from django.contrib.auth import get_user_model
-from .forms import PetOwnerCreationForm, MinderCreationForm, BookingCreationForm
+from .forms import *
 from mindingpaws.models import Minder, Booking
 from datetime import datetime, timedelta
 
 User = get_user_model()
+
 
 class TestPetOwnerCreationForm(TestCase):
     """
@@ -31,7 +32,10 @@ class TestPetOwnerCreationForm(TestCase):
         """
         Test username already exists validation.
         """
-        User.objects.create_user(username='existinguser', email='existing@example.com', password='existingpassword')
+        User.objects.create_user(
+            username='existinguser',
+            email='existing@example.com',
+            password='existingpassword')
         form = PetOwnerCreationForm({
             'username': 'existinguser',
             'email': 'test@example.com',
@@ -44,7 +48,9 @@ class TestPetOwnerCreationForm(TestCase):
         })
         self.assertFalse(form.is_valid())
         self.assertIn('username', form.errors.keys())
-        self.assertEqual(form.errors['username'][0], 'A user with that username already exists.')
+        self.assertEqual(
+            form.errors['username'][0],
+            'A user with that username already exists.')
 
     def test_max_length_name(self):
         """
@@ -62,6 +68,7 @@ class TestPetOwnerCreationForm(TestCase):
         }
         form = PetOwnerCreationForm(data=form_data)
         self.assertTrue(form.is_valid())
+
 
 class TestMinderCreationForm(TestCase):
     """
@@ -87,7 +94,10 @@ class TestMinderCreationForm(TestCase):
         """
         Test username already exists validation.
         """
-        User.objects.create_user(username='existinguser', email='existing@example.com', password='existingpassword')
+        User.objects.create_user(
+            username='existinguser',
+            email='existing@example.com',
+            password='existingpassword')
         form = MinderCreationForm({
             'username': 'existinguser',
             'email': 'test@example.com',
@@ -99,7 +109,9 @@ class TestMinderCreationForm(TestCase):
         })
         self.assertFalse(form.is_valid())
         self.assertIn('username', form.errors.keys())
-        self.assertEqual(form.errors['username'][0], 'A user with that username already exists.')
+        self.assertEqual(
+            form.errors['username'][0],
+            'A user with that username already exists.')
 
     def test_max_length_name(self):
         """
@@ -117,6 +129,7 @@ class TestMinderCreationForm(TestCase):
         form = MinderCreationForm(data=form_data)
         self.assertTrue(form.is_valid())
 
+
 class TestBookingCreationForm(TestCase):
     """
     Test suite for the BookingCreationForm.
@@ -127,9 +140,20 @@ class TestBookingCreationForm(TestCase):
         Test form validation with valid data.
         """
         # Create users for pet owner and minder
-        pet_owner = User.objects.create_user(username='petowner', email='petowner@example.com', password='testpassword', role="pet-owner")
-        minder_user = User.objects.create_user(username='minderuser', email='minder@example.com', password='testpassword', role="minder")
-        minder = Minder.objects.create(user=minder_user, bio='Test Bio', usual_availability='Test Availability')
+        pet_owner = User.objects.create_user(
+            username='petowner',
+            email='petowner@example.com',
+            password='testpassword',
+            role="pet-owner")
+        minder_user = User.objects.create_user(
+            username='minderuser',
+            email='minder@example.com',
+            password='testpassword',
+            role="minder")
+        minder = Minder.objects.create(
+            user=minder_user,
+            bio='Test Bio',
+            usual_availability='Test Availability')
 
         form_data = {
             'minder': minder,
